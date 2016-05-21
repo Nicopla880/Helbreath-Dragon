@@ -1,0 +1,35 @@
+//Elvine's Temple
+[MAP-INFO]
+map-location  = elvine
+initial-point = 1  30     43
+
+
+//-Teleportation-Set----SX-----SY---DestMapName--DX--DY---Dir---;
+
+teleport-loc     =      28    43     elvine              135    80    4
+teleport-loc     =      29    43     elvine              135    80    4
+teleport-loc     =      29    44     elvine              135    80    4
+teleport-loc     =      30    44     elvine              135    80    4
+
+
+//-WayPoint-Set---------Num-----X-----Y----;
+waypoint          =     1      59     27
+waypoint          =     2      59     27
+waypoint          =     3      59     27
+waypoint          =     4      59     27
+waypoint          =     5      59     27
+waypoint          =     6      59     27
+waypoint          =     7      59     27
+waypoint          =     8      59     27
+waypoint          =     9      60     27
+waypoint          =     10     62     29
+
+
+//-No-Attack-Area----------Num-----RECT-------------
+no-attack-area           = 1       -10 -10 -10 -10
+npc               =   Princess            2           9 9 9 9 9 9 9 9 9 9         1 
+
+
+fixed-dayornight-mode = 1
+
+[END-MAP-INFO]

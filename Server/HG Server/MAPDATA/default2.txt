@@ -1,0 +1,27 @@
+[MAP-INFO]
+
+map-location  = istria
+initial-point = 1  48 52
+
+//-Teleportation-Set----SX-----SY-----DestMapName---------DX-----DY----Dir---;
+teleport-loc     =      38    47     cityhall_1             -1    -1     5
+teleport-loc     =      39    47     cityhall_1             -1    -1     5
+teleport-loc     =      40    47     cityhall_1             -1    -1     5
+teleport-loc     =      38    48     cityhall_1             -1    -1     5
+teleport-loc     =      39    48     cityhall_1             -1    -1     5
+teleport-loc     =      40    48     cityhall_1             -1    -1     5
+
+teleport-loc     =      55     58     cityhall_2             -1    -1     5
+teleport-loc     =      56     58     cityhall_2             -1    -1     5
+teleport-loc     =      57     58     cityhall_2             -1    -1     5
+teleport-loc     =      55     59     cityhall_2             -1    -1     5
+teleport-loc     =      56     59     cityhall_2             -1    -1     5
+teleport-loc     =      57     59     cityhall_2             -1    -1     5
+
+
+//-No-Attack-Area---------Num-----RECT-------------
+no-attack-area          = 1       20 20 79 79
+
+
+
+[END-MAP-INFO]

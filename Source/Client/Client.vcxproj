@@ -1,0 +1,173 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{9DB3466F-A7ED-49BF-873E-4CAF122E922C}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>Client</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120_xp</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120_xp</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>..\..\Helbreath</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>..\..\Helbreath</OutDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="char\ActionID.h" />
+    <ClInclude Include="char\CharInfo.h" />
+    <ClInclude Include="char\Curse.h" />
+    <ClInclude Include="char\DynamicObjectID.h" />
+    <ClInclude Include="char\item\BuildItem.h" />
+    <ClInclude Include="char\item\Item.h" />
+    <ClInclude Include="char\item\ItemName.h" />
+    <ClInclude Include="char\Magic.h" />
+    <ClInclude Include="char\Skill.h" />
+    <ClInclude Include="DirectX\d3dtypes.h" />
+    <ClInclude Include="DirectX\DDraw.h" />
+    <ClInclude Include="DirectX\DInput.h" />
+    <ClInclude Include="DirectX\DSound.h" />
+    <ClInclude Include="DirectX\DXC_ddraw.h" />
+    <ClInclude Include="DirectX\DXC_dinput.h" />
+    <ClInclude Include="DirectX\DXC_dsound.h" />
+    <ClInclude Include="DirectX\Effect.h" />
+    <ClInclude Include="DirectX\Mydib.h" />
+    <ClInclude Include="DirectX\SoundBuffer.h" />
+    <ClInclude Include="DirectX\SoundID.h" />
+    <ClInclude Include="DirectX\Sprite.h" />
+    <ClInclude Include="DirectX\SpriteID.h" />
+    <ClInclude Include="DirectX\TileSpr.h" />
+    <ClInclude Include="DirectX\YWSound.h" />
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="GlobalDef.h" />
+    <ClInclude Include="GlobalVal.h" />
+    <ClInclude Include="lan_eng.h" />
+    <ClInclude Include="lan_Spanish.h" />
+    <ClInclude Include="Map\MapData.h" />
+    <ClInclude Include="Map\Tile.h" />
+    <ClInclude Include="Misc.h" />
+    <ClInclude Include="Net\Msg.h" />
+    <ClInclude Include="Net\XSocket.h" />
+    <ClInclude Include="Res\resource.h" />
+    <ClInclude Include="StrTok.h" />
+    <ClInclude Include="UI\MouseInterface.h" />
+    <ClInclude Include="UI\Winmain.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="char\CharInfo.cpp" />
+    <ClCompile Include="char\Curse.cpp" />
+    <ClCompile Include="char\item\BuildItem.cpp" />
+    <ClCompile Include="char\item\Item.cpp" />
+    <ClCompile Include="char\item\ItemName.cpp" />
+    <ClCompile Include="char\Magic.cpp" />
+    <ClCompile Include="char\Skill.cpp" />
+    <ClCompile Include="DirectX\DXC_ddraw.cpp" />
+    <ClCompile Include="DirectX\DXC_dinput.cpp" />
+    <ClCompile Include="DirectX\DXC_dsound.cpp" />
+    <ClCompile Include="DirectX\Effect.cpp" />
+    <ClCompile Include="DirectX\Mydib.cpp" />
+    <ClCompile Include="DirectX\SoundBuffer.cpp" />
+    <ClCompile Include="DirectX\Sprite.cpp" />
+    <ClCompile Include="DirectX\TileSpr.cpp" />
+    <ClCompile Include="DirectX\YWSound.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Map\MapData.cpp" />
+    <ClCompile Include="Map\Tile.cpp" />
+    <ClCompile Include="Misc.cpp" />
+    <ClCompile Include="Net\Msg.cpp" />
+    <ClCompile Include="Net\XSocket.cpp" />
+    <ClCompile Include="StrTok.cpp" />
+    <ClCompile Include="UI\MouseInterface.cpp" />
+    <ClCompile Include="UI\Wmain.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Res\CANCEL.bmp" />
+    <Image Include="Res\CONNECT.bmp" />
+    <Image Include="Res\htmlview(24).BMP" />
+    <Image Include="Res\icon1.ico" />
+    <Image Include="Res\_OK.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Res\resource.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="libs\DDRAW.LIB" />
+    <Library Include="libs\DINPUT.LIB" />
+    <Library Include="libs\DSOUND.LIB" />
+    <Library Include="libs\DXGUID.LIB" />
+    <Library Include="libs\search.lib" />
+    <Library Include="libs\WINMM.LIB" />
+    <Library Include="libs\WS2_32.LIB" />
+    <Library Include="libs\WSOCK32.LIB" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="ftp">
+      <UniqueIdentifier>{16300a7a-e068-412f-baa4-927bab461caf}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\logo.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="targetver.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LauncherDlg.h" />
+    <ClInclude Include="LegionLauncher.h" />
+    <ClInclude Include="crc.h">
+      <Filter>ftp</Filter>
+    </ClInclude>
+    <ClInclude Include="ftp_c.h">
+      <Filter>ftp</Filter>
+    </ClInclude>
+    <ClInclude Include="StrTok.h">
+      <Filter>ftp</Filter>
+    </ClInclude>
+    <ClInclude Include="unzip.h">
+      <Filter>ftp</Filter>
+    </ClInclude>
+    <ClInclude Include="ut_clnt.h">
+      <Filter>ftp</Filter>
+    </ClInclude>
+    <ClInclude Include="UT_Queue.h">
+      <Filter>ftp</Filter>
+    </ClInclude>
+    <ClInclude Include="ut_strop.h">
+      <Filter>ftp</Filter>
+    </ClInclude>
+    <ClInclude Include="UTDataSource.h">
+      <Filter>ftp</Filter>
+    </ClInclude>
+    <ClInclude Include="uterr.h">
+      <Filter>ftp</Filter>
+    </ClInclude>
+    <ClInclude Include="UTExtErr.h">
+      <Filter>ftp</Filter>
+    </ClInclude>
+    <ClInclude Include="utfile.h">
+      <Filter>ftp</Filter>
+    </ClInclude>
+    <ClInclude Include="utstrlst.h">
+      <Filter>ftp</Filter>
+    </ClInclude>
+    <ClInclude Include="sniptype.h">
+      <Filter>ftp</Filter>
+    </ClInclude>
+    <ClInclude Include="Updater.h" />
+    <ClInclude Include="Resource.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="LauncherDlg.cpp" />
+    <ClCompile Include="LegionLauncher.cpp" />
+    <ClCompile Include="crc_32.cpp">
+      <Filter>ftp</Filter>
+    </ClCompile>
+    <ClCompile Include="ftp_c.cpp">
+      <Filter>ftp</Filter>
+    </ClCompile>
+    <ClCompile Include="StrTok.cpp">
+      <Filter>ftp</Filter>
+    </ClCompile>
+    <ClCompile Include="unzip.cpp">
+      <Filter>ftp</Filter>
+    </ClCompile>
+    <ClCompile Include="ut_clnt.cpp">
+      <Filter>ftp</Filter>
+    </ClCompile>
+    <ClCompile Include="UT_Queue.cpp">
+      <Filter>ftp</Filter>
+    </ClCompile>
+    <ClCompile Include="UT_StrOp.cpp">
+      <Filter>ftp</Filter>
+    </ClCompile>
+    <ClCompile Include="UTDataSource.cpp">
+      <Filter>ftp</Filter>
+    </ClCompile>
+    <ClCompile Include="utfile.cpp">
+      <Filter>ftp</Filter>
+    </ClCompile>
+    <ClCompile Include="utstrlst.cpp">
+      <Filter>ftp</Filter>
+    </ClCompile>
+    <ClCompile Include="Updater.cpp" />
+    <ClCompile Include="stdafx.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="res\LegionLauncher.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>
