@@ -784,6 +784,8 @@
 #define	BCHECK_LOCAL_CHAT_COMMAND19	"Notification of your name outside game is now disabled."
 #define	BCHECK_LOCAL_CHAT_COMMAND20	"Items will now be automatically chosen while manufacturing."
 #define	BCHECK_LOCAL_CHAT_COMMAND21	"Items will now be manually chosen while manufacturing."
+#define	BCHECK_LOCAL_CHAT_COMMAND22	"You will see when someone is typing a text."
+#define	BCHECK_LOCAL_CHAT_COMMAND23	"You wont see when someone is typing a text anymore."
 
 
 #define	BCHECK_ITEM_OPERATION_ENABLE1	"Item transaction not finished."

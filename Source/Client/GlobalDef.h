@@ -8,8 +8,8 @@
 #define MSG_HOMEPAGE			"http://www.helbreathdragon.com/"
 
 
-#define SERVER_IP			"190.246.166.90"
-//#define SERVER_IP			"127.0.0.1"
+//#define SERVER_IP			"190.246.166.90"
+#define SERVER_IP			"127.0.0.1"
 #define SERVER_PORT			321
 
 #define LANG	ENGLISH

@@ -826,6 +826,7 @@ public:
 	BOOL  m_bShowFPS;
 	bool  m_showGrid;
 	bool  m_showAllDmg;
+	bool  m_showtyping;
 	bool  m_bigItems;
 	bool  m_showTimeStamp;
 
@@ -1045,6 +1046,9 @@ public:
 
 	// Status Typing by Revan 5/19/2016
 	bool bIsTyping;
+	bool bStopSprite;
+	
+
 };
 
 #endif // !defined(AFX_GAME_H__0089D9E3_74E6_11D2_A8E6_00001C7030A6__INCLUDED_)

@@ -33421,7 +33421,7 @@ BOOL CGame::bGetItemNameWhenDeleteNpc(int & iItemID, short sNpcType)
 	case 18: // Zombie
 	case 22: // Amphis
 		switch (dice(1, 4)) {
-		case 1: if (dice(1, 75) == 13) iItemID = 613; break; // SwordofMedusa
+		case 1: if (dice(1, 10) == 13) iItemID = 613; break; // SwordofMedusa
 		case 2: if (dice(1, 20) == 13) iItemID = 639; break; // KnecklaceOfPoisonPro
 		case 3: if (dice(1, 40) == 13) iItemID = 641; break; // KnecklaceOfMedusa
 		case 4: if (dice(1, 30) == 13) iItemID = 640; break; // KnecklaceOfSufferent

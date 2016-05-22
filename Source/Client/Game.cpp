@@ -65,6 +65,11 @@ void CGame::ReadSettings()
 	else
 		m_showAllDmg = val;
 
+	if ((val = ReadSettingsVar("ShowTyping")) == -1)
+		m_showtyping = FALSE;
+	else
+		m_showtyping = val;
+
 	if((val = ReadSettingsVar("BigItems")) == -1) 
 		m_bigItems = FALSE;
 	else
@@ -169,6 +174,7 @@ void CGame::WriteSettings()
 	WriteSettingsVar("ShowFPS", m_bShowFPS);
 	WriteSettingsVar("ShowGrid", m_showGrid);
 	WriteSettingsVar("ShowAllDmg", m_showAllDmg);
+	WriteSettingsVar("Showtyping", m_showtyping);
 	WriteSettingsVar("BigItems", m_bigItems);
 	WriteSettingsVar("PartyAutoAccept", m_partyAutoAccept);
 	WriteSettingsVar("DetailLevel", m_cDetailLevel);
@@ -17530,7 +17536,8 @@ int CGame::GetCharKind(char *str, int index)
 		index--;
     }
 	while(index>=0);
-    return kind;
+
+	return kind;
 }
 
 void CGame::ShowReceivedString(BOOL bIsHide)
@@ -17541,6 +17548,7 @@ void CGame::ShowReceivedString(BOOL bIsHide)
 	if( G_hEditWnd != NULL ) GetWindowText(G_hEditWnd, m_pInputBuffer, (int)m_cInputMaxLen);
 	strcpy(G_cTxt, m_pInputBuffer);
 #else
+
 	strcpy(G_cTxt, m_pInputBuffer);
 	if( (m_cEdit[0] != 0) && ( strlen(m_pInputBuffer)+strlen(m_cEdit)+1 <= m_cInputMaxLen ) )
 	{	strcpy(G_cTxt + strlen(m_pInputBuffer), m_cEdit);
@@ -19130,6 +19138,9 @@ void CGame::DrawChatMsgBox(short sX, short sY, int iChatIndex, BOOL bIsPreDC)
  RECT rcRect;
  SIZE Size;
 
+
+
+
 	ZeroMemory(cMsg, sizeof(cMsg));
 	ZeroMemory(cMsgA, sizeof(cMsgA));
 	ZeroMemory(cMsgB, sizeof(cMsgB));
@@ -19139,7 +19150,7 @@ void CGame::DrawChatMsgBox(short sX, short sY, int iChatIndex, BOOL bIsPreDC)
 	strcpy(cMsg, m_pChatMsgList[iChatIndex]->m_pMsg);
 	cp = (char *)cMsg;
 	iLines = 0;
-
+	
 	rgb = RGB(255,255,255);
 	switch (m_pChatMsgList[iChatIndex]->m_cType) {
 	case 1:
@@ -19274,6 +19285,7 @@ void CGame::DrawChatMsgBox(short sX, short sY, int iChatIndex, BOOL bIsPreDC)
 
 		switch (Size.cx / 160) {
 		case 0:
+			
 			SetRect(&rcRect, sX-80 +1, sY-65 -iLoc, sX+80 +1, sY -iLoc);
 			m_DDraw.DrawText(&rcRect, cMsg, RGB(0,0,0));
 
@@ -29220,6 +29232,15 @@ BOOL CGame::bCheckLocalChatCommand(char * pMsg)
 			AddEventList(BCHECK_LOCAL_CHAT_COMMAND13, 10);
 		m_showAllDmg = !m_showAllDmg;
 		return TRUE;
+	
+	}else if (memcmp(cBuff, "/showtyping", 11) == 0)
+	{
+		if (!m_showtyping)
+			AddEventList(BCHECK_LOCAL_CHAT_COMMAND22, 10);
+		else
+			AddEventList(BCHECK_LOCAL_CHAT_COMMAND23, 10);
+		m_showtyping = !m_showtyping;
+		return TRUE;
 	}else if (memcmp(cBuff, "/bigitems", 9)==0)
 	{	
 		if(!m_bigItems)
@@ -30113,7 +30134,7 @@ void CGame::UpdateScreen_OnGame()
 	DWORD dwTime = timeGetTime();
 	static DWORD dwPrevChatTime = 0;
 	static int   imX = 0, imY = 0;
-
+	
 	if (m_cGameModeCount == 0)
 	{
 		m_DDraw.ClearBackB4();
@@ -30122,6 +30143,7 @@ void CGame::UpdateScreen_OnGame()
 		m_iFrameCount = 0;
 		if (m_bMusicStat) StartBGM();
 		//if(m_iLevel < 40) AddEventList(UPDATE_SCREEN_ONGAME12, 10);
+		
 	}
 
 	m_cGameModeCount++;
@@ -30421,13 +30443,10 @@ void CGame::UpdateScreen_OnGame()
 
 
 	// Status Typing by Revan 5/19/2016
-	if ((iUpdateRet != 0) && m_bInputStatus)
+	if ((iUpdateRet != 0) && m_bInputStatus && m_showtyping == true)
 	{
-		if (((m_bIsDialogEnabled[7] == TRUE) && (m_stDialogBoxInfo[7].cMode == 1)) || ((m_bIsDialogEnabled[17] == TRUE) && (m_stDialogBoxInfo[17].cMode == 1)))
-		{
-		}
-		else
-		{
+		if (((m_bIsDialogEnabled[7] == TRUE) && (m_stDialogBoxInfo[7].cMode == 1)) || ((m_bIsDialogEnabled[17] == TRUE) && (m_stDialogBoxInfo[17].cMode == 1))){
+		}else{
 			if (bIsTyping == false){
 				bSendCommand(MSGID_COMMAND_TYPINGON, NULL, NULL, NULL, NULL, NULL, NULL);
 				bIsTyping = true;
@@ -30958,7 +30977,6 @@ void CGame::UpdateScreen_OnGame()
 
 		m_dwAuraTime = dwTime;
 	}
-
 
 	//if( iUpdateRet == 0 ) m_iFrameCount++;
 	//else m_iFrameCount+=256;
@@ -42549,7 +42567,7 @@ void CGame::CheckActiveAura(short sX, short sY, DWORD dwTime, short sOwnerType)
 
 	// Status Typing by Revan 5/19/2016
 	if ((_tmp_iStatus & STATUS_TYPING) != 0)
-		m_pEffectSpr[140]->PutTransSprite70(sX-10, sY-70, _tmp_iEffectFrame %4, dwTime+80);
+		m_pEffectSpr[140]->PutTransSprite70(sX-10, sY-70, _tmp_iEffectFrame %8, dwTime);
 
 
 	if (_tmp_iStatus & STATUS_RELICHOLDER)

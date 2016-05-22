@@ -2512,6 +2512,7 @@ void CSprite::PutTransSpriteRGB(int sX, int sY, int sFrame, int sRed, int sGreen
 	iRedPlus255   = sRed +255;
 	iGreenPlus255 = sGreen +255;
 	iBluePlus255  = sBlue +255;
+	
 
 	switch (m_pDDraw->m_cPixelFormat) {
 	case 1:
