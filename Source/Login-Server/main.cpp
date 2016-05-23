@@ -248,7 +248,7 @@ int CALLBACK LoginDlgProc( HWND hDlg, UINT msg, WPARAM wParam, LPARAM lParam )
 					GetDlgItemText(hDlg, IDC_EDIT2, Server->mySqlPwd, 20);
 					UINT iResult = 0;
 					mysql_init(&mySQL);
-					if(!mysql_real_connect(&mySQL, Server->mySqlAddress, Server->mySqlUser, Server->mySqlPwd, "helbreath", Server->mySqlPort, NULL, NULL)){
+					if (!mysql_real_connect(&mySQL, Server->mySqlAddress, Server->mySqlUser, Server->mySqlPwd, Server->mysqlDB, Server->mySqlPort, NULL, NULL)){
 						iResult = Server->MyAux_Get_Error(&mySQL);
 						mysql_close(&mySQL);
 					}

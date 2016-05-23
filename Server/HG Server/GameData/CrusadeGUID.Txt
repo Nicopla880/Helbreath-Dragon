@@ -1,2 +1,0 @@
-CrusadeGUID = 29282157
-winner-side = 0

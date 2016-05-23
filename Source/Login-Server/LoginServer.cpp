@@ -287,6 +287,13 @@ BOOL CLoginServer::ReadProgramConfigFile(char * cFn)
 						  sprintf(LogBuff, "(*) Gate Server port : %u", GateServerPort);
 						  PutLogList(LogBuff);
                          }
+					  else if (IsSame(token, "mysql-db"))
+					  {
+						  token = pStrTok->pGet();
+						  SafeCopy(mysqlDB, token);
+						  sprintf(LogBuff, "(*) mySql server db : %s", mysqlDB);
+						  PutLogList(LogBuff);
+					  }
                       else if (IsSame(token, "mysql-address"))
                          {
                           token = pStrTok->pGet();
@@ -408,7 +415,7 @@ BOOL CLoginServer::RestartServer()
 {
  		mysql_close(&mySQL);
 		mysql_init(&mySQL);
-		mysql_real_connect(&mySQL, mySqlAddress, mySqlUser, mySqlPwd, "helbreath", mySqlPort, NULL, NULL);
+		mysql_real_connect(&mySQL, mySqlAddress, mySqlUser, mySqlPwd, mysqlDB, mySqlPort, NULL, NULL);
 				
 		if(MyAux_Get_Error(&mySQL) == 0) PutLogList("-Connection to mySQL database was sucessfully established!");
         else{
@@ -759,7 +766,7 @@ void CLoginServer::OnGameServerRead(WORD GSID)
 				return;
 			}
 			mysql_init(&myConn);
-			if(!mysql_real_connect(&myConn, mySqlAddress, mySqlUser, mySqlPwd, "helbreath", mySqlPort, NULL, NULL)){
+			if (!mysql_real_connect(&myConn, mySqlAddress, mySqlUser, mySqlPwd, mysqlDB, mySqlPort, NULL, NULL)){
 				MyAux_Get_Error(&myConn);
 				mysql_close(&myConn);
 				if (PutMsgQuene(dataBuff, dwMsgSize, GSID, cKey) == FALSE) {
@@ -3780,7 +3787,7 @@ int CLoginServer::ProcessQuery(MYSQL *myConn, char *cQuery)
 		if(mysql_ping(myConn) != 0){
 			mysql_close(myConn);
 			mysql_init(myConn);
-			mysql_real_connect(myConn, mySqlAddress, mySqlUser, mySqlPwd, "helbreath", mySqlPort, NULL, NULL);
+			mysql_real_connect(myConn, mySqlAddress, mySqlUser, mySqlPwd, mysqlDB, mySqlPort, NULL, NULL);
 		}			
 		else iQuery = mysql_query(myConn, cQuery);
 		bErrorCount++;

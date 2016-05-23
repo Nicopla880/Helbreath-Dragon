@@ -114,7 +114,7 @@ public:
 
 		int             QueneHead, QueneTail;
 		char            mySqlUser[21], mySqlPwd[21];
-        _ADDRESS         ListenAddress, mySqlAddress, PermittedAddress[MAXGAMESERVERS];
+        _ADDRESS         ListenAddress, mySqlAddress, mysqlDB, PermittedAddress[MAXGAMESERVERS];
         WORD            ListenPort, GateServerPort, mySqlPort;
         BOOL            ListenToAllAddresses, mySQLAutoFixProcess, IsThreadMysqlBeingUsed;
         char			*ItemCfg, *Item2Cfg, *Item3Cfg, *BuildItemCfg, *DupItemIDCfg, *MagicCfg, 

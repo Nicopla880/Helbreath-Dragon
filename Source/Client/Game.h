@@ -872,7 +872,9 @@ public:
 	int m_iSpecialAbilityType;
 	int m_iTimeLeftSecAccount, m_iTimeLeftSecIP;
 	int m_iCrusadeDuty;
+	int m_iServerSelected;
 	int m_iLogServerPort;
+	int m_iLogServerWs2Port;
 	int m_iRating; //Rating
 
 	int m_iPrevMoveX, m_iPrevMoveY;
@@ -946,6 +948,7 @@ public:
 	char m_cEnterCheck, m_cTabCheck, m_cLeftArrowCheck;
 	char m_cArrowPressed;
 	char m_cLogServerAddr[16];
+	char m_cLogWs2ServerAddr[16];
 	char m_cChatMsg[64];
 	char m_cBackupChatMsg[64];
 	char m_cGender, m_cSkinCol, m_cHairStyle, m_cHairCol, m_cUnderCol;

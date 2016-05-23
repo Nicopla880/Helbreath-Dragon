@@ -1,24 +1,25 @@
 #ifndef GLOBALDEF_H
 #define GLOBALDEF_H
 
-#define NAME_WORLDNAME1			"WS1" // Name for default (1st) server
-#define MSG_WORLDNAME1			"180/200 Low-Rate Server" // Long name for 1st server...
-#define NAME_WORLDNAME2			"WS2"
-#define MSG_WORLDNAME2			"High-Rate Server"
 #define MSG_HOMEPAGE			"http://www.helbreathdragon.com/"
 
+#define SELECTSERVER		// Show/Hides server selection screen.
 
-//#define SERVER_IP			"190.246.166.90"
+#define NAME_WORLDNAME1			"WS1" // Name for default (1st) server
+#define MSG_WORLDNAME1			"180/200 Low-Rate Server" // Long name for 1st server...
 #define SERVER_IP			"127.0.0.1"
 #define SERVER_PORT			321
 
+#define NAME_WORLDNAME2			"WS2"
+#define MSG_WORLDNAME2			"High-Rate Server"
+#define WS2_SERVER_IP			"127.0.0.1"
+#define WS2_SERVER_PORT			331
 #define LANG	ENGLISH
 //#define LANG	SPANISH
 
 /*** Some more compilation options ***/
 //#define USING_WIN_IME		// Used for unicode characters (unchecked)
 #define MAKE_ACCOUNT		// Enable acc creation. Missing sprites, fixed!
-//#define SELECTSERVER		// Show/Hides server selection screen.
 
 #define COMMA_GOLD		// Allows to show commas number (ie: 1,200,000)
 
