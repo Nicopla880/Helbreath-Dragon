@@ -1,0 +1,212 @@
+[MAP-INFO]							
+
+map-location	=	middleland					
+initial-point	=	1	192	228			
+level-limit	=	20
+pk-mode = 0
+
+//-Teleportation-Set----SX-----SY-----DestMapName---------DX-----DY----Dir---;
+teleport-loc	=	147	503	aresden	31	28	5
+teleport-loc	=	148	503	aresden	31	28	5
+teleport-loc	=	149	503	aresden	31	28	5
+teleport-loc	=	150	503	aresden	31	28	5
+teleport-loc	=	151	503	aresden	31	28	5
+teleport-loc	=	152	503	aresden	31	28	5
+teleport-loc	=	153	503	aresden	31	28	5
+teleport-loc	=	154	503	aresden	31	28	5
+teleport-loc	=	155	503	aresden	31	28	5
+teleport-loc	=	156	503	aresden	31	28	5
+teleport-loc	=	157	503	aresden	31	28	5
+teleport-loc	=	158	503	aresden	31	28	5
+
+teleport-loc	=	344	503	aresden	259 23	5
+teleport-loc	=	345	503	aresden	259 23	5
+teleport-loc	=	346	503	aresden	259 23	5
+teleport-loc	=	347	503	aresden	259 23	5
+teleport-loc	=	348	503	aresden	259 23	5
+teleport-loc	=	349	503	aresden	259 23	5
+teleport-loc	=	350	503	aresden	259 23	5
+teleport-loc	=	351	503	aresden	259 23	5
+teleport-loc	=	352	503	aresden	259 23	5
+teleport-loc	=	353	503	aresden	259 23	5
+teleport-loc	=	354	503	aresden	259 23	5
+teleport-loc	=	355	503	aresden	259 23	5
+teleport-loc	=	356	503	aresden	259 23	5
+
+teleport-loc	=	99	20	elvine	27	271	1
+teleport-loc	=	100	20	elvine	27	271	1
+teleport-loc	=	101	20	elvine	27	271	1
+teleport-loc	=	102	20	elvine	27	271	1
+teleport-loc	=	103	20	elvine	27	271	1
+teleport-loc	=	104	20	elvine	27	271	1
+teleport-loc	=	105	20	elvine	27	271	1
+teleport-loc	=	106	20	elvine	27	271	1
+teleport-loc	=	107	20	elvine	27	271	1
+
+teleport-loc	=	309	20	elvine	254	267	1
+teleport-loc	=	310	20	elvine	254	267	1
+teleport-loc	=	311	20	elvine	254	267	1
+teleport-loc	=	312	20	elvine	254	267	1
+teleport-loc	=	313	20	elvine	254	267	1
+teleport-loc	=	314	20	elvine	254	267	1
+teleport-loc	=	315	20	elvine	254	267	1
+teleport-loc	=	316	20	elvine	254	267	1
+teleport-loc	=	317	20	elvine	254	267	1
+teleport-loc	=	318	20	elvine	254	267	1
+teleport-loc	=	319	20	elvine	254	267	1
+teleport-loc	=	320	20	elvine	254	267	1
+
+teleport-loc	=	199	235	middled1x	70	108	1
+teleport-loc	=	200	235	middled1x	70	108	1
+teleport-loc	=	200	234	middled1x	70	108	1
+
+teleport-loc	=	381	284	toh1	145	31	1
+teleport-loc	=	382	284	toh1	145	31	1
+teleport-loc	=	383	284	toh1	145	31	1		
+
+teleport-loc     =     452    281     icebound	          264     260   8
+teleport-loc     =     453    281     icebound	          264     260   8
+teleport-loc     =     452    282     icebound	          264     260   8
+teleport-loc     =     453    282     icebound	          264     260   8
+
+//Middlel left top
+/teleport-loc     =      22   165  	istria 		38	31   2
+/teleport-loc     =      22   166  	istria 		38	31   2
+/teleport-loc     =      22   167 	istria 		38	31   2
+/teleport-loc     =      22   168  	istria 		38	31   2
+/teleport-loc     =      22   169  	istria 		38	31   2
+/teleport-loc     =      22   170  	istria 		38	31   2
+/teleport-loc     =      22   171  	istria 		38	31   2
+/teleport-loc     =      22   172  	istria 		38	31   2
+
+
+//Middlel left
+/teleport-loc     =      23   297  	istria 		216 	24   2
+/teleport-loc     =      24   297  	istria 		216 	24   2
+/teleport-loc     =      24   298  	istria 		216 	24   2
+/teleport-loc     =      25   298  	istria 		216 	24   2
+/teleport-loc     =      25   299  	istria 		216 	24   2
+/teleport-loc     =      26   298  	istria 		216 	24   2
+/teleport-loc     =      26   299  	istria 		216 	24   2
+/teleport-loc     =      29   299  	istria 		216 	24   2
+/teleport-loc     =      26   300  	istria 		216 	24   2
+/teleport-loc     =      27   300  	istria 		216 	24   2
+/teleport-loc     =      27   301  	istria 		216 	24   2
+/teleport-loc     =      28   301  	istria 		216 	24   2
+
+//-No-Attack-Area----------Num-----RECT-------------
+no-attack-area           = 1       346 499 355 503
+no-attack-area           = 2       99 20 107 25
+no-attack-area           = 3       309 20 317 25
+no-attack-area           = 4       148 499 156 503
+/no-attack-area           = 5       22 165 25 175
+/no-attack-area           = 6       23 296 32 301
+
+//-WayPoint-Set---------Num-----X-----Y----;
+waypoint          =     0       50    140
+waypoint          =     1       135   105
+waypoint          =     2       260   100
+waypoint          =     3       380   65
+waypoint          =     4       450   130
+waypoint          =     5       40    210
+waypoint          =     6       170   175
+waypoint          =     7       260   190
+waypoint          =     8       360   215
+waypoint          =     9       455   235
+
+waypoint          =     10      50    355
+waypoint          =     11      140   295
+waypoint          =     12      270   335
+waypoint          =     13      330   395
+waypoint          =     14      450   380
+waypoint          =     15      140   470
+waypoint          =     16      215   475
+waypoint          =     17      310   455
+waypoint          =     18      400   455
+waypoint          =     19      450   525			
+
+maximum-object	= 900							
+
+//-----------------------Num-Type-RECT---------------Mob-MobNum	
+//Stock / 3.51-HBChina	
+// Skeleton 
+spot-mob-generator	= 1 1 	120 	104 	173 	151    11  	15
+spot-mob-generator	= 2 1	144 	372 	209 	399    11  	15
+
+// Zombie
+spot-mob-generator	= 3 1	300 	36 	341 	91     18  	25
+spot-mob-generator	= 4 1	90 	452 	125 	491    18  	25
+
+// Amphis
+spot-mob-generator	= 5 1	228 	76 	275 	107    22  	10
+spot-mob-generator	= 6 1	252 	172 	275 	219    22  	10
+spot-mob-generator	= 7 1	456 	304 	491 	347    22  	10
+spot-mob-generator	= 8 1 	144 	432 	203 	479    22  	10
+
+// orc-Mage
+spot-mob-generator	= 9 1 	48 	152 	89 	187     14  	18
+spot-mob-generator	= 10 1 	54 	280 	95 	315     14  	18
+spot-mob-generator	= 11 1	426 	212 	467 	243    	14  	18
+spot-mob-generator	= 12 1	378 	396 	425 	439    	14  	18
+
+// Scorpion
+spot-mob-generator	= 13  1	333 	35 	371 	67      17  	16
+spot-mob-generator	= 14  1  390 	412 	425 	451    	17	16
+
+// Giant-Ant								
+spot-mob-generator	= 15 1	284	216	300	228	16  	20
+spot-mob-generator	= 16 1	181	266	199	274	16	20
+spot-mob-generator	= 17 1	80	285	93	291	16	20
+
+// ogre Stock								
+spot-mob-generator	= 18 1	53	380	101	409	29	23
+spot-mob-generator	= 19 1	34	69	100	83	29	23
+
+// Stalker
+spot-mob-generator	= 20 1	107	202	418	304	48	35
+
+// WereWolf 
+spot-mob-generator	= 21 1	320	420	370	470	33	23 
+spot-mob-generator	= 22 1	360	100	410	150	33	23 
+
+//Ettins Middle Iland
+spot-mob-generator      = 23 1	166     204     216     254     59      6
+spot-mob-generator      = 24 1  224     225	234     240     59      3
+spot-mob-generator      = 25 1  150     215     170     235     59      3
+
+//MG
+spot-mob-generator	= 26 1	25	250	40	260	58	7
+
+//Hellclaw Biger Range Area
+spot-mob-generator	= 27 1	450	125	470	390	49	2
+
+//strategic-point-Num-Side-Value--X----Y
+strategic-point = 1   0    2     176  224
+strategic-point = 2   0    1     456  213
+strategic-point = 3   0    1     275  286
+
+
+max-fish   = 20
+fish-point = 0   35 241
+fish-point = 1   64 251
+fish-point = 2   83 248
+fish-point = 3   95 234
+fish-point = 4   136 235
+fish-point = 5   167 243
+fish-point = 6   218 253
+fish-point = 7   256 252
+fish-point = 8   246 233
+fish-point = 9   300 260
+fish-point = 10  313 248
+fish-point = 11  424 289
+fish-point = 12  435 263
+fish-point = 13  461 260
+fish-point = 14  469 291
+
+//energy-sphere
+energy-sphere-creation-point = 1 1 161 219
+energy-sphere-goal-point     = 1 1 237 182 179 284
+
+
+
+[END-MAP-INFO]									

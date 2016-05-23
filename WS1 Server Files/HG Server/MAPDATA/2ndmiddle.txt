@@ -1,0 +1,100 @@
+[MAP-INFO]
+
+map-location = 2ndmiddle
+initial-point = 1  125 125
+upper-level-limit = 120
+CitizenLimit		= 1
+
+//-Teleportation-Set----SX-----SY-----DestMapName---------DX-----DY----Dir---;
+//-Dir
+//------7(8)---8(1)---9(2)
+//------4(7)---5------6(3)
+//------1(6)---2(5)---3(4)
+
+teleport-loc     =     135    228     arefarm             120    25    5
+teleport-loc     =     136    228     arefarm             120    25    5
+teleport-loc     =     137    228     arefarm             120    25    5
+teleport-loc     =     138    228     arefarm             120    25    5
+teleport-loc     =     139    228     arefarm             120    25    5
+teleport-loc     =     140    228     arefarm             120    25    5
+teleport-loc     =     141    228     arefarm             120    25    5
+teleport-loc     =     142    228     arefarm             120    25    5
+teleport-loc     =     143    228     arefarm             120    25    5
+teleport-loc     =     144    228     arefarm             120    25    5
+teleport-loc     =     145    228     arefarm             120    25    5
+
+teleport-loc     =     121     21     elvfarm             160    227   1
+teleport-loc     =     122     21     elvfarm             160    227   1
+teleport-loc     =     123     21     elvfarm             160    227   1
+teleport-loc     =     124     21     elvfarm             160    227   1
+teleport-loc     =     125     21     elvfarm             160    227   1
+teleport-loc     =     126     21     elvfarm             160    227   1
+teleport-loc     =     127     21     elvfarm             160    227   1
+teleport-loc     =     128     21     elvfarm             160    227   1
+teleport-loc     =     129     21     elvfarm             160    227   1
+teleport-loc     =     130     21     elvfarm             160    227   1
+teleport-loc     =     131     21     elvfarm             160    227   1
+
+
+
+/teleport-loc     =     21     228     istfarm             120    25    5
+/teleport-loc     =     22     228     istfarm             120    25    5
+/teleport-loc     =     23     228     istfarm             120    25    5
+/teleport-loc     =     24     228     istfarm             120    25    5
+/teleport-loc     =     25     228     istfarm             120    25    5
+/teleport-loc     =     26     228     istfarm             120    25    5
+/teleport-loc     =     27     228     istfarm             120    25    5
+/teleport-loc     =     28     228     istfarm             120    25    5
+/teleport-loc     =     29     228     istfarm             120    25    5
+/teleport-loc     =     30     228     istfarm             120    25    5
+/teleport-loc     =     31     228     istfarm             120    25    5
+
+
+//-WayPoint-Set---------Num-----X-----Y----;
+waypoint          =     0       75    75
+waypoint          =     1       75   200
+waypoint          =     2      200   200
+waypoint          =     3      200    75
+waypoint          =     4      125   125
+
+
+
+//-No-Attack-Area----------Num-----RECT-------------
+no-attack-area           = 1       115  18 135  25
+no-attack-area           = 2       130 224 150 233
+
+
+maximum-object		= 400
+random-mob-generator	= 1  16
+
+//-----------------------Num-Type-RECT---------------Mob-MobNum
+// Scorpions
+spot-mob-generator	= 1  1     50 160  75 180   17  23
+spot-mob-generator	= 2  1     45  75  65 100   17  23
+// Zombies
+spot-mob-generator	= 4  1    115 195 135 215   18  20
+spot-mob-generator	= 5  1    130  40 150  60   18  20
+// Orcs
+spot-mob-generator	= 6  1    165 180 185 200   14  24
+spot-mob-generator	= 7  1     45  35  65  55   14  24
+// Skeletons
+spot-mob-generator	= 8  1     85 195 100 210   11  24
+spot-mob-generator	= 9  1     60  70  75  85   11  24
+// StoneG
+spot-mob-generator	= 10 1    190 145 220 165   12  20
+spot-mob-generator	= 11 1    200  50 220  80   12  20
+// ClayG
+spot-mob-generator	= 12 1    205 170 225 200   23  25
+spot-mob-generator	= 13 1    180  25 200  55   23  25
+// clays where Cyclops was
+spot-mob-generator	= 17  1    105 110 135 140   13   26
+// Ants
+spot-mob-generator	= 14 1    180 140 240 210   16  20
+spot-mob-generator	= 15 1    180  20 230  80   16  20
+spot-mob-generator	= 16 1    20   20 240 240   16  20
+// StoneG
+spot-mob-generator	= 18 1    190 109 221 117   12  15
+spot-mob-generator	= 19 1    68 205 110  215   12  15
+
+
+[END-MAP-INFO]

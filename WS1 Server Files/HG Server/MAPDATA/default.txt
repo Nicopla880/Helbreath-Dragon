@@ -1,0 +1,53 @@
+[MAP-INFO]
+
+map-location  = default
+initial-point = 1  62 97
+upper-level-limit = 50
+
+//-Teleportation-Set----SX-----SY-----DestMapName---------DX-----DY----Dir---;
+teleport-loc     =      39    44     cityhall_1             -1    -1     5
+teleport-loc     =      39    45     cityhall_1             -1    -1     5
+teleport-loc     =      40    44     cityhall_1             -1    -1     5
+teleport-loc     =      40    45     cityhall_1             -1    -1     5
+
+/teleport-loc     =      45     40     cityhall_3             -1    -1     5
+/teleport-loc     =      45     41     cityhall_3             -1    -1     5
+/teleport-loc     =      46     40     cityhall_3             -1    -1     5
+/teleport-loc     =      46     41     cityhall_3             -1    -1     5
+
+teleport-loc     =      51     36     cityhall_2             -1    -1     5
+teleport-loc     =      51     37     cityhall_2             -1    -1     5
+teleport-loc     =      52     36     cityhall_2             -1    -1     5
+teleport-loc     =      52     37     cityhall_2             -1    -1     5
+
+teleport-loc     =      37     31     barracks1             28    43     5
+teleport-loc     =      38     31     barracks1             28    43     5
+teleport-loc     =      39     31     barracks1             28    43     5
+teleport-loc     =      37     30     barracks1             28    43     5
+teleport-loc     =      38     30     barracks1             28    43     5
+
+teleport-loc     =      77     75     bsmith            56    36     5
+teleport-loc     =      78     75     bsmith            56    36     5
+teleport-loc     =      77     76     bsmith            56    36     5
+teleport-loc     =      78     76     bsmith            56    36     5
+
+teleport-loc     =      87     70     bsmith            43    32     5
+teleport-loc     =      88     70     bsmith            43    32     5
+teleport-loc     =      87     71     bsmith            43    32     5
+teleport-loc     =      88     71     bsmith            43    32     5
+
+
+//-No-Attack-Area---------Num-----RECT-------------
+no-attack-area          = 1       59 95 66 100
+
+
+maximum-object		= 100
+
+//------------------------Num-Type-waypoints--------------Mob-MobNum
+spot-mob-generator	= 1   1    24  80  45 95         10  20 // Slimes
+spot-mob-generator	= 2   1    84 44  101 55         10  20 // Slimes
+
+spot-mob-generator	= 3   1    32 46  35 49         26  1 // Guard
+spot-mob-generator	= 4   1    55 30 58 33        26  1 // guard
+
+[END-MAP-INFO]
