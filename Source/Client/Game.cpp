@@ -2985,7 +2985,15 @@ void CGame::UpdateScreen_OnLoading(bool bActive)
 				CloseHandle(m_hPakFile);
 				framePositions.clear();
 			}
-
+			m_hPakFile = CreateFile("sprites\\LoginDialog.pak", GENERIC_READ, NULL, NULL, OPEN_EXISTING, NULL, NULL);
+			if (m_hPakFile != INVALID_HANDLE_VALUE) {
+				m_pSprite[SPRID_INTERFACE_ND_SELECTSCREEN] = new class CSprite(m_hPakFile, &m_DDraw, "LoginDialog", 0, FALSE);
+#ifdef DEF_MAKE_ACCOUNT
+				m_pSprite[DEF_SPRID_INTERFACE_ND_NEWACCOUNT] = new class CSprite(m_hPakFile, &m_DDraw, "LoginDialog", 1, FALSE);
+				m_pSprite[DEF_SPRID_INTERFACE_ND_AGREEMENT] = new class CSprite(m_hPakFile, &m_DDraw, "LoginDialog", 2, FALSE);
+#endif
+				CloseHandle(m_hPakFile);
+			}
 			m_hPakFile = CreateFile("sprites\\lgn_login.lpk", GENERIC_READ, NULL, NULL, OPEN_EXISTING, NULL, NULL);
 			if( m_hPakFile != INVALID_HANDLE_VALUE ) {
 				ReadFramePositions(m_hPakFile, framePositions, 3);
@@ -19424,10 +19432,10 @@ void CGame::UpdateScreen_OnSelectCharacter()
 				{	m_pSprite[SPRID_INTERFACE_ND_LOGIN]->_iCloseSprite();
 					m_pSprite[SPRID_INTERFACE_ND_MAINMENU]->_iCloseSprite();
 					m_pLSock = new class XSocket(m_hWnd, SOCKETBLOCKLIMIT);
-					if (m_iServerSelected = 1){
+					if (m_iServerSelected == 1){
 						m_pLSock->bConnect(m_cLogServerAddr, m_iLogServerPort + (rand() % 1), WM_USER_LOGSOCKETEVENT);
 					} 
-					else if (m_iServerSelected = 2){
+					else if (m_iServerSelected == 2){
 						m_pLSock->bConnect(m_cLogWs2ServerAddr, m_iLogServerWs2Port + (rand() % 1), WM_USER_LOGSOCKETEVENT);
 					}
 					m_pLSock->bInitBufferSize(30000);
@@ -19490,10 +19498,10 @@ void CGame::UpdateScreen_OnSelectCharacter()
 						{	m_pSprite[SPRID_INTERFACE_ND_LOGIN]->_iCloseSprite();
 							m_pSprite[SPRID_INTERFACE_ND_MAINMENU]->_iCloseSprite();
 							m_pLSock = new class XSocket(m_hWnd, SOCKETBLOCKLIMIT);
-							if (m_iServerSelected = 1){
+							if (m_iServerSelected == 1){
 								m_pLSock->bConnect(m_cLogServerAddr, m_iLogServerPort + (rand() % 1), WM_USER_LOGSOCKETEVENT);
 							} 
-							else if (m_iServerSelected = 2){
+							else if (m_iServerSelected == 2){
 							m_pLSock->bConnect(m_cLogWs2ServerAddr, m_iLogServerWs2Port + (rand() % 1), WM_USER_LOGSOCKETEVENT);
 						}
 							m_pLSock->bInitBufferSize(30000);
@@ -19527,10 +19535,10 @@ void CGame::UpdateScreen_OnSelectCharacter()
 						m_pSprite[SPRID_INTERFACE_ND_LOGIN]->_iCloseSprite();
 						m_pSprite[SPRID_INTERFACE_ND_MAINMENU]->_iCloseSprite();
 						m_pLSock = new class XSocket(m_hWnd, SOCKETBLOCKLIMIT);
-						if (m_iServerSelected = 1){
+						if (m_iServerSelected == 1){
 							m_pLSock->bConnect(m_cLogServerAddr, m_iLogServerPort + (rand() % 1), WM_USER_LOGSOCKETEVENT);
 						}
-						else if (m_iServerSelected = 2){
+						else if (m_iServerSelected == 2){
 							m_pLSock->bConnect(m_cLogWs2ServerAddr, m_iLogServerWs2Port + (rand() % 1), WM_USER_LOGSOCKETEVENT);
 						}
 						m_pLSock->bInitBufferSize(30000);
@@ -23274,10 +23282,10 @@ void CGame::UpdateScreen_OnCreateNewCharacter()
 			ZeroMemory(m_cPlayerName, sizeof(m_cPlayerName));
 			strcpy(m_cPlayerName, cName);
 			m_pLSock = new class XSocket(m_hWnd, SOCKETBLOCKLIMIT);
-			if (m_iServerSelected = 1){
+			if (m_iServerSelected == 1){
 				m_pLSock->bConnect(m_cLogServerAddr, m_iLogServerPort, WM_USER_LOGSOCKETEVENT);
 			}
-			else if (m_iServerSelected = 2){
+			else if (m_iServerSelected == 2){
 				m_pLSock->bConnect(m_cLogWs2ServerAddr, m_iLogServerWs2Port, WM_USER_LOGSOCKETEVENT);
 			}
 			m_pLSock->bInitBufferSize(30000);
@@ -23942,10 +23950,10 @@ void CGame::UpdateScreen_OnCreateNewAccount()
 				return;
 			}
 			m_pLSock = new class XSocket(m_hWnd, SOCKETBLOCKLIMIT);
-			if (m_iServerSelected = 1){
+			if (m_iServerSelected == 1){
 				m_pLSock->bConnect(m_cLogServerAddr, m_iLogServerPort, WM_USER_LOGSOCKETEVENT);
 			}
-			else if (m_iServerSelected = 2){
+			else if (m_iServerSelected == 2){
 				m_pLSock->bConnect(m_cLogWs2ServerAddr, m_iLogServerWs2Port, WM_USER_LOGSOCKETEVENT);
 			}
 			m_pLSock->bInitBufferSize(30000);
@@ -24009,10 +24017,10 @@ void CGame::UpdateScreen_OnCreateNewAccount()
 			}
 
 			m_pLSock = new class XSocket(m_hWnd, SOCKETBLOCKLIMIT);
-			if (m_iServerSelected = 1){
+			if (m_iServerSelected == 1){
 				m_pLSock->bConnect(m_cLogServerAddr, m_iLogServerPort, WM_USER_LOGSOCKETEVENT);
 			}
-			else if (m_iServerSelected = 2){
+			else if (m_iServerSelected == 2){
 				m_pLSock->bConnect(m_cLogWs2ServerAddr, m_iLogServerWs2Port, WM_USER_LOGSOCKETEVENT);
 			}
 			m_pLSock->bInitBufferSize(30000);
@@ -24127,10 +24135,10 @@ void CGame::UpdateScreen_OnLogin() // here
 			strcpy(m_cAccountName, cName);
 			strcpy(m_cAccountPassword, cPassword);
 			m_pLSock = new class XSocket(m_hWnd, SOCKETBLOCKLIMIT);
-			if (m_iServerSelected = 1){
+			if (m_iServerSelected == 1){
 				m_pLSock->bConnect(m_cLogServerAddr, m_iLogServerPort + (rand() % 1), WM_USER_LOGSOCKETEVENT);
 			}
-			else if (m_iServerSelected = 2){
+			else if (m_iServerSelected == 2){
 				m_pLSock->bConnect(m_cLogWs2ServerAddr, m_iLogServerWs2Port + (rand() % 1), WM_USER_LOGSOCKETEVENT);
 			}
 			m_pLSock->bInitBufferSize(30000);
@@ -24196,10 +24204,10 @@ void CGame::UpdateScreen_OnLogin() // here
 			strcpy(m_cAccountName, cName);
 			strcpy(m_cAccountPassword, cPassword);
 			m_pLSock = new class XSocket(m_hWnd, SOCKETBLOCKLIMIT);
-			if (m_iServerSelected = 1){
+			if (m_iServerSelected == 1){
 				m_pLSock->bConnect(m_cLogServerAddr, m_iLogServerPort + (rand() % 1), WM_USER_LOGSOCKETEVENT);
 			}
-			else if (m_iServerSelected = 2){
+			else if (m_iServerSelected == 2){
 				m_pLSock->bConnect(m_cLogWs2ServerAddr, m_iLogServerWs2Port + (rand() % 1), WM_USER_LOGSOCKETEVENT);
 			}
 			m_pLSock->bInitBufferSize(30000);
@@ -24311,14 +24319,15 @@ void CGame::UpdateScreen_OnSelectServer()
 	{	cPrevFocus = m_cCurFocus;
 	}
 	m_DDraw.ClearBackB4();
-	DrawNewDialogBox(SPRID_INTERFACE_ND_LOGIN, 0,0,0, TRUE);
-	if (m_cGameModeCount > 20) DrawNewDialogBox(SPRID_INTERFACE_ND_LOGIN, 40,121,1, TRUE);
-	else if ((m_cGameModeCount >= 15) && (m_cGameModeCount <= 20)) m_pSprite[SPRID_INTERFACE_ND_LOGIN]->PutTransSprite25(40,121,1, TRUE);
+	DrawNewDialogBox(SPRID_INTERFACE_ND_SELECTSCREEN, 0, 0, 0, TRUE);
+	if (m_cGameModeCount > 20) DrawNewDialogBox(SPRID_INTERFACE_ND_SELECTSCREEN, 40, 121, 1, TRUE);
+	else if ((m_cGameModeCount >= 15) && (m_cGameModeCount <= 20)) m_pSprite[SPRID_INTERFACE_ND_SELECTSCREEN]->PutTransSprite25(40, 121, 1, TRUE);
 
 	if (m_cGameModeCount > 20)
-	{	if (m_cCurFocus == 1) DrawNewDialogBox(SPRID_INTERFACE_ND_LOGIN, 138, 177, 5, TRUE);
-		if (m_cCurFocus == 2) DrawNewDialogBox(SPRID_INTERFACE_ND_LOGIN, 130, 205, 6, TRUE);
-		if (m_cCurFocus == 3) DrawNewDialogBox(SPRID_INTERFACE_ND_LOGIN, 256, 282, 4, TRUE);
+	{
+		if (m_cCurFocus == 1) DrawNewDialogBox(SPRID_INTERFACE_ND_SELECTSCREEN, 138, 177, 5, TRUE);
+		if (m_cCurFocus == 2) DrawNewDialogBox(SPRID_INTERFACE_ND_SELECTSCREEN, 130, 205, 6, TRUE);
+		if (m_cCurFocus == 3) DrawNewDialogBox(SPRID_INTERFACE_ND_SELECTSCREEN, 256, 282, 4, TRUE);
 	}
 	DrawVersion();
 	m_DInput.UpdateMouseState(&msX, &msY, &msZ, &cLB, &cRB, &cMB);
@@ -25113,10 +25122,10 @@ void CGame::UpdateScreen_OnQueryForceLogin()
 		switch (iMIbuttonNum) {
 		case 1:
 			m_pLSock = new class XSocket(m_hWnd, SOCKETBLOCKLIMIT);
-			if (m_iServerSelected = 1){
+			if (m_iServerSelected == 1){
 				m_pLSock->bConnect(m_cLogServerAddr, m_iLogServerPort, WM_USER_LOGSOCKETEVENT);
 			}
-			else if (m_iServerSelected = 2){
+			else if (m_iServerSelected == 2){
 				m_pLSock->bConnect(m_cLogWs2ServerAddr, m_iLogServerWs2Port, WM_USER_LOGSOCKETEVENT);
 			}
 			m_pLSock->bInitBufferSize(30000);
@@ -25499,10 +25508,10 @@ void CGame::UpdateScreen_OnQueryDeleteCharacter()
 		switch (iMIbuttonNum) {
 		case 1:
 			m_pLSock = new class XSocket(m_hWnd, SOCKETBLOCKLIMIT);
-				if (m_iServerSelected = 1){
+				if (m_iServerSelected == 1){
 				m_pLSock->bConnect(m_cLogServerAddr, m_iLogServerPort, WM_USER_LOGSOCKETEVENT);
 			}
-			else if (m_iServerSelected = 2){
+			else if (m_iServerSelected == 2){
 				m_pLSock->bConnect(m_cLogWs2ServerAddr, m_iLogServerWs2Port, WM_USER_LOGSOCKETEVENT);
 			}
 			m_pLSock->bInitBufferSize(30000);
@@ -28343,10 +28352,10 @@ void CGame::UpdateScreen_OnChangePassword()
 			strcpy(m_cNewPassword, cNewPassword);
 			strcpy(m_cNewPassConfirm, cNewPassConfirm);
 			m_pLSock = new class XSocket(m_hWnd, SOCKETBLOCKLIMIT);
-			if (m_iServerSelected = 1){
+			if (m_iServerSelected == 1){
 				m_pLSock->bConnect(m_cLogServerAddr, m_iLogServerPort, WM_USER_LOGSOCKETEVENT);
 			}
-			else if (m_iServerSelected = 2){
+			else if (m_iServerSelected == 2){
 				m_pLSock->bConnect(m_cLogWs2ServerAddr, m_iLogServerWs2Port, WM_USER_LOGSOCKETEVENT);
 			}
 			m_pLSock->bInitBufferSize(30000);
@@ -28481,10 +28490,10 @@ void CGame::UpdateScreen_OnChangePassword()
 			strcpy(m_cNewPassword, cNewPassword);
 			strcpy(m_cNewPassConfirm, cNewPassConfirm);
 						m_pLSock = new class XSocket(m_hWnd, SOCKETBLOCKLIMIT);
-						if (m_iServerSelected = 1){
+						if (m_iServerSelected == 1){
 							m_pLSock->bConnect(m_cLogServerAddr, m_iLogServerPort, WM_USER_LOGSOCKETEVENT);
 						}
-						else if (m_iServerSelected = 2){
+						else if (m_iServerSelected == 2){
 							m_pLSock->bConnect(m_cLogWs2ServerAddr, m_iLogServerWs2Port, WM_USER_LOGSOCKETEVENT);
 						}
 			m_pLSock->bInitBufferSize(30000);
