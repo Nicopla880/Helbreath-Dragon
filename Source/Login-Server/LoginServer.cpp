@@ -95,7 +95,7 @@ BOOL CLoginServer::InitServer()
         Time = timeGetTime();
         //OptimizeDatabase(Time);
         RepairDatabase(Time);
-        CheckActiveAccountsNumber(Time);
+        //CheckActiveAccountsNumber(Time);
         Timer = _StartTimer(MAINTIMERSIZE);
 		return TRUE;
 }
@@ -522,7 +522,7 @@ void CLoginServer::OnClientRead(WORD ClientID)
     
 	//<ip checking>
 	mysql_init(&myConn);
-	if(!mysql_real_connect(&myConn, mySqlAddress, mySqlUser, mySqlPwd, "helbreath", mySqlPort, NULL, NULL)){
+	if (!mysql_real_connect(&myConn, mySqlAddress, mySqlUser, mySqlPwd, mysqlDB, mySqlPort, NULL, NULL)){
 		MyAux_Get_Error(&myConn);
 		mysql_close(&myConn);
 		SAFEDELETE(ClientSocket[ClientID]);
@@ -1816,7 +1816,7 @@ void CLoginServer::OnTimer()
 			//possibal rollback fix
 		/*   if((dwTime - mySQLdbOptimizeTimer) > MYSQL_DBOPTIMIZE_TIMERINTERVAL) OptimizeDatabase(dwTime);
            if((dwTime - mySQLdbRepairTimer) > MYSQL_DBREPAIR_TIMERINTERVAL) RepairDatabase(dwTime);*/
-           if((dwTime - CheckAccountsTimer) > CHECKACCSTATUS_TIMERINTERVAL) CheckActiveAccountsNumber(dwTime);
+         //  if((dwTime - CheckAccountsTimer) > CHECKACCSTATUS_TIMERINTERVAL) CheckActiveAccountsNumber(dwTime);
 		   for(WORD w = 0; w < MAXCLIENTS; w ++){
                if(Client[w] != NULL){
 				   if(Client[w]->IsPlaying == FALSE && (dwTime - Client[w]->Time) > MAXWAITTIMEFORPLAYERENTERGAME){
@@ -2382,8 +2382,8 @@ void CLoginServer::CheckActiveAccountsNumber(DWORD time)
 		if(mySQLAutoFixProcess) return;
 
         ZeroMemory(QueryConsult, sizeof(QueryConsult));
-        SafeCopy(QueryConsult, "SHOW TABLE STATUS FROM `helbreath` LIKE 'account_database';");
-        if(ProcessQuery(&mySQL, QueryConsult) == -1) return;
+		sprintf(QueryConsult, "SHOW TABLE STATUS FROM '%s' LIKE 'account_database';", mysqlDB);//bugs out
+		if(ProcessQuery(&mySQL, QueryConsult) == -1) return;
 		QueryResult = mysql_store_result(&mySQL);
 
 		if(mysql_num_rows(QueryResult) == 0){
