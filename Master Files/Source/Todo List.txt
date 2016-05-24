@@ -3,3 +3,4 @@ fix defence ratio
 fix armor break
 fix dkset
 fix anti-speed hack
+fix Typing 
