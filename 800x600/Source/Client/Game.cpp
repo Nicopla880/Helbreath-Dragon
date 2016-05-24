@@ -489,8 +489,8 @@ CGame::CGame()
 
 	//Icon Pannel
 	m_stDialogBoxInfo[30].sX = 0;
-	m_stDialogBoxInfo[30].sY = 427;
-	m_stDialogBoxInfo[30].sSizeX = 640;
+	m_stDialogBoxInfo[30].sY = 547;//client 800x600
+	m_stDialogBoxInfo[30].sSizeX = 800;//client 800x600
 	m_stDialogBoxInfo[30].sSizeY = 53;//47;
 
 	//Sell List Dialog
@@ -1964,12 +1964,12 @@ void CGame::DrawObjects(short sPivotX, short sPivotY, short sDivX, short sDivY, 
 	m_stMCursor.sCursorFrame = 0;
 
 	indexY = sDivY + sPivotY - 7;
-	for (iy = -sModY-224; iy <= 427+352; iy += 32)
+	for (iy = -sModY-224; iy <= 547+352; iy += 32)//client 800x600
 	{	indexX = sDivX + sPivotX-4;
-		for (ix = -sModX-128 ; ix <= 640 + 128; ix += 32)
+		for (ix = -sModX-128 ; ix <= 800 + 128; ix += 32)//client 800x600
 		{	sDynamicObject = NULL;
 			bRet = FALSE;
-			if ((ix >= -sModX) && (ix <= 640+16) && (iy >= -sModY) && (iy <= 427+32+16))
+			if ((ix >= -sModX) && (ix <= 800+16) && (iy >= -sModY) && (iy <= 547+32+16))//client 800x600
 			{	_tmp_wObjectID = _tmp_sOwnerType = _tmp_sAppr1 = _tmp_sAppr2 = _tmp_sAppr3 = _tmp_sAppr4 = _tmp_iStatus = NULL;
 				_tmp_cDir = _tmp_cFrame = 0;
 				_tmp_iEffectType = _tmp_iEffectFrame = _tmp_iChatIndex = 0;
@@ -4200,9 +4200,9 @@ void CGame::bItemDrop_ExternalScreen(char cItemID, short msX, short msY)
 					tX = msX - 117;
 					tY = msY - 50;
 					if (tX < 0) tX = 0;
-					if ((tX + 235) > 639) tX = 639 - 235;
+					if ((tX + 235) > 799) tX = 799 - 235;//client 800x600
 					if (tY < 0) tY = 0;
-					if ((tY + 100) > 479) tY = 479 - 100;
+					if ((tY + 100) > 599) tY = 599 - 100;//client 800x600
 					m_stDialogBoxInfo[20].sX  = tX;
 					m_stDialogBoxInfo[20].sY  = tY;
 
@@ -4221,9 +4221,9 @@ void CGame::bItemDrop_ExternalScreen(char cItemID, short msX, short msY)
 					tX = msX - 117;
 					tY = msY - 50;
 					if (tX < 0) tX = 0;
-					if ((tX + 235) > 639) tX = 639 - 235;
+					if ((tX + 235) > 799) tX = 799 - 235;//client 800x600
 					if (tY < 0) tY = 0;
-					if ((tY + 100) > 479) tY = 479 - 100;
+					if ((tY + 100) > 599) tY = 599 - 100;//client 800x600
 					m_stDialogBoxInfo[20].sX  = tX;
 					m_stDialogBoxInfo[20].sY  = tY;
 
@@ -4243,9 +4243,9 @@ void CGame::bItemDrop_ExternalScreen(char cItemID, short msX, short msY)
 					tX = msX - 117;
 					tY = msY - 50;
 					if (tX < 0) tX = 0;
-					if ((tX + 235) > 639) tX = 639 - 235;
+					if ((tX + 235) > 799) tX = 799 - 235;//client 800x600
 					if (tY < 0) tY = 0;
-					if ((tY + 100) > 479) tY = 479 - 100;
+					if ((tY + 100) > 599) tY = 599 - 100;//client 800x600
 					m_stDialogBoxInfo[20].sX  = tX;
 					m_stDialogBoxInfo[20].sY  = tY;
 
@@ -5290,8 +5290,8 @@ void CGame::bAddNewEffect(short sType, int sX, int sY, int dX, int dY, char cSta
 			m_pEffectList[i]->m_mY     = sY;
 			m_pEffectList[i]->m_cMaxFrame   = 11;
 			m_pEffectList[i]->m_dwFrameTime = 10;
-			sAbsX = abs(320 - (sX - m_sViewPointX));
-			sAbsY = abs(240 - (sY - m_sViewPointY));
+			sAbsX = abs(400 - (sX - m_sViewPointX));//client 800x600
+			sAbsY = abs(300 - (sY - m_sViewPointY));//client 800x600
 			if (sAbsX > sAbsY) sDist = sAbsX;
 			else sDist = sAbsY;
 			sDist = sDist / 32;
@@ -5306,12 +5306,12 @@ void CGame::bAddNewEffect(short sType, int sX, int sY, int dX, int dY, char cSta
 			m_pEffectList[i]->m_mY     = sY;
 			m_pEffectList[i]->m_cMaxFrame   = 14;
 			m_pEffectList[i]->m_dwFrameTime = 10;
-			sAbsX = abs(320 - (sX - m_sViewPointX));
-			sAbsY = abs(240 - (sY - m_sViewPointY));
+			sAbsX = abs(400 - (sX - m_sViewPointX));//client 800x600
+			sAbsY = abs(300 - (sY - m_sViewPointY));//client 800x600
 			if (sAbsX > sAbsY) sDist = sAbsX;
 			else sDist = sAbsY;
 			sDist = sDist / 32;
-			lPan = -(320 - (sX - m_sViewPointX))*1000;
+			lPan = -(400 - (sX - m_sViewPointX))*1000;//client 800x600
 			PlaySound('E', 2, sDist, lPan);
 			SetCameraShakingEffect(sDist);
 			break;
@@ -5321,12 +5321,12 @@ void CGame::bAddNewEffect(short sType, int sX, int sY, int dX, int dY, char cSta
 			m_pEffectList[i]->m_mY     = sY;
 			m_pEffectList[i]->m_cMaxFrame   = 5;
 			m_pEffectList[i]->m_dwFrameTime = 50;
-			sAbsX = abs(320 - (sX - m_sViewPointX));
-			sAbsY = abs(240 - (sY - m_sViewPointY));
+			sAbsX = abs(400 - (sX - m_sViewPointX));//client 800x600
+			sAbsY = abs(300 - (sY - m_sViewPointY));//client 800x600
 			if (sAbsX > sAbsY) sDist = sAbsX;
 			else sDist = sAbsY;
 			sDist = sDist / 32;
-			lPan = -(320 - (sX - m_sViewPointX))*1000;
+			lPan = -(400 - (sX - m_sViewPointX))*1000;//client 800x600
 			PlaySound('E', 3, sDist, lPan);
 			break;
 
@@ -5415,8 +5415,8 @@ void CGame::bAddNewEffect(short sType, int sX, int sY, int dX, int dY, char cSta
 			m_pEffectList[i]->m_mY     = sY;
 			m_pEffectList[i]->m_cMaxFrame   = 10;
 			m_pEffectList[i]->m_dwFrameTime = 50;
-			sAbsX = abs(320 - (sX - m_sViewPointX));
-			sAbsY = abs(240 - (sY - m_sViewPointY));
+			sAbsX = abs(400 - (sX - m_sViewPointX));//client 800x600
+			sAbsY = abs(300 - (sY - m_sViewPointY));//client 800x600
 			if (sAbsX > sAbsY) sDist = sAbsX;
 			else sDist = sAbsY;
 			sDist = sDist / 32;
@@ -5444,12 +5444,12 @@ void CGame::bAddNewEffect(short sType, int sX, int sY, int dX, int dY, char cSta
 			m_pEffectList[i]->m_mY     = sY;
 			m_pEffectList[i]->m_cMaxFrame   = 9;
 			m_pEffectList[i]->m_dwFrameTime = 40;
-			sAbsX = abs(320 - (sX - m_sViewPointX));
-			sAbsY = abs(240 - (sY - m_sViewPointY));
+			sAbsX = abs(400 - (sX - m_sViewPointX));//client 800x600
+			sAbsY = abs(300 - (sY - m_sViewPointY));//client 800x600
 			if (sAbsX > sAbsY) sDist = sAbsX;
 			else sDist = sAbsY;
 			sDist = sDist / 32;
-			lPan = -(320 - (sX - m_sViewPointX))*1000;
+			lPan = -(400 - (sX - m_sViewPointX))*1000;//client 800x600
 			PlaySound('E', 4, sDist, lPan);
 			SetCameraShakingEffect(sDist*2);
 			break;
@@ -5460,12 +5460,12 @@ void CGame::bAddNewEffect(short sType, int sX, int sY, int dX, int dY, char cSta
 			m_pEffectList[i]->m_mY     = sY;
 			m_pEffectList[i]->m_cMaxFrame   = 8;
 			m_pEffectList[i]->m_dwFrameTime = 40;
-			sAbsX = abs(320 - (sX - m_sViewPointX));
-			sAbsY = abs(240 - (sY - m_sViewPointY));
+			sAbsX = abs(400 - (sX - m_sViewPointX));//client 800x600
+			sAbsY = abs(300 - (sY - m_sViewPointY));//client 800x600
 			if (sAbsX > sAbsY) sDist = sAbsX;
 			else sDist = sAbsY;
 			sDist = sDist / 32;
-			lPan = -(320 - (sX - m_sViewPointX))*1000;
+			lPan = -(400 - (sX - m_sViewPointX))*1000;//client 800x600
 			PlaySound('E', 4, sDist, lPan);
 			SetCameraShakingEffect(sDist);
 			break;
@@ -5491,8 +5491,8 @@ void CGame::bAddNewEffect(short sType, int sX, int sY, int dX, int dY, char cSta
 			m_pEffectList[i]->m_iErr   = 0;
 			m_pEffectList[i]->m_cMaxFrame   = NULL;
 			m_pEffectList[i]->m_dwFrameTime = 20;
-			sAbsX = abs(320 - (sX - m_sViewPointX));
-			sAbsY = abs(240 - (sY - m_sViewPointY));
+			sAbsX = abs(400 - (sX - m_sViewPointX));//client 800x600
+			sAbsY = abs(300 - (sY - m_sViewPointY));//client 800x600
 			if (sAbsX > sAbsY) sDist = sAbsX;
 			else sDist = sAbsY;
 			sDist = sDist / 32;
@@ -5504,12 +5504,12 @@ void CGame::bAddNewEffect(short sType, int sX, int sY, int dX, int dY, char cSta
 			m_pEffectList[i]->m_mY     = sY;
 			m_pEffectList[i]->m_cMaxFrame   = 18;
 			m_pEffectList[i]->m_dwFrameTime = 40;
-			sAbsX = abs(320 - (sX - m_sViewPointX));
-			sAbsY = abs(240 - (sY - m_sViewPointY));
+			sAbsX = abs(400 - (sX - m_sViewPointX));//client 800x600
+			sAbsY = abs(300 - (sY - m_sViewPointY));//client 800x600
 			if (sAbsX > sAbsY) sDist = sAbsX;
 			else sDist = sAbsY;
 			sDist = sDist / 32;
-			lPan = -(320 - (sX - m_sViewPointX))*1000;
+			lPan = -(400 - (sX - m_sViewPointX))*1000;//client 800x600
 			PlaySound('E', 4, sDist, lPan);
 			SetCameraShakingEffect(sDist*2);
 			break;
@@ -5519,12 +5519,12 @@ void CGame::bAddNewEffect(short sType, int sX, int sY, int dX, int dY, char cSta
 			m_pEffectList[i]->m_mY     = sY;
 			m_pEffectList[i]->m_cMaxFrame   = 15;
 			m_pEffectList[i]->m_dwFrameTime = 40;
-			sAbsX = abs(320 - (sX - m_sViewPointX));
-			sAbsY = abs(240 - (sY - m_sViewPointY));
+			sAbsX = abs(400 - (sX - m_sViewPointX));//client 800x600
+			sAbsY = abs(300 - (sY - m_sViewPointY));//client 800x600
 			if (sAbsX > sAbsY) sDist = sAbsX;
 			else sDist = sAbsY;
 			sDist = sDist / 32;
-			lPan = -(320 - (sX - m_sViewPointX))*1000;
+			lPan = -(400 - (sX - m_sViewPointX))*1000;//client 800x600
 			PlaySound('E', 4, sDist, lPan);
 			SetCameraShakingEffect(sDist);
 			break;
@@ -5534,12 +5534,12 @@ void CGame::bAddNewEffect(short sType, int sX, int sY, int dX, int dY, char cSta
 			m_pEffectList[i]->m_mY     = sY;
 			m_pEffectList[i]->m_cMaxFrame   = 15;
 			m_pEffectList[i]->m_dwFrameTime = 30;
-			sAbsX = abs(320 - (sX - m_sViewPointX));
-			sAbsY = abs(240 - (sY - m_sViewPointY));
+			sAbsX = abs(400 - (sX - m_sViewPointX));//client 800x600
+			sAbsY = abs(300 - (sY - m_sViewPointY));//client 800x600
 			if (sAbsX > sAbsY) sDist = sAbsX;
 			else sDist = sAbsY;
 			sDist = sDist / 32;
-			lPan = ((sX - m_sViewPointX)-320)*30;
+			lPan = ((sX - m_sViewPointX)-400)*30;//client 800x600
 			PlaySound('E', 45, sDist, lPan);
 			break;
 
@@ -5554,12 +5554,12 @@ void CGame::bAddNewEffect(short sType, int sX, int sY, int dX, int dY, char cSta
 			m_pEffectList[i]->m_cMaxFrame   = 14;
 			m_pEffectList[i]->m_dwFrameTime = 20;
 			m_pEffectList[i]->m_iV1 = 20;
-			sAbsX = abs(320 - (sX - m_sViewPointX));
-			sAbsY = abs(240 - (sY - m_sViewPointY));
+			sAbsX = abs(400 - (sX - m_sViewPointX));//client 800x600
+			sAbsY = abs(300 - (sY - m_sViewPointY));//client 800x600
 			if (sAbsX > sAbsY) sDist = sAbsX;
 			else sDist = sAbsY;
 			sDist = sDist / 32;
-			lPan = ((sX - m_sViewPointX)-320)*30;
+			lPan = ((sX - m_sViewPointX)-400)*30;//client 800x600
 			PlaySound('E', 46, sDist, lPan);
 			break;
 
@@ -5571,12 +5571,12 @@ void CGame::bAddNewEffect(short sType, int sX, int sY, int dX, int dY, char cSta
 			m_pEffectList[i]->m_cMaxFrame   = 12;
 			m_pEffectList[i]->m_dwFrameTime = 20;
 			m_pEffectList[i]->m_iV1 = 20;
-			sAbsX = abs(320 - (sX - m_sViewPointX));
-			sAbsY = abs(240 - (sY - m_sViewPointY));
+			sAbsX = abs(400 - (sX - m_sViewPointX));//client 800x600
+			sAbsY = abs(300 - (sY - m_sViewPointY));//client 800x600
 			if (sAbsX > sAbsY) sDist = sAbsX;
 			else sDist = sAbsY;
 			sDist = sDist / 32;
-			lPan = ((sX - m_sViewPointX)-320)*30;
+			lPan = ((sX - m_sViewPointX)-400)*30;//client 800x600
 			PlaySound('E', 46, sDist, lPan);
 			break;
 
@@ -5585,12 +5585,12 @@ void CGame::bAddNewEffect(short sType, int sX, int sY, int dX, int dY, char cSta
 			m_pEffectList[i]->m_mY     = sY;
 			m_pEffectList[i]->m_cMaxFrame   = 12;
 			m_pEffectList[i]->m_dwFrameTime = 50;
-			sAbsX = abs(320 - (sX - m_sViewPointX));
-			sAbsY = abs(240 - (sY - m_sViewPointY));
+			sAbsX = abs(400 - (sX - m_sViewPointX));//client 800x600
+			sAbsY = abs(300 - (sY - m_sViewPointY));//client 800x600
 			if (sAbsX > sAbsY) sDist = sAbsX;
 			else sDist = sAbsY;
 			sDist = sDist / 32;
-			lPan = ((sX - m_sViewPointX)-320)*30;
+			lPan = ((sX - m_sViewPointX)-400)*30;//client 800x600
 			if ((rand()%4) == 1) SetCameraShakingEffect(sDist);
 			PlaySound('E', 47, sDist, lPan);
 			break;
@@ -5607,12 +5607,12 @@ void CGame::bAddNewEffect(short sType, int sX, int sY, int dX, int dY, char cSta
 			m_pEffectList[i]->m_mY     = sY;
 			m_pEffectList[i]->m_cMaxFrame   = 15;
 			m_pEffectList[i]->m_dwFrameTime = 80;
-			sAbsX = abs(320 - (sX - m_sViewPointX));
-			sAbsY = abs(240 - (sY - m_sViewPointY));
+			sAbsX = abs(400 - (sX - m_sViewPointX));//client 800x600
+			sAbsY = abs(300 - (sY - m_sViewPointY));//client 800x600
 			if (sAbsX > sAbsY) sDist = sAbsX;
 			else sDist = sAbsY;
 			sDist = sDist / 32;
-			lPan = ((sX - m_sViewPointX)-320)*30;
+			lPan = ((sX - m_sViewPointX)-400)*30;//client 800x600
 			PlaySound('E', 5, sDist, lPan);
 			break;
 
@@ -5621,12 +5621,12 @@ void CGame::bAddNewEffect(short sType, int sX, int sY, int dX, int dY, char cSta
 			m_pEffectList[i]->m_mY     = sY;
 			m_pEffectList[i]->m_cMaxFrame   = 15;
 			m_pEffectList[i]->m_dwFrameTime = 80;
-			sAbsX = abs(320 - (sX - m_sViewPointX));
-			sAbsY = abs(240 - (sY - m_sViewPointY));
+			sAbsX = abs(400 - (sX - m_sViewPointX));//client 800x600
+			sAbsY = abs(300 - (sY - m_sViewPointY));//client 800x600
 			if (sAbsX > sAbsY) sDist = sAbsX;
 			else sDist = sAbsY;
 			sDist = sDist / 32;
-			lPan = ((sX - m_sViewPointX)-320)*30;
+			lPan = ((sX - m_sViewPointX)-400)*30;//client 800x600
 			PlaySound('E', 5, sDist, lPan);
 			break;
 
@@ -5643,12 +5643,12 @@ void CGame::bAddNewEffect(short sType, int sX, int sY, int dX, int dY, char cSta
 			m_pEffectList[i]->m_mY     = sY;
 			m_pEffectList[i]->m_cMaxFrame   = 14;
 			m_pEffectList[i]->m_dwFrameTime = 30;
-			sAbsX = abs(320 - (sX - m_sViewPointX));
-			sAbsY = abs(240 - (sY - m_sViewPointY));
+			sAbsX = abs(400 - (sX - m_sViewPointX));//client 800x600
+			sAbsY = abs(300 - (sY - m_sViewPointY));//client 800x600
 			if (sAbsX > sAbsY) sDist = sAbsX;
 			else sDist = sAbsY;
 			sDist = sDist / 32;
-			lPan = ((sX - m_sViewPointX)-320)*30;
+			lPan = ((sX - m_sViewPointX)-400)*30;//client 800x600
 			PlaySound('E', 45, sDist, lPan);
 			break;
 
@@ -5671,8 +5671,8 @@ void CGame::bAddNewEffect(short sType, int sX, int sY, int dX, int dY, char cSta
 			m_pEffectList[i]->m_mY    = sY;
 			m_pEffectList[i]->m_cMaxFrame   = 16;
 			m_pEffectList[i]->m_dwFrameTime = 10;
-			sAbsX = abs(320 - (sX - m_sViewPointX));
-			sAbsY = abs(240 - (sY - m_sViewPointY));
+			sAbsX = abs(400 - (sX - m_sViewPointX));//client 800x600
+			sAbsY = abs(300 - (sY - m_sViewPointY));//client 800x600
 			if (sAbsX > sAbsY) sDist = sAbsX;
 			else sDist = sAbsY;
 			sDist = sDist / 32;
@@ -5714,8 +5714,8 @@ void CGame::bAddNewEffect(short sType, int sX, int sY, int dX, int dY, char cSta
 			m_pEffectList[i]->m_mY    = sY;
 			m_pEffectList[i]->m_cMaxFrame   = 14;
 			m_pEffectList[i]->m_dwFrameTime = 30;
-			sAbsX = abs(320 - (sX - m_sViewPointX));
-			sAbsY = abs(240 - (sY - m_sViewPointY));
+			sAbsX = abs(400 - (sX - m_sViewPointX));//client 800x600
+			sAbsY = abs(300 - (sY - m_sViewPointY));//client 800x600
 			if (sAbsX > sAbsY) sDist = sAbsX;
 			else sDist = sAbsY;
 			sDist = sDist / 32;
@@ -5736,8 +5736,8 @@ void CGame::bAddNewEffect(short sType, int sX, int sY, int dX, int dY, char cSta
 			m_pEffectList[i]->m_mY    = sY;
 			m_pEffectList[i]->m_cMaxFrame   = 17;
 			m_pEffectList[i]->m_dwFrameTime = 30;
-			sAbsX = abs(320 - (sX - m_sViewPointX));
-			sAbsY = abs(240 - (sY - m_sViewPointY));
+			sAbsX = abs(400 - (sX - m_sViewPointX));//client 800x600
+			sAbsY = abs(300 - (sY - m_sViewPointY));//client 800x600
 			if (sAbsX > sAbsY) sDist = sAbsX;
 			else sDist = sAbsY;
 			sDist = sDist / 32;
@@ -5752,8 +5752,8 @@ void CGame::bAddNewEffect(short sType, int sX, int sY, int dX, int dY, char cSta
 			m_pEffectList[i]->m_mY    = sY;
 			m_pEffectList[i]->m_cMaxFrame   = 11;
 			m_pEffectList[i]->m_dwFrameTime = 30;
-			sAbsX = abs(320 - (sX - m_sViewPointX));
-			sAbsY = abs(240 - (sY - m_sViewPointY));
+			sAbsX = abs(400 - (sX - m_sViewPointX));//client 800x600
+			sAbsY = abs(300 - (sY - m_sViewPointY));//client 800x600
 			if (sAbsX > sAbsY) sDist = sAbsX;
 			else sDist = sAbsY;
 			sDist = sDist / 32;
@@ -5766,8 +5766,8 @@ void CGame::bAddNewEffect(short sType, int sX, int sY, int dX, int dY, char cSta
 			m_pEffectList[i]->m_mY    = sY;
 			m_pEffectList[i]->m_cMaxFrame   = 11;
 			m_pEffectList[i]->m_dwFrameTime = 30;
-			sAbsX = abs(320 - (sX - m_sViewPointX));
-			sAbsY = abs(240 - (sY - m_sViewPointY));
+			sAbsX = abs(400 - (sX - m_sViewPointX));//client 800x600
+			sAbsY = abs(300 - (sY - m_sViewPointY));//client 800x600
 			if (sAbsX > sAbsY) sDist = sAbsX;
 			else sDist = sAbsY;
 			sDist = sDist / 32;
@@ -5781,8 +5781,8 @@ void CGame::bAddNewEffect(short sType, int sX, int sY, int dX, int dY, char cSta
 			m_pEffectList[i]->m_iErr   = 0;
 			m_pEffectList[i]->m_cMaxFrame   = NULL;
 			m_pEffectList[i]->m_dwFrameTime = 20;
-			sAbsX = abs(320 - (sX - m_sViewPointX));
-			sAbsY = abs(240 - (sY - m_sViewPointY));
+			sAbsX = abs(400 - (sX - m_sViewPointX));//client 800x600
+			sAbsY = abs(300 - (sY - m_sViewPointY));//client 800x600
 			if (sAbsX > sAbsY) sDist = sAbsX;
 			else sDist = sAbsY;
 			sDist = sDist / 32;
@@ -5794,12 +5794,12 @@ void CGame::bAddNewEffect(short sType, int sX, int sY, int dX, int dY, char cSta
 			m_pEffectList[i]->m_mY     = sY;
 			m_pEffectList[i]->m_cMaxFrame   = 15;
 			m_pEffectList[i]->m_dwFrameTime = 20;
-			sAbsX = abs(320 - (sX - m_sViewPointX));
-			sAbsY = abs(240 - (sY - m_sViewPointY));
+			sAbsX = abs(400 - (sX - m_sViewPointX));//client 800x600
+			sAbsY = abs(300 - (sY - m_sViewPointY));//client 800x600
 			if (sAbsX > sAbsY) sDist = sAbsX;
 			else sDist = sAbsY;
 			sDist = sDist / 32;
-			lPan = ((sX - m_sViewPointX)-320)*30;
+			lPan = ((sX - m_sViewPointX)-400)*30;//client 800x600
 			if ((rand()%4) == 1) SetCameraShakingEffect(sDist);
 			PlaySound('E', 47, sDist, lPan);
 			break;
@@ -5851,8 +5851,8 @@ void CGame::bAddNewEffect(short sType, int sX, int sY, int dX, int dY, char cSta
 			m_pEffectList[i]->m_iV1    = 20;
 			m_pEffectList[i]->m_cMaxFrame   = 30;
 			m_pEffectList[i]->m_dwFrameTime = 25;
-			sAbsX = abs(320 - (sX - m_sViewPointX));
-			sAbsY = abs(240 - (sY - m_sViewPointY));
+			sAbsX = abs(400 - (sX - m_sViewPointX));//client 800x600
+			sAbsY = abs(300 - (sY - m_sViewPointY));//client 800x600
 			if (sAbsX > sAbsY) sDist = sAbsX;
 			else sDist = sAbsY;
 			sDist = sDist / 32;
@@ -6198,8 +6198,8 @@ void CGame::bAddNewEffect(short sType, int sX, int sY, int dX, int dY, char cSta
 			m_pEffectList[i]->m_iErr   = 0;
 			m_pEffectList[i]->m_cMaxFrame   = 30;
 			m_pEffectList[i]->m_dwFrameTime = 25;
-			sAbsX = abs(320 - (sX - m_sViewPointX));
-			sAbsY = abs(240 - (sY - m_sViewPointY));
+			sAbsX = abs(400 - (sX - m_sViewPointX));//client 800x600
+			sAbsY = abs(300 - (sY - m_sViewPointY));//client 800x600
 			if (sAbsX > sAbsY) sDist = sAbsX;
 			else sDist = sAbsY;
 			sDist = sDist / 32;
@@ -14175,12 +14175,12 @@ void CGame::DrawBackground(short sDivX, short sModX, short sDivY, short sModY)
 		m_bIsRedrawPDBGS = FALSE;
 		m_iPDBGSdivX = sDivX;
 		m_iPDBGSdivY = sDivY;
-		SetRect(&m_DDraw.m_rcClipArea, 0,0, 640+32, 480+32);
+		SetRect(&m_DDraw.m_rcClipArea, 0,0, 800+32, 600+32);//client 800x600
 		indexY = sDivY+m_pMapData->m_sPivotY;
-		for (iy = -sModY; iy < 427+48 ; iy += 32)
+		for (iy = -sModY; iy < 547+48 ; iy += 32)//client 800x600
 		{
 			indexX = sDivX+m_pMapData->m_sPivotX;
-			for (ix = -sModX; ix < 640+48 ; ix += 32)
+			for (ix = -sModX; ix < 800+48 ; ix += 32)//client 800x600
 			{	sSpr      = m_pMapData->m_tile[indexX][indexY].m_sTileSprite;
 				sSprFrame = m_pMapData->m_tile[indexX][indexY].m_sTileSpriteFrame;
 				m_pTileSpr[sSpr]->PutSpriteFastNoColorKeyDst(m_DDraw.m_lpPDBGS, ix - 16 +sModX, iy - 16 +sModY, sSprFrame, m_dwCurTime);
@@ -14188,19 +14188,19 @@ void CGame::DrawBackground(short sDivX, short sModX, short sDivY, short sModY)
 			}
 			indexY++;
 		}
-		SetRect(&m_DDraw.m_rcClipArea, 0,0, 640, 480);
+		SetRect(&m_DDraw.m_rcClipArea, 0,0, 800, 600);//client 800x600
 	}
 	RECT rcRect;
-	SetRect(&rcRect, sModX, sModY, 640+sModX, 480+sModY); // our fictitious sprite bitmap is
+	SetRect(&rcRect, sModX, sModY, 800+sModX, 600+sModY); //client 800x600// our fictitious sprite bitmap is
 	m_DDraw.m_lpBackB4->BltFast( 0, 0, m_DDraw.m_lpPDBGS, &rcRect, DDBLTFAST_NOCOLORKEY | DDBLTFAST_WAIT);
 
 	if (m_showGrid) 
 	{
 		indexY = sDivY+m_pMapData->m_sPivotY;
-		for (iy = -sModY; iy < 427+48 ; iy += 32)
+		for (iy = -sModY; iy < 547+48 ; iy += 32)//client 800x600
 		{
 			indexX = sDivX+m_pMapData->m_sPivotX;
-			for (ix = -sModX; ix < 640+48 ; ix += 32)
+			for (ix = -sModX; ix < 800+48 ; ix += 32)//client 800x600
 			{
 				DrawLine(ix - 16 , iy - 16 , ix + 16 , iy - 16 , 6,13,13);
 				DrawLine(ix - 16 , iy - 16 , ix - 16 , iy + 16 , 6,13,13);
@@ -14947,8 +14947,8 @@ BOOL CGame::bEffectFrameCounter()
 					bAddNewEffect(204, m_pEffectList[i]->m_sX -10, m_pEffectList[i]->m_sY +70, NULL, NULL, 0, 0);
 					bAddNewEffect(205, m_pEffectList[i]->m_sX -10, m_pEffectList[i]->m_sY +75, NULL, NULL, 0, 0);
 					bAddNewEffect(206, m_pEffectList[i]->m_sX -7, m_pEffectList[i]->m_sY +27, NULL, NULL, 0, 0);
-					bAddNewEffect(201, (rand() % 160) + 320, (rand() % 120) + 240, NULL, NULL, 0, 1);
-					bAddNewEffect(202, (rand() % 160) + 320, (rand() % 120) + 240, NULL, NULL, 0, 1);
+					bAddNewEffect(201, (rand() % 160) + 400, (rand() % 120) + 300, NULL, NULL, 0, 1);//client 800x600
+					bAddNewEffect(202, (rand() % 160) + 400, (rand() % 120) + 300, NULL, NULL, 0, 1);//client 800x600
 					delete m_pEffectList[i];
 					m_pEffectList[i] = NULL;
 				}
@@ -14962,7 +14962,7 @@ BOOL CGame::bEffectFrameCounter()
 				{	bAddNewEffect(203, m_pEffectList[i]->m_sX + 110, m_pEffectList[i]->m_sY + 120, NULL, NULL, 0, 0);
 					bAddNewEffect(204, m_pEffectList[i]->m_sX -10, m_pEffectList[i]->m_sY +70, NULL, NULL, 0, 0);
 					bAddNewEffect(205, m_pEffectList[i]->m_sX -10, m_pEffectList[i]->m_sY +75, NULL, NULL, 0, 0);
-					bAddNewEffect(202, (rand() % 160) + 320, (rand() % 120) + 240, NULL, NULL, 0, 1);
+					bAddNewEffect(202, (rand() % 160) + 400, (rand() % 120) + 300, NULL, NULL, 0, 1);//client 800x600
 					delete m_pEffectList[i];
 					m_pEffectList[i] = NULL;
 				}
@@ -16005,8 +16005,8 @@ void CGame::DrawDialogBox_GuideMap(short msX, short msY, char cLB)
 	szY = m_stDialogBoxInfo[9].sSizeY;
 	if( sX < 20 ) sX = 0;
 	if( sY < 20 ) sY = 0;
-	if( sX > 640-128-20 ) sX = 640-128;
-	if( sY > 427-128-20 ) sY = 427-128;
+	if( sX > 800-128-20 ) sX = 800-128;//client 800x600
+	if( sY > 547-128-20 ) sY = 547-128;//client 800x600
 	for( shX=-2 ; shX<130 ; shX++ )
 	{
 		m_DDraw.PutPixel( sX+shX, sY-2  , 50,50,50);
@@ -16119,7 +16119,7 @@ void CGame::DrawDialogBox_GuideMap(short msX, short msY, char cLB)
 	if( cLB != 0 ) return;
 	if( msX >= sX && msX < sX+szY && msY >= sY && msY < sY+szY )
 	{
-		if( sY > 213 ) shY = sY - 17;
+		if( sY > 273 ) shY = sY - 17;//client 800x600
 		else shY = sY + szY + 4;
 		if( m_bZoomMap ) PutString( sX, shY, MSG_GUIDEMAP_MIN, RGB(200, 200, 120) );//"(-)
 		else PutString( sX, shY, MSG_GUIDEMAP_MAX, RGB(200, 200, 120) );//"(+)
@@ -19586,8 +19586,8 @@ void CGame::UpdateScreen_OnSelectCharacter()
 		}
 	}
 
-//	if (m_cGameModeCount < 6) m_DDraw.DrawShadowBox(0,0,639,479);
-//	if (m_cGameModeCount < 2) m_DDraw.DrawShadowBox(0,0,639,479);
+//	if (m_cGameModeCount < 6) m_DDraw.DrawShadowBox(0,0,799,699);//client 800x600
+//	if (m_cGameModeCount < 2) m_DDraw.DrawShadowBox(0,0,799,699);//client 800x600
 
 	if (m_DDraw.iFlip() == DDERR_SURFACELOST) RestoreSprites();
 }
@@ -20771,7 +20771,7 @@ void CGame::DrawLine(int x0, int y0, int x1, int y1, int iR, int iG, int iB)
 				iResultY += y_inc;
 			}
 			iResultX += x_inc;
-			if ((iResultX >= 0) && (iResultX < 640) && (iResultY >= 0) && (iResultY < 480)) {
+			if ((iResultX >= 0) && (iResultX < 800) && (iResultY >= 0) && (iResultY < 600)) {//client 800x600
 				pDst = (WORD *)m_DDraw.m_pBackB4Addr + iResultX + ((iResultY)*m_DDraw.m_sBackB4Pitch);
 				switch (m_DDraw.m_cPixelFormat) {
 				case 1:
@@ -20796,7 +20796,7 @@ void CGame::DrawLine(int x0, int y0, int x1, int y1, int iR, int iG, int iB)
 				iResultX += x_inc;
 			}
 			iResultY += y_inc;
-			if ((iResultX >= 0) && (iResultX < 640) && (iResultY >= 0) && (iResultY < 480)) {
+			if ((iResultX >= 0) && (iResultX < 800) && (iResultY >= 0) && (iResultY < 600)) {//client 800x600
 				pDst = (WORD *)m_DDraw.m_pBackB4Addr + iResultX + ((iResultY)*m_DDraw.m_sBackB4Pitch);
 				switch (m_DDraw.m_cPixelFormat) {
 				case 1:
@@ -20847,7 +20847,7 @@ void CGame::DrawLine2(int x0, int y0, int x1, int y1, int iR, int iG, int iB)
 				iResultY += y_inc;
 			}
 			iResultX += x_inc;
-			if ((iResultX >= 0) && (iResultX < 640) && (iResultY >= 0) && (iResultY < 480)) {
+			if ((iResultX >= 0) && (iResultX < 800) && (iResultY >= 0) && (iResultY < 600)) {
 				pDst = (WORD *)m_DDraw.m_pBackB4Addr + iResultX + ((iResultY)*m_DDraw.m_sBackB4Pitch);
 				switch (m_DDraw.m_cPixelFormat) {
 				case 1:
@@ -20872,7 +20872,7 @@ void CGame::DrawLine2(int x0, int y0, int x1, int y1, int iR, int iG, int iB)
 				iResultX += x_inc;
 			}
 			iResultY += y_inc;
-			if ((iResultX >= 0) && (iResultX < 640) && (iResultY >= 0) && (iResultY < 480)) {
+			if ((iResultX >= 0) && (iResultX < 800) && (iResultY >= 0) && (iResultY < 600)) {
 				pDst = (WORD *)m_DDraw.m_pBackB4Addr + iResultX + ((iResultY)*m_DDraw.m_sBackB4Pitch);
 				switch (m_DDraw.m_cPixelFormat) {
 				case 1:
@@ -22811,7 +22811,7 @@ void CGame::UpdateScreen_OnConnecting()
 	}
 	m_bIsHideLocalCursor = FALSE;
 
-	m_DDraw.DrawShadowBox(0,0,639,479);
+	m_DDraw.DrawShadowBox(0,0,799,599);//client 800x600
 	DrawNewDialogBox(SPRID_INTERFACE_ND_GAME4, 162,125,2);
 	wsprintf(G_cTxt, "Connecting to Server... %3dSec", (dwTime - m_dwTime)/1000);
 	PutString_SprFont(172 + 35, 190, G_cTxt, 7,0,0);
@@ -23475,8 +23475,8 @@ void CGame::UpdateScreen_OnCreateNewCharacter()
 		PutAlignedString(370, 580, 345 , UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER52);
 	}
 
-//	if (m_cGameModeCount < 6) m_DDraw.DrawShadowBox(0,0,639,479);
-//	if (m_cGameModeCount < 2) m_DDraw.DrawShadowBox(0,0,639,479);
+//	if (m_cGameModeCount < 6) m_DDraw.DrawShadowBox(0,0,799,699);//client 800x600
+//	if (m_cGameModeCount < 2) m_DDraw.DrawShadowBox(0,0,799,699);//client 800x600
 
 	if (m_DDraw.iFlip() == DDERR_SURFACELOST) RestoreSprites();
 }
@@ -23641,8 +23641,8 @@ void CGame::UpdateScreen_OnAgreement()
 	DrawVersion();
 	m_pSprite[SPRID_MOUSECURSOR]->PutSpriteFast(msX, msY, 0, dwTime);
 
-//	if (m_cGameModeCount < 6) m_DDraw.DrawShadowBox(0,0,639,479);
-//	if (m_cGameModeCount < 2) m_DDraw.DrawShadowBox(0,0,639,479);
+//	if (m_cGameModeCount < 6) m_DDraw.DrawShadowBox(0,0,799,699);//client 800x600
+//	if (m_cGameModeCount < 2) m_DDraw.DrawShadowBox(0,0,799,699);//client 800x600
 
 	if (m_DDraw.iFlip() == DDERR_SURFACELOST) RestoreSprites();
 }
@@ -24052,8 +24052,8 @@ void CGame::UpdateScreen_OnCreateNewAccount()
 	if ((msX >= 414) && (msX <= 446) && (msY >= 396) && (msY <= 406)) m_cCurFocus = 8;  //13
 	if ((msX >= 472) && (msX <= 528) && (msY >= 396) && (msY <= 406)) m_cCurFocus = 9; //14
 
-//	if (m_cGameModeCount < 6) m_DDraw.DrawShadowBox(0,0,639,479);
-//	if (m_cGameModeCount < 2) m_DDraw.DrawShadowBox(0,0,639,479);
+//	if (m_cGameModeCount < 6) m_DDraw.DrawShadowBox(0,0,799,699);//client 800x600
+//	if (m_cGameModeCount < 2) m_DDraw.DrawShadowBox(0,0,799,699);//client 800x600
 
 	if (m_DDraw.iFlip() == DDERR_SURFACELOST) RestoreSprites();
 }
@@ -24376,8 +24376,8 @@ void CGame::UpdateScreen_OnSelectServer()
 	if ((msX >= 125) && (msX <= 282) && (msY >= 231) && (msY <= 250)) m_cCurFocus = 2;
 	if ((msX >= 251) && (msX <= 327) && (msY >= 308) && (msY <= 328)) m_cCurFocus = 3;
 
-//	if (m_cGameModeCount < 6) m_DDraw.DrawShadowBox(0,0,639,479);
-//	if (m_cGameModeCount < 2) m_DDraw.DrawShadowBox(0,0,639,479);
+//	if (m_cGameModeCount < 6) m_DDraw.DrawShadowBox(0,0,799,699);//client 800x600
+//	if (m_cGameModeCount < 2) m_DDraw.DrawShadowBox(0,0,799,699);//client 800x600
 
 	if (m_DDraw.iFlip() == DDERR_SURFACELOST) RestoreSprites();
 }
@@ -25005,7 +25005,7 @@ void CGame::UpdateScreen_OnQuit()
 		m_bEscPressed = FALSE;
 		m_bEnterPressed = FALSE;
 		pMI = new class CMouseInterface;
-		pMI->AddRect(0,0,640,480);
+		pMI->AddRect(0,0,800,600);//client 800x600
 		m_bEnterPressed = FALSE;
 	}
 
@@ -25084,11 +25084,11 @@ void CGame::UpdateScreen_OnQueryForceLogin()
 	m_DInput.UpdateMouseState(&msX, &msY, &msZ, &cLB, &cRB, &cMB);
 	UpdateScreen_OnSelectCharacter(0, 0, 0, 0);
 	if ((m_cGameModeCount >= 0) && (m_cGameModeCount < 6)) {
-		m_DDraw.DrawShadowBox(0,0,639,479);
+		m_DDraw.DrawShadowBox(0,0,799,599);//client 800x600
 	}
 	else if (m_cGameModeCount >= 6) {
-		m_DDraw.DrawShadowBox(0,0,639,479);
-		m_DDraw.DrawShadowBox(0,0,639,479);
+		m_DDraw.DrawShadowBox(0,0,799,599);//client 800x600
+		m_DDraw.DrawShadowBox(0,0,799,599);//client 800x600
 	}
 
 	DrawNewDialogBox(SPRID_INTERFACE_ND_GAME4, 162, 130, 2);
@@ -25414,7 +25414,7 @@ void CGame::UpdateScreen_OnWaitingResponse()
 	}
 	m_bIsHideLocalCursor = FALSE;
 
-	m_DDraw.DrawShadowBox(0,0, 639,479);
+	m_DDraw.DrawShadowBox(0,0, 799,599);//client 800x600
 	DrawNewDialogBox(SPRID_INTERFACE_ND_GAME4, 162,125,2);
 	PutString_SprFont(172 + 44 -17, 190, "Connected. Waiting for response...", 7,0,0);
 
@@ -25467,10 +25467,10 @@ void CGame::UpdateScreen_OnQueryDeleteCharacter()
 	m_DInput.UpdateMouseState(&msX, &msY, &msZ, &cLB, &cRB, &cMB);
 	UpdateScreen_OnSelectCharacter(0, 0, 500, 70);
 	if ((m_cGameModeCount >= 0) && (m_cGameModeCount < 6)) 
-	{	m_DDraw.DrawShadowBox(0,0,639,479);
+	{	m_DDraw.DrawShadowBox(0,0,799,599);//client 800x600
 	}else if (m_cGameModeCount >= 6) 
-	{	m_DDraw.DrawShadowBox(0,0,639,479);
-		m_DDraw.DrawShadowBox(0,0,639,479);
+	{	m_DDraw.DrawShadowBox(0,0,799,599);//client 800x600
+		m_DDraw.DrawShadowBox(0,0,799,599);//client 800x600
 	}
 
 	DrawNewDialogBox(SPRID_INTERFACE_ND_GAME4, 162,125,2);
@@ -26458,7 +26458,7 @@ void CGame::NotifyMsgHandler(char * pData)
 	case NOTIFY_METEORSTRIKEHIT:
 		SetTopMsg(CRUSADE_MESSAGE17, 5);
 		//StartMeteorStrikeEffect
-		for( i=0 ; i<36 ; i++ ) bAddNewEffect(60, m_sViewPointX +(rand() % 640), m_sViewPointY +(rand() % 480), NULL, NULL, -(rand() % 80));
+		for( i=0 ; i<36 ; i++ ) bAddNewEffect(60, m_sViewPointX +(rand() % 800), m_sViewPointY +(rand() % 600), NULL, NULL, -(rand() % 80));//client 800x600
 		break;
 
 	case NOTIFY_MAPSTATUSNEXT:
@@ -27495,7 +27495,7 @@ void CGame::UpdateScreen_OnLogResMsg()
 		break;
 	}
 
-	m_DDraw.DrawShadowBox(0,0,639,479);
+	m_DDraw.DrawShadowBox(0,0,799,599);//client 800x600
 
 	DrawNewDialogBox(SPRID_INTERFACE_ND_GAME4, 162,125,2);
 
@@ -28040,8 +28040,8 @@ void CGame::DlbBoxDoubleClick_GuideMap(short msX, short msY)
 	szY = m_stDialogBoxInfo[9].sSizeY;
 	if( sX < 20 ) sX = 0;
 	if( sY < 20 ) sY = 0;
-	if( sX > 640-128-20 ) sX = 640-128;
-	if( sY > 427-128-20 ) sY = 427-128;
+	if( sX > 800-128-20 ) sX = 800-128;//client 800x600
+	if( sY > 547-128-20 ) sY = 547-128;//client 800x600
 	if( m_bZoomMap )
 	{	shX = m_sPlayerX-64;
 		shY = m_sPlayerY-64;
@@ -28407,7 +28407,7 @@ void CGame::UpdateScreen_OnChangePassword()
 	m_DDraw.ClearBackB4();
 
 	UpdateScreen_OnSelectCharacter(0, 0, 0, 0, TRUE);
-	m_DDraw.DrawShadowBox(0,0,639,479);//SelectCharacter
+	m_DDraw.DrawShadowBox(0,0,799,599);//client 800x600//SelectCharacter
 
 	DrawNewDialogBox(SPRID_INTERFACE_ND_GAME4, 153, 112, 0);
 	DrawNewDialogBox(SPRID_INTERFACE_ND_TEXT , 153, 112, 13);
@@ -28874,7 +28874,7 @@ void CGame::UpdateScreen_OnVersionNotMatch()
 			m_pGSock = NULL;
 		}
 		pMI = new class CMouseInterface;
-		pMI->AddRect(0,0,640,480);
+		pMI->AddRect(0,0,800,600);//client 800x600
 		m_bEnterPressed = FALSE;
 	}
 	m_cGameModeCount++;
@@ -30925,7 +30925,7 @@ void CGame::UpdateScreen_OnGame()
 
 	//Snoopy: Add Apocalypse map effect (druncncity bubbles)
 	if(iUpdateRet && m_cMapIndex == 25)
-	{	bAddNewEffect(13, m_sViewPointX + rand() %640, m_sViewPointY + rand() %480, 0, 0, -1*(rand() %80), 1);
+	{	bAddNewEffect(13, m_sViewPointX + rand() %800, m_sViewPointY + rand() %600, 0, 0, -1*(rand() %80), 1);//client 800x600
 		DrawDruncncity();
 	}
 
@@ -31012,8 +31012,8 @@ void CGame::UpdateScreen_OnGame()
 	//Snoopy: Added diag "LEVEL UP" right down
 	if(iUpdateRet && m_iLU_Point >0) PutString_SprFont(560, 390, "Level Up", 250, 250, 0);
 
-	if (m_cGameModeCount < 6) m_DDraw.DrawShadowBox(0,0,639,479);
-	if (m_cGameModeCount < 2) m_DDraw.DrawShadowBox(0,0,639,479);
+	if (m_cGameModeCount < 6) m_DDraw.DrawShadowBox(0,0,799,599);//client 800x600
+	if (m_cGameModeCount < 2) m_DDraw.DrawShadowBox(0,0,799,599);//client 800x600
 
 	if(iUpdateRet)
 	{
@@ -31372,19 +31372,19 @@ void CGame::CommandProcessor(short msX, short msY, short indexX, short indexY, c
 	if ((m_bIsObserverCommanded == FALSE) && (m_bIsObserverMode == TRUE))
 	{	if ((msX == 0) && (msY == 0) && (m_sViewDstX > 32*21) && (m_sViewDstY > 32*16)) bSendCommand(MSGID_REQUEST_PANNING, NULL, 8, NULL, NULL, NULL, NULL);
 		else
-		if ((msX == 639) && (msY == 0) && (m_sViewDstX < 32*m_pMapData->m_sMapSizeX - 32*21) && (m_sViewDstY > 32*16)) bSendCommand(MSGID_REQUEST_PANNING, NULL, 2, NULL, NULL, NULL, NULL);
+		if ((msX == 799) && (msY == 0) && (m_sViewDstX < 32*m_pMapData->m_sMapSizeX - 32*21) && (m_sViewDstY > 32*16)) bSendCommand(MSGID_REQUEST_PANNING, NULL, 2, NULL, NULL, NULL, NULL);//client 800x600
 		else
-		if ((msX == 639) && (msY == 479) && (m_sViewDstX < 32*m_pMapData->m_sMapSizeX - 32*21) && (m_sViewDstY < 32*m_pMapData->m_sMapSizeY - 32*16)) bSendCommand(MSGID_REQUEST_PANNING, NULL, 4, NULL, NULL, NULL, NULL);
+		if ((msX == 799) && (msY == 599) && (m_sViewDstX < 32*m_pMapData->m_sMapSizeX - 32*21) && (m_sViewDstY < 32*m_pMapData->m_sMapSizeY - 32*16)) bSendCommand(MSGID_REQUEST_PANNING, NULL, 4, NULL, NULL, NULL, NULL);//client 800x600
 		else
-		if ((msX == 0) && (msY == 479) && (m_sViewDstX > 32*21) && (m_sViewDstY < 32*m_pMapData->m_sMapSizeY - 32*16) ) bSendCommand(MSGID_REQUEST_PANNING, NULL, 6, NULL, NULL, NULL, NULL);
+		if ((msX == 0) && (msY == 599) && (m_sViewDstX > 32*21) && (m_sViewDstY < 32*m_pMapData->m_sMapSizeY - 32*16) ) bSendCommand(MSGID_REQUEST_PANNING, NULL, 6, NULL, NULL, NULL, NULL);//client 800x600
 		else
 		if ((msX == 0) && (m_sViewDstX > 32*21)) bSendCommand(MSGID_REQUEST_PANNING, NULL, 7, NULL, NULL, NULL, NULL);
 		else
-		if ((msX == 639) && (m_sViewDstX < 32*m_pMapData->m_sMapSizeX - 32*21)) bSendCommand(MSGID_REQUEST_PANNING, NULL, 3, NULL, NULL, NULL, NULL);
+		if ((msX == 799) && (m_sViewDstX < 32*m_pMapData->m_sMapSizeX - 32*21)) bSendCommand(MSGID_REQUEST_PANNING, NULL, 3, NULL, NULL, NULL, NULL);//client 800x600
 		else
 		if ((msY == 0) && (m_sViewDstY > 32*16)) bSendCommand(MSGID_REQUEST_PANNING, NULL, 1, NULL, NULL, NULL, NULL);
 		else
-		if ((msY == 479) && (m_sViewDstY < 32*m_pMapData->m_sMapSizeY - 32*16)) bSendCommand(MSGID_REQUEST_PANNING, NULL, 5, NULL, NULL, NULL, NULL);
+		if ((msY == 599) && (m_sViewDstY < 32*m_pMapData->m_sMapSizeY - 32*16)) bSendCommand(MSGID_REQUEST_PANNING, NULL, 5, NULL, NULL, NULL, NULL);//client 800x600
 		else return;
 
 		m_bIsObserverCommanded = TRUE;
@@ -31513,10 +31513,10 @@ void CGame::CommandProcessor(short msX, short msY, short indexX, short indexY, c
 				}
 
 				if ( m_stMCursor.sSelectedObjectID == 9 )
-				{	if( msX < 320 ) m_stDialogBoxInfo[9].sX = 0;
-					else m_stDialogBoxInfo[9].sX = 640 - m_stDialogBoxInfo[9].sSizeX;
-					if( msY < 213 ) m_stDialogBoxInfo[9].sY = 0;
-					else m_stDialogBoxInfo[9].sY = 427 - m_stDialogBoxInfo[9].sSizeY;
+				{	if( msX < 400 ) m_stDialogBoxInfo[9].sX = 0;//client 800x600
+					else m_stDialogBoxInfo[9].sX = 800 - m_stDialogBoxInfo[9].sSizeX;//client 800x600
+					if( msY < 273 ) m_stDialogBoxInfo[9].sY = 0;//client 800x600
+					else m_stDialogBoxInfo[9].sY = 547 - m_stDialogBoxInfo[9].sSizeY;//client 800x600
 				}
 
 				m_stMCursor.cPrevStatus = CURSORSTATUS_NULL;

@@ -231,8 +231,8 @@ BOOL InitInstance( HINSTANCE hInstance, int nCmdShow )
 {	int cx = GetSystemMetrics(SM_CXFULLSCREEN)/2;
 	int cy = GetSystemMetrics(SM_CYFULLSCREEN)/2;
 	if(cy>280) cy -= 40;
-	G_hWnd = CreateWindowEx(NULL, szAppClass, "Helbreath Dragon", WS_POPUP, cx-320, cy-240, 
-							640, 480, NULL, NULL, hInstance, NULL);  
+	G_hWnd = CreateWindowEx(NULL, szAppClass, "Helbreath Dragon", WS_POPUP, cx-400, cy-300, 
+							800, 600, NULL, NULL, hInstance, NULL);  //client 800x600
     if (!G_hWnd) return FALSE;
     G_hInstance	= hInstance;
 	ShowWindow(G_hWnd, SW_SHOWDEFAULT);

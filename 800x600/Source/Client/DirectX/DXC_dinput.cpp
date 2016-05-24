@@ -84,8 +84,8 @@ void DXC_dinput::UpdateMouseState(short * pX, short * pY, short * pZ, char * pLB
 	if( (short)dims.lZ != 0 )m_sZ = (short)dims.lZ;
 	if (m_sX < 0) m_sX = 0;
 	if (m_sY < 0) m_sY = 0;
-	if (m_sX > 639) m_sX = 639;
-	if (m_sY > 479) m_sY = 479;
+	if (m_sX > 799) m_sX = 799;//client 800x600
+	if (m_sY > 599) m_sY = 599;//client 800x600
 	*pX = m_sX;
 	*pY = m_sY;
 	*pZ = m_sZ;

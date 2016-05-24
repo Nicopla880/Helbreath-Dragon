@@ -61,7 +61,7 @@ BOOL DXC_ddraw::bInit(HWND hWnd)
  DDSURFACEDESC2 ddsd;
  int            iS, iD;
 
-	SetRect(&m_rcClipArea, 0,0, 640, 480);
+	SetRect(&m_rcClipArea, 0,0, 800, 600);//client 800x600
 
 	ddVal = DirectDrawCreateEx(NULL, (VOID**)&m_lpDD4, IID_IDirectDraw7, NULL);
     if (ddVal != DD_OK) return FALSE;
@@ -72,7 +72,7 @@ BOOL DXC_ddraw::bInit(HWND hWnd)
 		ddVal = m_lpDD4->SetCooperativeLevel(hWnd, DDSCL_EXCLUSIVE | DDSCL_FULLSCREEN);
 		if (ddVal != DD_OK) return FALSE;
 
-		ddVal = m_lpDD4->SetDisplayMode(640, 480, 16,0,0);
+		ddVal = m_lpDD4->SetDisplayMode(800, 600, 16, 0, 0);//client 800x600
 		if (ddVal != DD_OK) return FALSE;
 		memset( (VOID *)&ddsd, 0, sizeof(ddsd) );
 		ddsd.dwSize = sizeof( ddsd );
@@ -87,7 +87,7 @@ BOOL DXC_ddraw::bInit(HWND hWnd)
 		ddscaps.dwCaps = DDSCAPS_BACKBUFFER;
 		ddVal = m_lpFrontB4->GetAttachedSurface(&ddscaps, &m_lpBackB4flip);
 		if (ddVal != DD_OK) return FALSE;
-		SetRect(&m_rcFlipping, 0, 0, 640, 480); // our fictitious sprite bitmap is 
+		SetRect(&m_rcFlipping, 0, 0, 800, 600); //client 800x600 // our fictitious sprite bitmap is 
 	}
 	else
 	{
@@ -100,7 +100,7 @@ BOOL DXC_ddraw::bInit(HWND hWnd)
 		cx = cx/2;
 		cy = cy/2;
 		if(cy>280) cy -= 40;
-		SetWindowPos( hWnd, HWND_TOP, cx-320, cy-240, 640, 480, SWP_SHOWWINDOW);
+		SetWindowPos( hWnd, HWND_TOP, cx-400, cy-300, 800, 600, SWP_SHOWWINDOW);//client 800x600
 		memset( (VOID *)&ddsd, 0, sizeof(ddsd) );
 		ddsd.dwSize = sizeof( ddsd );
 		ddsd.dwFlags = DDSD_CAPS;
@@ -110,15 +110,15 @@ BOOL DXC_ddraw::bInit(HWND hWnd)
 		ddVal = m_lpDD4->CreateSurface(&ddsd, &m_lpFrontB4, NULL);
 		if (ddVal != DD_OK) return FALSE;
 
-		SetRect(&m_rcFlipping, cx-320, cy-240, cx+320, cy+240); // our fictitious sprite bitmap is 
+		SetRect(&m_rcFlipping, cx-400, cy-300, cx+400, cy+300);//client 800x600 // our fictitious sprite bitmap is 
 	}
 
 	InitFlipToGDI(hWnd);
-	m_lpBackB4 = pCreateOffScreenSurface(640, 480);
+	m_lpBackB4 = pCreateOffScreenSurface(800, 600);//client 800x600
 	if (m_lpBackB4 == NULL) return FALSE;
 
 	// Pre-draw background surface
-	m_lpPDBGS = pCreateOffScreenSurface(640+32, 480+32);
+	m_lpPDBGS = pCreateOffScreenSurface(800+32, 600+32);//client 800x600
 	if (m_lpPDBGS == NULL) return FALSE;
 
 	ddsd.dwSize = sizeof(ddsd);
@@ -250,7 +250,7 @@ void DXC_ddraw::ChangeDisplayMode(HWND hWnd)
 		cx = cx/2;
 		cy = cy/2;
 		if(cy>280) cy -= 40;
-		SetWindowPos( hWnd, NULL, cx-320, cy-240, 640, 480, SWP_SHOWWINDOW);
+		SetWindowPos( hWnd, NULL, cx-400, cy-300, 800, 600, SWP_SHOWWINDOW);//client 800x600
 
 		memset( (VOID *)&ddsd, 0, sizeof(ddsd) );
 		ddsd.dwSize = sizeof( ddsd );
@@ -261,7 +261,7 @@ void DXC_ddraw::ChangeDisplayMode(HWND hWnd)
 		ddVal = m_lpDD4->CreateSurface(&ddsd, &m_lpFrontB4, NULL);
 		if (ddVal != DD_OK) return;
 
-		SetRect(&m_rcFlipping, cx-320, cy-240, cx+320, cy+240); // our fictitious sprite bitmap is 
+		SetRect(&m_rcFlipping, cx-400, cy-300, cx+400, cy+300);//client 800x600 // our fictitious sprite bitmap is 
 		m_bFullMode = FALSE;
 	}
 	else
@@ -270,7 +270,7 @@ void DXC_ddraw::ChangeDisplayMode(HWND hWnd)
 		ddVal = m_lpDD4->SetCooperativeLevel(hWnd, DDSCL_EXCLUSIVE | DDSCL_FULLSCREEN);
 		if (ddVal != DD_OK) return;
 
-		ddVal = m_lpDD4->SetDisplayMode(640, 480, 16,0,0);
+		ddVal = m_lpDD4->SetDisplayMode(800, 600, 16,0,0);//client 800x600
 		if (ddVal != DD_OK) return;
 		memset( (VOID *)&ddsd, 0, sizeof(ddsd) );
 		ddsd.dwSize = sizeof( ddsd );
@@ -285,15 +285,15 @@ void DXC_ddraw::ChangeDisplayMode(HWND hWnd)
 		ddscaps.dwCaps = DDSCAPS_BACKBUFFER;
 		ddVal = m_lpFrontB4->GetAttachedSurface(&ddscaps, &m_lpBackB4flip);
 		if (ddVal != DD_OK) return;
-		SetRect(&m_rcFlipping, 0, 0, 640, 480); // our fictitious sprite bitmap is 
+		SetRect(&m_rcFlipping, 0, 0, 800, 600); //client 800x600 // our fictitious sprite bitmap is 
 		m_bFullMode = TRUE;
 	}
 	InitFlipToGDI(hWnd);
-	m_lpBackB4 = pCreateOffScreenSurface(640, 480);
+	m_lpBackB4 = pCreateOffScreenSurface(800, 600);//client 800x600
 	if (m_lpBackB4 == NULL) return;
 
 	// Pre-draw background surface
-	m_lpPDBGS = pCreateOffScreenSurface(640+32, 480+32);
+	m_lpPDBGS = pCreateOffScreenSurface(800+32, 600+32);//client 800x600
 	if (m_lpPDBGS == NULL) return;
 
 	ddsd.dwSize = sizeof(ddsd);
@@ -558,7 +558,7 @@ void DXC_ddraw::PutPixel(short sX, short sY, WORD wR, WORD wG, WORD wB)
 {
  WORD * pDst;
 
-	if ((sX < 0) || (sY < 0) || (sX > 639) || (sY > 479)) return;
+	if ((sX < 0) || (sY < 0) || (sX > 799) || (sY > 599)) return;//client 800x600
 
 	pDst = (WORD *)m_pBackB4Addr + sX + ((sY)*m_sBackB4Pitch);
 	

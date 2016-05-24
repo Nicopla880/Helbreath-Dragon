@@ -677,7 +677,7 @@ void CSprite::PutShadowSprite(int sX, int sY, int sFrame, DWORD dwTime)
 				iSangY = (sY+pvy)+(iy+szy+szy)/3;
 				if (pSrc[ix] != m_wColorKey)
 				{
-					if( iSangX >= 0 && iSangX < 640 && iSangY >= 0 && iSangY < 427 )
+					if( iSangX >= 0 && iSangX < 800 && iSangY >= 0 && iSangY < 547 )//client 800x600
 					{
 						pDst[iSangY*m_pDDraw->m_sBackB4Pitch+iSangX] = ((pDst[iSangY*m_pDDraw->m_sBackB4Pitch+iSangX] & 0xE79C) >> 2);
 					}
@@ -695,7 +695,7 @@ void CSprite::PutShadowSprite(int sX, int sY, int sFrame, DWORD dwTime)
 				iSangY = sY+pvy+(iy+szy+szy)/3;
 				if (pSrc[ix] != m_wColorKey)
 				{
-					if( iSangX >= 0 && iSangX < 640 && iSangY >= 0 && iSangY < 427 )
+					if( iSangX >= 0 && iSangX < 800 && iSangY >= 0 && iSangY < 547 )//client 800x600
 					{
 						pDst[iSangY*m_pDDraw->m_sBackB4Pitch+iSangX] = ((pDst[iSangY*m_pDDraw->m_sBackB4Pitch+iSangX] & 0x739C) >> 2);
 					}
