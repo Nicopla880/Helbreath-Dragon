@@ -7,3 +7,5 @@ Angel sound fixed
 Hero armor effect fixed
 Level up points Bug
 Display DMG above 128
+Adjust Sprite Server selection screen
+ 

@@ -24075,8 +24075,8 @@ void CGame::UpdateScreen_OnLogin() // here
 		pMI = new class CMouseInterface;
 		pMI->AddRect(180, 193, 408, 208); // Username MOD
 		pMI->AddRect(180, 220, 408, 240); // Password
-		pMI->AddRect(80, 280, 163, 302); // Connect 
-		pMI->AddRect(258, 280, 327, 302); // Cancel
+		pMI->AddRect(86, 295, 144, 323); // Connect 
+		pMI->AddRect(258, 295, 331, 323); // Cancel
 
 
 		cPrevFocus  = 1;
@@ -24228,8 +24228,8 @@ void CGame::UpdateScreen_OnLogin() // here
 			return;
 	}	}
 
-	if ((msX >= 80) && (msX <= 163) && (msY >= 280) && (msY <= 302)) m_cCurFocus = 3;
-	if ((msX >= 258) && (msX <= 327) && (msY >= 280) && (msY <= 302)) m_cCurFocus = 4;
+	if ((msX >= 86) && (msX <= 144) && (msY >= 295) && (msY <= 323)) m_cCurFocus = 3;
+	if ((msX >= 258) && (msX <= 331) && (msY >= 295) && (msY <= 323)) m_cCurFocus = 4;
 
 	_Draw_OnLogin(cName, cPassword, msX, msY, m_cGameModeCount);
 	if (m_DDraw.iFlip() == DDERR_SURFACELOST) RestoreSprites();
@@ -24252,10 +24252,11 @@ void CGame::UpdateScreen_OnSelectServer()
 	if (m_cGameModeCount == 0) {
 		EndInputString();
 
+		// Revan Adjust Sprite frame
 		pMI = new class CMouseInterface;
-		pMI->AddRect(130,177,270,198);
-		pMI->AddRect(130,199,270,225);
-		pMI->AddRect(256,279,331,308);
+		pMI->AddRect(140, 200, 267, 219);
+		pMI->AddRect(125, 231, 282, 250);
+		pMI->AddRect(251, 308, 327, 328);
 
 		cPrevFocus  = 1;
 		m_cCurFocus = 1;
@@ -24320,14 +24321,15 @@ void CGame::UpdateScreen_OnSelectServer()
 	}
 	m_DDraw.ClearBackB4();
 	DrawNewDialogBox(SPRID_INTERFACE_ND_SELECTSCREEN, 0, 0, 0, TRUE);
-	if (m_cGameModeCount > 20) DrawNewDialogBox(SPRID_INTERFACE_ND_SELECTSCREEN, 40, 121, 1, TRUE);
-	else if ((m_cGameModeCount >= 15) && (m_cGameModeCount <= 20)) m_pSprite[SPRID_INTERFACE_ND_SELECTSCREEN]->PutTransSprite25(40, 121, 1, TRUE);
+	if (m_cGameModeCount > 20) DrawNewDialogBox(SPRID_INTERFACE_ND_SELECTSCREEN, 85, 147, 1, TRUE);
+	else if ((m_cGameModeCount >= 15) && (m_cGameModeCount <= 20)) m_pSprite[SPRID_INTERFACE_ND_SELECTSCREEN]->PutTransSprite25(80, 160, 1, TRUE);
 
+	// Revan Adjust Sprite frame
 	if (m_cGameModeCount > 20)
 	{
-		if (m_cCurFocus == 1) DrawNewDialogBox(SPRID_INTERFACE_ND_SELECTSCREEN, 138, 177, 5, TRUE);
-		if (m_cCurFocus == 2) DrawNewDialogBox(SPRID_INTERFACE_ND_SELECTSCREEN, 130, 205, 6, TRUE);
-		if (m_cCurFocus == 3) DrawNewDialogBox(SPRID_INTERFACE_ND_SELECTSCREEN, 256, 282, 4, TRUE);
+		if (m_cCurFocus == 1) DrawNewDialogBox(SPRID_INTERFACE_ND_SELECTSCREEN, 134, 203, 3, TRUE);
+		if (m_cCurFocus == 2) DrawNewDialogBox(SPRID_INTERFACE_ND_SELECTSCREEN, 119, 234, 4, TRUE);
+		if (m_cCurFocus == 3) DrawNewDialogBox(SPRID_INTERFACE_ND_SELECTSCREEN, 245, 311, 2, TRUE);
 	}
 	DrawVersion();
 	m_DInput.UpdateMouseState(&msX, &msY, &msZ, &cLB, &cRB, &cMB);
@@ -24369,9 +24371,10 @@ void CGame::UpdateScreen_OnSelectServer()
 		}
 	}
 
-	if ((msX >= 130) && (msX <= 295) && (msY >= 175) && (msY <= 198)) m_cCurFocus = 1;
-	if ((msX >= 130) && (msX <= 295) && (msY >= 199) && (msY <= 225)) m_cCurFocus = 2;
-	if ((msX >= 256) && (msX <= 331) && (msY >= 279) && (msY <= 308)) m_cCurFocus = 3;
+	// Revan Adjust Sprite frame
+	if ((msX >= 140) && (msX <= 267) && (msY >= 200) && (msY <= 219)) m_cCurFocus = 1;
+	if ((msX >= 125) && (msX <= 282) && (msY >= 231) && (msY <= 250)) m_cCurFocus = 2;
+	if ((msX >= 251) && (msX <= 327) && (msY >= 308) && (msY <= 328)) m_cCurFocus = 3;
 
 //	if (m_cGameModeCount < 6) m_DDraw.DrawShadowBox(0,0,639,479);
 //	if (m_cGameModeCount < 2) m_DDraw.DrawShadowBox(0,0,639,479);
