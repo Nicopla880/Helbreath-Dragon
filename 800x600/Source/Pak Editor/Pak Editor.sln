@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pak Editor", "Pak Editor\Pak Editor.csproj", "{111672ED-B365-49E8-9C4C-C266CA1C761C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{111672ED-B365-49E8-9C4C-C266CA1C761C}.Debug|x86.ActiveCfg = Debug|x86
+		{111672ED-B365-49E8-9C4C-C266CA1C761C}.Debug|x86.Build.0 = Debug|x86
+		{111672ED-B365-49E8-9C4C-C266CA1C761C}.Release|x86.ActiveCfg = Release|x86
+		{111672ED-B365-49E8-9C4C-C266CA1C761C}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

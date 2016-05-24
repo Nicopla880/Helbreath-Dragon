@@ -1,0 +1,68 @@
+[MAP-INFO]
+
+map-location  = astoria
+
+fixed-dayornight-mode = 0
+
+initial-point = 1  264 260
+
+//-Teleportation-Set----SX-----SY-----DestMapName----------DX----DY---Dir---;
+teleport-loc     =      31     158     astoria0            -1    -1   5
+teleport-loc     =      31     159     astoria0            -1    -1   5
+teleport-loc     =      32     158     astoria0            -1    -1   5
+teleport-loc     =      32     159     astoria0            -1    -1   5
+
+/teleport-loc     =      31     274     astoria2            -1    -1   5
+/teleport-loc     =      31     275     astoria2            -1    -1   5
+/teleport-loc     =      32     274     astoria2            -1    -1   5
+/teleport-loc     =      32     275     astoria2            -1    -1   5
+
+teleport-loc     =      307    270     astoria1            -1    -1   5
+teleport-loc     =      307    271     astoria1            -1    -1   5
+teleport-loc     =      308    270     astoria1            -1    -1   5
+teleport-loc     =      308    271     astoria1            -1    -1   5
+
+
+
+//-WayPoint-Set---------Num-----X-----Y----;
+
+//-No-Attack-Area----------Num-----RECT-------------
+
+//-----------------------Num-Type-RECT------------------Mob-MobNum
+
+(10 Stalkers, 10 Orcs)
+spot-mob-generator	= 1	1	54	168	110	215	48	10
+spot-mob-generator	= 2	1	54	168	110	215	14	10
+
+(2 minotaurs)
+spot-mob-generator	= 3	1	296	192	316	206	78	2
+
+(15 Master Mage Orcs)
+spot-mob-generator	= 4	1	241	175	258	185	77	15
+
+(10 Trolls)
+spot-mob-generator	= 5	1	195	143	215	159	28	10
+
+(20 skeletons,15 zombies)
+spot-mob-generator	= 6	1	200	104	239	123	11	20
+spot-mob-generator	= 7	1	200	104	239	123	18	20
+
+(25 Trolls, 15 Stone-Golems, 15 Clay-Golems, 15 Rudolph)
+spot-mob-generator	= 8	1	95	29	222	89	28	25
+spot-mob-generator	= 9	1	95	29	222	89	12	15
+spot-mob-generator	= 10	1	95	29	222	89	23	15
+spot-mob-generator	= 11	1	95	29	222	89	61	15
+
+(20 Giant-Plants, 5 Dark Elves, 5 Unicorn, 1 Demon, 1 Gargoyle)
+spot-mob-generator	= 12	1	95	29	222	89	76	20
+spot-mob-generator	= 13	1	95	29	222	89	54	5
+spot-mob-generator	= 14	1	95	29	222	89	32	5
+spot-mob-generator	= 15	1	95	29	222	89	31	1
+spot-mob-generator	= 16	1	95	29	222	89	52	1
+
+
+
+
+maximum-object		= 900
+
+[END-MAP-INFO]

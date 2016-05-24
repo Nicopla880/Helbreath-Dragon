@@ -1,0 +1,11 @@
+Multi Drop fixed
+Beholder neck fixed
+Quest
+Angel stars fixed
+Angel pos fixed
+Angel sound fixed
+Hero armor effect fixed
+Level up points Bug
+Display DMG above 128
+Adjust Sprite Server selection screen
+ 

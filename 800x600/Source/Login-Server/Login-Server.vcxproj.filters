@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="char">
+      <UniqueIdentifier>{374c4f1c-d088-483a-b018-f8ad180739f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="char\item">
+      <UniqueIdentifier>{9ecfc345-6842-49ef-82a4-4629adea8e50}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="mysql">
+      <UniqueIdentifier>{8db514d4-6ed2-4e7a-8537-9be816188889}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="net">
+      <UniqueIdentifier>{b375c64f-ac05-48f7-9361-9293af5fea5b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libs">
+      <UniqueIdentifier>{7bc3a568-db7f-4390-ac34-023f317eef95}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="char\Client.cpp">
+      <Filter>char</Filter>
+    </ClCompile>
+    <ClCompile Include="char\PartyManager.cpp">
+      <Filter>char</Filter>
+    </ClCompile>
+    <ClCompile Include="char\item\Item.cpp">
+      <Filter>char\item</Filter>
+    </ClCompile>
+    <ClCompile Include="GameServer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LoginServer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="net\Msg.cpp">
+      <Filter>net</Filter>
+    </ClCompile>
+    <ClCompile Include="net\XSocket.cpp">
+      <Filter>net</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="char\Client.h">
+      <Filter>char</Filter>
+    </ClInclude>
+    <ClInclude Include="char\PartyManager.h">
+      <Filter>char</Filter>
+    </ClInclude>
+    <ClInclude Include="char\item\Item.h">
+      <Filter>char\item</Filter>
+    </ClInclude>
+    <ClInclude Include="defs.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameServer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LoginServer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="main.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="StrTok.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="mysql\my_alloc.h">
+      <Filter>mysql</Filter>
+    </ClInclude>
+    <ClInclude Include="mysql\my_list.h">
+      <Filter>mysql</Filter>
+    </ClInclude>
+    <ClInclude Include="mysql\mysql.h">
+      <Filter>mysql</Filter>
+    </ClInclude>
+    <ClInclude Include="mysql\mysql_com.h">
+      <Filter>mysql</Filter>
+    </ClInclude>
+    <ClInclude Include="mysql\mysql_time.h">
+      <Filter>mysql</Filter>
+    </ClInclude>
+    <ClInclude Include="mysql\mysql_version.h">
+      <Filter>mysql</Filter>
+    </ClInclude>
+    <ClInclude Include="mysql\typelib.h">
+      <Filter>mysql</Filter>
+    </ClInclude>
+    <ClInclude Include="net\Msg.h">
+      <Filter>net</Filter>
+    </ClInclude>
+    <ClInclude Include="net\MsgCodes.h">
+      <Filter>net</Filter>
+    </ClInclude>
+    <ClInclude Include="net\XSocket.h">
+      <Filter>net</Filter>
+    </ClInclude>
+    <ClInclude Include="res\resource.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\login.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="res\Resources.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="libs\libmysql.lib">
+      <Filter>libs</Filter>
+    </Library>
+    <Library Include="libs\StrTok.lib">
+      <Filter>libs</Filter>
+    </Library>
+    <Library Include="libs\WINMM.LIB">
+      <Filter>libs</Filter>
+    </Library>
+    <Library Include="libs\WS2_32.LIB">
+      <Filter>libs</Filter>
+    </Library>
+    <Library Include="libs\WSOCK32.LIB">
+      <Filter>libs</Filter>
+    </Library>
+  </ItemGroup>
+</Project>
