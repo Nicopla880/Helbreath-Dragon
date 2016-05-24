@@ -18021,10 +18021,10 @@ void CGame::SetTopMsg(const char *pString, unsigned char iLastSec)
 void CGame::DrawTopMsg()
 {
 	if (strlen(m_cTopMsg) == 0) return;
-	m_DDraw.DrawShadowBox(0, 0, 639, 30);
+	m_DDraw.DrawShadowBox(0, 0, 799, 30);//client 800x600
 
 	if ((((G_dwGlobalTime - m_dwTopMsgTime)/250) % 2) == 0)
-		PutAlignedString(0, 639, 10, m_cTopMsg, 255,255,255);
+		PutAlignedString(0, 799, 10, m_cTopMsg, 255,255,255);//client 800x600
 
 	if ( G_dwGlobalTime > (m_iTopMsgLastSec*CLOCKS_PER_SEC+m_dwTopMsgTime) ) {
 		ZeroMemory(m_cTopMsg, sizeof(m_cTopMsg));
@@ -30305,9 +30305,9 @@ void CGame::UpdateScreen_OnGame()
 								tX = msX - 117;
 								tY = msY - 50;
 								if (tX < 0) tX = 0;
-								if ((tX + 235) > 639) tX = 639 - 235;
+								if ((tX + 235) > 799) tX = 799 - 235;//client 800x600
 								if (tY < 0) tY = 0;
-								if ((tY + 100) > 479) tY = 479 - 100;
+								if ((tY + 100) > 599) tY = 599 - 100;//client 800x600
 								m_stDialogBoxInfo[20].sX = tX;
 								m_stDialogBoxInfo[20].sY = tY;
 
@@ -30325,9 +30325,9 @@ void CGame::UpdateScreen_OnGame()
 								tX = msX - 117;
 								tY = msY - 50;
 								if (tX < 0) tX = 0;
-								if ((tX + 235) > 639) tX = 639 - 235;
+								if ((tX + 235) > 799) tX = 799 - 235;//client 800x600
 								if (tY < 0) tY = 0;
-								if ((tY + 100) > 479) tY = 479 - 100;
+								if ((tY + 100) > 599) tY = 599 - 100;//client 800x600
 
 								m_stDialogBoxInfo[20].sX = tX;
 								m_stDialogBoxInfo[20].sY = tY;
@@ -30345,9 +30345,9 @@ void CGame::UpdateScreen_OnGame()
 								tX = msX - 117;
 								tY = msY - 50;
 								if (tX < 0) tX = 0;
-								if ((tX + 235) > 639) tX = 639 - 235;
+								if ((tX + 235) > 799) tX = 799 - 235;//client 800x600
 								if (tY < 0) tY = 0;
-								if ((tY + 100) > 479) tY = 479 - 100;
+								if ((tY + 100) > 599) tY = 599 - 100;//client 800x600
 								m_stDialogBoxInfo[20].sX = tX;
 								m_stDialogBoxInfo[20].sY = tY;
 
@@ -30695,8 +30695,8 @@ void CGame::UpdateScreen_OnGame()
 
 
 			msX1 = msX + msK;
-			if (msX1 > 639)
-				msX1 = 639;
+			if (msX1 > 799)//client 800x600
+				msX1 = 799;//client 800x600
 
 			m_DDraw.DrawShadowBox(msX, msY + 25, msX1, msY1);
 			PutAlignedString(msX, msX + msK, msY + 25, cStr1, 234, 176, 51);
@@ -31865,9 +31865,9 @@ CP_SKIPMOUSEBUTTONSTATUS:;
 								tX = msX - 117;
 								tY = msY - 50;
 								if (tX < 0) tX = 0;
-								if ((tX + 235) > 639) tX = 639 - 235;
+								if ((tX + 235) > 799) tX = 799 - 235;//client 800x600
 								if (tY < 0) tY = 0;
-								if ((tY + 100) > 479) tY = 479 - 100;
+								if ((tY + 100) > 599) tY = 599 - 100;//client 800x600
 								m_stDialogBoxInfo[20].sX  = tX;
 								m_stDialogBoxInfo[20].sY  = tY;
 								m_stDialogBoxInfo[20].sV3 = 15;
@@ -31880,9 +31880,9 @@ CP_SKIPMOUSEBUTTONSTATUS:;
 								tX = msX - 117;
 								tY = msY - 50;
 								if (tX < 0) tX = 0;
-								if ((tX + 235) > 639) tX = 639 - 235;
+								if ((tX + 235) > 799) tX = 799 - 235;//client 800x600
 								if (tY < 0) tY = 0;
-								if ((tY + 100) > 479) tY = 479 - 100;
+								if ((tY + 100) >599) tY = 599 - 100;//client 800x600
 								m_stDialogBoxInfo[20].sX  = tX;
 								m_stDialogBoxInfo[20].sY  = tY;
 								m_stDialogBoxInfo[20].sV3 = 19;
@@ -31897,9 +31897,9 @@ CP_SKIPMOUSEBUTTONSTATUS:;
 								tX = msX - 117;
 								tY = msY - 50;
 								if (tX < 0) tX = 0;
-								if ((tX + 235) > 639) tX = 639 - 235;
+								if ((tX + 235) > 799) tX = 799 - 235;//client 800x600
 								if (tY < 0) tY = 0;
-								if ((tY + 100) > 479) tY = 479 - 100;
+								if ((tY + 100) >599) tY = 599 - 100;//client 800x600
 								m_stDialogBoxInfo[20].sX  = tX;
 								m_stDialogBoxInfo[20].sY  = tY;
 								m_stDialogBoxInfo[20].sV3 = 20;
@@ -31916,9 +31916,9 @@ CP_SKIPMOUSEBUTTONSTATUS:;
 								tX = msX - 117;
 								tY = msY - 50;
 								if (tX < 0) tX = 0;
-								if ((tX + 235) > 639) tX = 639 - 235;
+								if ((tX + 235) > 799) tX = 799 - 235;//client 800x600
 								if (tY < 0) tY = 0;
-								if ((tY + 100) > 479) tY = 479 - 100;
+								if ((tY + 100) >599) tY = 599 - 100;//client 800x600
 								m_stDialogBoxInfo[20].sX  = tX;
 								m_stDialogBoxInfo[20].sY  = tY;
 								m_stDialogBoxInfo[20].sV3 = 24;
@@ -31935,9 +31935,9 @@ CP_SKIPMOUSEBUTTONSTATUS:;
 								tX = msX - 117;
 								tY = msY - 50;
 								if (tX < 0) tX = 0;
-								if ((tX + 235) > 639) tX = 639 - 235;
+								if ((tX + 235) > 799) tX = 799 - 235;//client 800x600
 								if (tY < 0) tY = 0;
-								if ((tY + 100) > 479) tY = 479 - 100;
+								if ((tY + 100) >599) tY = 599 - 100;//client 800x600
 								m_stDialogBoxInfo[20].sX  = tX;
 								m_stDialogBoxInfo[20].sY  = tY;
 								m_stDialogBoxInfo[20].sV3 = 25;
@@ -31952,9 +31952,9 @@ CP_SKIPMOUSEBUTTONSTATUS:;
 								tX = msX - 117;
 								tY = msY - 50;
 								if (tX < 0) tX = 0;
-								if ((tX + 235) > 639) tX = 639 - 235;
+								if ((tX + 235) > 799) tX = 799 - 235;//client 800x600
 								if (tY < 0) tY = 0;
-								if ((tY + 100) > 479) tY = 479 - 100;
+								if ((tY + 100) >599) tY = 599 - 100;//client 800x600
 								m_stDialogBoxInfo[20].sX  = tX;
 								m_stDialogBoxInfo[20].sY  = tY;
 								m_stDialogBoxInfo[20].sV3 = 26;
@@ -31968,9 +31968,9 @@ CP_SKIPMOUSEBUTTONSTATUS:;
 								tX = msX - 117;
 								tY = msY - 50;
 								if (tX < 0) tX = 0;
-								if ((tX + 235) > 639) tX = 639 - 235;
+								if ((tX + 235) > 799) tX = 799 - 235;//client 800x600
 								if (tY < 0) tY = 0;
-								if ((tY + 100) > 479) tY = 479 - 100;
+								if ((tY + 100) >599) tY = 599 - 100;//client 800x600
 								m_stDialogBoxInfo[20].sX  = tX;
 								m_stDialogBoxInfo[20].sY  = tY;
 								m_stDialogBoxInfo[20].sV3 = 21;
@@ -31984,9 +31984,9 @@ CP_SKIPMOUSEBUTTONSTATUS:;
 								tX = msX - 117;
 								tY = msY - 50;
 								if (tX < 0) tX = 0;
-								if ((tX + 235) > 639) tX = 639 - 235;
+								if ((tX + 235) > 799) tX = 799 - 235;//client 800x600
 								if (tY < 0) tY = 0;
-								if ((tY + 100) > 479) tY = 479 - 100;
+								if ((tY + 100) >599) tY = 599 - 100;//client 800x600
 								m_stDialogBoxInfo[20].sX  = tX;
 								m_stDialogBoxInfo[20].sY  = tY;
 								m_stDialogBoxInfo[20].sV3 = sObjectType;
@@ -31999,9 +31999,9 @@ CP_SKIPMOUSEBUTTONSTATUS:;
 								tX = msX - 117;
 								tY = msY - 50;
 								if (tX < 0) tX = 0;
-								if ((tX + 235) > 639) tX = 639 - 235;
+								if ((tX + 235) > 799) tX = 799 - 235;//client 800x600
 								if (tY < 0) tY = 0;
-								if ((tY + 100) > 479) tY = 479 - 100;
+								if ((tY + 100) >599) tY = 599 - 100;//client 800x600
 								m_stDialogBoxInfo[20].sX  = tX;
 								m_stDialogBoxInfo[20].sY  = tY;
 								m_stDialogBoxInfo[20].sV3 = 32;
@@ -32015,9 +32015,9 @@ CP_SKIPMOUSEBUTTONSTATUS:;
 								tX = msX - 117;
 								tY = msY - 50;
 								if (tX < 0) tX = 0;
-								if ((tX + 235) > 639) tX = 639 - 235;
+								if ((tX + 235) > 799) tX = 799 - 235;//client 800x600
 								if (tY < 0) tY = 0;
-								if ((tY + 100) > 479) tY = 479 - 100;
+								if ((tY + 100) >599) tY = 599 - 100;//client 800x600
 								m_stDialogBoxInfo[20].sX  = tX;
 								m_stDialogBoxInfo[20].sY  = tY;
 								m_stDialogBoxInfo[20].sV3 = 90;

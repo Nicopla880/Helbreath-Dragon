@@ -255,7 +255,7 @@ void DXC_ddraw::ChangeDisplayMode(HWND hWnd)
 		memset( (VOID *)&ddsd, 0, sizeof(ddsd) );
 		ddsd.dwSize = sizeof( ddsd );
 		ddsd.dwFlags = DDSD_CAPS;
-		//ddsd.dwBackBufferCount = 0;
+		ddsd.dwBackBufferCount = 2;//fps raise
 		ddsd.ddsCaps.dwCaps = DDSCAPS_PRIMARYSURFACE;
 		
 		ddVal = m_lpDD4->CreateSurface(&ddsd, &m_lpFrontB4, NULL);
@@ -275,7 +275,7 @@ void DXC_ddraw::ChangeDisplayMode(HWND hWnd)
 		memset( (VOID *)&ddsd, 0, sizeof(ddsd) );
 		ddsd.dwSize = sizeof( ddsd );
 		ddsd.dwFlags = DDSD_CAPS | DDSD_BACKBUFFERCOUNT;
-		ddsd.dwBackBufferCount = 1;//2; //v1.3
+		ddsd.dwBackBufferCount = 2;//2; //fps raise
 		ddsd.ddsCaps.dwCaps = DDSCAPS_PRIMARYSURFACE | DDSCAPS_FLIP | DDSCAPS_COMPLEX;
 		
 		ddVal = m_lpDD4->CreateSurface(&ddsd, &m_lpFrontB4, NULL);
@@ -497,7 +497,7 @@ void DXC_ddraw::ClearBackB4()
 	DDSURFACEDESC2 ddsd2;	
 	ddsd2.dwSize = sizeof(ddsd2);
 	if (m_lpBackB4->Lock(NULL, &ddsd2, DDLOCK_WAIT, NULL) != DD_OK) return;
-	memset((char *)ddsd2.lpSurface, 0, ddsd2.lPitch * 480);
+	memset((char *)ddsd2.lpSurface, 0, ddsd2.lPitch * 600);//client 800x600
 	m_lpBackB4->Unlock(NULL);
 }
 
