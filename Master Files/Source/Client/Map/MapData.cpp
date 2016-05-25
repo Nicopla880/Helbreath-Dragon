@@ -2104,7 +2104,7 @@ int CMapData::iObjectFrameCounter(char * cPlayerName, short sViewPointX, short s
 									m_pGame->bAddNewEffect(54, (m_sPivotX + dX) * 32 + (rand() % 20 - 10), (m_sPivotY + dY) * 32 - (rand() % 50) - 5, NULL, NULL, -(rand() % 8), 0);
 								}
 								// Snoopy: Angels Revan FIX ANGELS
-								if ((((m_pData[dX][dY].m_iStatus & 0x00100000) >> 8) > rand() % 6) // Angel stars
+								if ((((m_pData[dX][dY].m_iStatus & 0x0000F000) >> 8) > rand() % 6) // Angel stars
 									&& ((m_pData[dX][dY].m_iStatus & 0x0000F000) != 0)
 									&& ((m_pData[dX][dY].m_iStatus & 0x10) == 0))
 								{	 
@@ -2184,7 +2184,7 @@ int CMapData::iObjectFrameCounter(char * cPlayerName, short sViewPointX, short s
 									m_pGame->bAddNewEffect(54, (m_sPivotX+dX)*32 +dx +(rand()%20-10), (m_sPivotY+dY)*32 +dy -(rand()%50) -5, NULL, NULL, -(rand()%8), 0);
 								}
 								// Snoopy: Angels Revan FIX ANGELS
-								if ((((m_pData[dX][dY].m_iStatus & 0x00001000) >> 8) > rand() % 6) // Angel stars
+								if ((((m_pData[dX][dY].m_iStatus & 0x0000F000) >> 8) > rand() % 6) // Angel stars
 									&& ((m_pData[dX][dY].m_iStatus & 0x0000F000) != 0)
 									&& ((m_pData[dX][dY].m_iStatus & 0x10) == 0)) 
 								{
@@ -2470,7 +2470,7 @@ int CMapData::iObjectFrameCounter(char * cPlayerName, short sViewPointX, short s
 											m_pGame->bAddNewEffect(54, (m_sPivotX+dX)*32 +dx +(rand()%20-10), (m_sPivotY+dY)*32 +dy -(rand()%50) -5, NULL, NULL, -(rand()%8), 0);
 										}
 										// Snoopy: Angels Revan FIX ANGELS
-										if ((((m_pData[dX][dY].m_iStatus & 0x00001000) >> 8) > rand() % 6) // Angel stars
+										if ((((m_pData[dX][dY].m_iStatus & 0x0000F000) >> 8) > rand() % 6) // Angel stars
 											&& ((m_pData[dX][dY].m_iStatus & 0x0000F000) != 0)
 											&& ((m_pData[dX][dY].m_iStatus & 0x10) == 0))
 										{
@@ -2524,7 +2524,7 @@ int CMapData::iObjectFrameCounter(char * cPlayerName, short sViewPointX, short s
 									m_pGame->bAddNewEffect(54, (m_sPivotX+dX)*32 +dx +(rand()%20-10), (m_sPivotY+dY)*32 +dy -(rand()%50) -5, NULL, NULL, -(rand()%8), 0);
 								}
 								// Snoopy: Angels Revan FIX ANGELS
-								if ((((m_pData[dX][dY].m_iStatus & 0x00001000) >> 8) > rand() % 6) // Angel stars
+								if ((((m_pData[dX][dY].m_iStatus & 0x0000F000) >> 8) > rand() % 6) // Angel stars
 									&& ((m_pData[dX][dY].m_iStatus & 0x0000F000) != 0)
 									&& ((m_pData[dX][dY].m_iStatus & 0x10) == 0)) 
 								{
@@ -2668,7 +2668,7 @@ int CMapData::iObjectFrameCounter(char * cPlayerName, short sViewPointX, short s
 									m_pGame->bAddNewEffect(54, (m_sPivotX+dX)*32 +(rand()%20-10), (m_sPivotY+dY)*32 -(rand()%50) -5, NULL, NULL, -(rand()%8), 0);
 								}							
 								// Snoopy: Angels Revan FIX ANGELS
-								if ((((m_pData[dX][dY].m_iStatus & 0x00001000) >> 8) > rand() % 6) // Angel stars
+								if ((((m_pData[dX][dY].m_iStatus & 0x0000F000) >> 8) > rand() % 6) // Angel stars
 									&& ((m_pData[dX][dY].m_iStatus & 0x0000F000) != 0)
 									&& ((m_pData[dX][dY].m_iStatus & 0x10) == 0))
 								{
@@ -3522,7 +3522,7 @@ int CMapData::iObjectFrameCounter(char * cPlayerName, short sViewPointX, short s
 								m_pGame->bAddNewEffect(57, (m_sPivotX+dX)*32, (m_sPivotY+dY)*32, NULL, NULL, NULL, 0);
 						}
 						//Snoopy: Angels Revan ANGEL FIX
-						if ((((m_pData[dX][dY].m_iStatus & 0x00001000) >> 8) > rand() % 6) // Angel stars fix
+						if ((((m_pData[dX][dY].m_iStatus & 0x0000F000) >> 8) > rand() % 6) // Angel stars fix
 							&& ((m_pData[dX][dY].m_iStatus & 0x0000F000) != 0)
 							&& ((m_pData[dX][dY].m_iStatus & 0x10) == 0))
 						{

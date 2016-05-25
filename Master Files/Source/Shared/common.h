@@ -70,7 +70,7 @@ enum StatusFlags
 	STATUS_PFM =				1 << 26,	// 0x04000000
 	STATUS_PFA =				1 << 27,	// 0x08000000
 	STATUS_PK =					1 << 20,	// 
-	STATUS_TYPING =				1 << 8,	// Status Typing by Revan 5/19/2016
+	STATUS_TYPING =				1 << 32,	// Status Typing by Revan 5/19/2016
 	// Moved to a 4-bit variable
 	//STATUS_ISTRIA =			1 << 28,	// 0x10000000
 	//STATUS_ARESDEN =			1 << 29,	// 0x20000000
