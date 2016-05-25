@@ -42646,7 +42646,7 @@ void CGame::CheckActiveAura(short sX, short sY, DWORD dwTime, short sOwnerType)
 
 	// Status Typing by Revan 5/19/2016
 	if ((_tmp_iStatus & STATUS_TYPING) != 0)
-		m_pEffectSpr[140]->PutTransSprite70(sX-10, sY-70, _tmp_iEffectFrame %8, dwTime);
+		m_pEffectSpr[140]->PutTransSprite70(sX-8, sY-77, _tmp_iEffectFrame %8, dwTime);
 
 
 	if (_tmp_iStatus & STATUS_RELICHOLDER)

@@ -1,4 +1,4 @@
-Fix angeic Status
+Fix angeic Status // Angelic status are not changing at all, upgrading angel +1 to +15 holds the same status thats why stars appears with angel+0
 fix defence ratio
 fix armor break
 fix dkset

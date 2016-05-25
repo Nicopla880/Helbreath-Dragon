@@ -61,7 +61,7 @@ enum StatusFlags
 
 	STATUS_RELICHOLDER = 		1 << 17,	// 0x00020000 - previously STATUS_HEROFLAG
 	STATUS_AFK =				1 << 18,	// 0x00040000
-	STATUS_GREENSLATE =			1 << 16,	// 0x00010000
+	STATUS_GREENSLATE =			1 << 3,		// 0x00010000
 	STATUS_REDSLATE =			1 << 22,	// 0x00400000
 	STATUS_BLUESLATE =			1 << 23,	// 0x00800000
 	STATUS_ILLUSIONMOVEMENT =	1 << 21,	// 0x00200000
@@ -70,7 +70,7 @@ enum StatusFlags
 	STATUS_PFM =				1 << 26,	// 0x04000000
 	STATUS_PFA =				1 << 27,	// 0x08000000
 	STATUS_PK =					1 << 20,	// 
-	STATUS_TYPING =				1 << 32,	// Status Typing by Revan 5/19/2016  Changed to  0x80000000
+	STATUS_TYPING =				1 << 16,	// Status Typing by Revan 5/19/2016  Changed to  0x00010000 previously STATUS_GREENSLATE
 	// Moved to a 4-bit variable
 	//STATUS_ISTRIA =			1 << 28,	// 0x10000000
 	//STATUS_ARESDEN =			1 << 29,	// 0x20000000
