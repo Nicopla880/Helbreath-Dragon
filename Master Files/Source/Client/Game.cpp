@@ -38425,6 +38425,7 @@ void CGame::NotifyMsg_EnemyKillReward(char *pData)
 
 	if (sGuildRank == -1)
 	{	wsprintf(cTxt, NOTIFYMSG_ENEMYKILL_REWARD1, cName);
+		m_pSprite[SPRID_INTERFACE_ND_ICONPANNEL]->PutSpriteFast(600, 1, 17, 3);
 		AddEventList(cTxt, 10);
 	}else
 	{	wsprintf(cTxt, NOTIFYMSG_ENEMYKILL_REWARD2, cName, cGuildName); // Fixed by Snoopy

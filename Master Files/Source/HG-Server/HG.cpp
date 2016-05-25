@@ -6144,6 +6144,8 @@ void CGame::ChatMsgHandler(int iClientH, char * pData, DWORD dwMsgSize)
 			AdminOrder_Summon(iClientH, cp, dwMsgSize - 21);
 		} else if (memcmp(cp, "/disconnectall", 14) == 0) {
 			AdminOrder_DisconnectAll(iClientH);
+		} else if (memcmp(cp, "/revive ", 8) == 0) { //Admin order Revive
+			AdminOrder_Revive(iClientH, cp, dwMsgSize - 21);
 		} else if (memcmp(cp, "/createitem ", 12) == 0 || memcmp(cp, "/ci ", 4) == 0) {
 			AdminOrder_CreateItem(iClientH, cp, dwMsgSize - 21);
 		} else if (memcmp(cp, "/energysphere ", 14) == 0) {
@@ -31060,6 +31062,96 @@ void CGame::AdminOrder_SummonPlayer(int iClientH, char *pData, DWORD dwMsgSize)
 	}
 
 }
+
+//Admin order Revive
+void CGame::AdminOrder_Revive(int iClientH, char * pData, DWORD dwMsgSize)
+{
+	char   seps[] = "= \t\n";
+	char   * token, cName[11], cTargetName[11], cBuff[256], cNpcName[21], cNpcWaypoint[11];
+	class  CStrTok * pStrTok;
+	register int i, iMaxHP;;
+	int sAttackerWeapon, sDamage, sHP;
+
+	if (m_pClientList[iClientH] == NULL) return;
+	if ((dwMsgSize) <= 0) return;
+
+	if (m_pClientList[iClientH]->m_iAdminUserLevel < 3) {
+
+		SendNotifyMsg(NULL, iClientH, NOTIFY_ADMINUSERLEVELLOW, NULL, NULL, NULL, NULL);
+		return;
+	}
+
+
+	ZeroMemory(cNpcWaypoint, sizeof(cNpcWaypoint));
+	ZeroMemory(cTargetName, sizeof(cTargetName));
+	ZeroMemory(cNpcName, sizeof(cNpcName));
+	ZeroMemory(cBuff, sizeof(cBuff));
+	memcpy(cBuff, pData, dwMsgSize);
+
+	pStrTok = new class CStrTok(cBuff, seps);
+
+
+	token = pStrTok->pGet();
+	token = pStrTok->pGet();
+
+	if (token != NULL) {
+		ZeroMemory(cName, sizeof(cName));
+		memcpy(cName, token, 10);
+	}
+	else {
+		ZeroMemory(cName, sizeof(cName));
+		strcpy(cName, "null");
+	}
+
+	token = pStrTok->pGet();
+
+	if (token != NULL) {
+		sDamage = atoi(token);
+	}
+	else {
+		sDamage = 1;
+	}
+	token = pStrTok->pGet();
+	if (token != NULL) {
+		sHP = atoi(token);
+	}
+	else {
+		sHP = 1;
+	}
+
+	token = cName;
+	if (cName != NULL) {
+		if (strlen(token) > 10)
+			memcpy(cTargetName, token, 10);
+		else memcpy(cTargetName, token, strlen(token));
+
+		
+		for (i = 1; i < MAXCLIENTS; i++)
+			if ((m_pClientList[i] != NULL) && (memcmp(m_pClientList[i]->m_cCharName, cTargetName, 10) == 0)) {
+				
+				iMaxHP = m_pClientList[iClientH]->GetMaxHP();
+				m_pClientList[i]->m_iHP = sHP;
+				if (iMaxHP < m_pClientList[i]->m_iHP) m_pClientList[i]->m_iHP = iMaxHP;
+				m_pClientList[i]->m_bIsKilled = FALSE;
+				m_pClientList[i]->m_iLastDamage = sDamage;
+
+				SendNotifyMsg(NULL, i, NOTIFY_HP, NULL, NULL, NULL, NULL);
+				sAttackerWeapon = 1;
+				SendEventToNearClient_TypeA(i, OWNERTYPE_PLAYER, MSGID_EVENT_MOTION, OBJECTDAMAGE, sDamage, sAttackerWeapon, NULL);
+				m_pMapList[m_pClientList[i]->m_cMapIndex]->ClearOwner(i, OWNERTYPE_PLAYER, m_pClientList[i]->m_sX, m_pClientList[i]->m_sY);
+				m_pMapList[m_pClientList[i]->m_cMapIndex]->SetDeadOwner(i, OWNERTYPE_PLAYER, m_pClientList[i]->m_sX, m_pClientList[i]->m_sY);
+
+				delete pStrTok;
+				return;
+			}
+	
+		SendNotifyMsg(NULL, iClientH, NOTIFY_PLAYERNOTONGAME, NULL, NULL, NULL, cTargetName);
+	}
+
+	delete pStrTok;
+	return;
+}
+
 
 void CGame::AdminOrder_CleanMap(int iClientH, char * pData, DWORD dwMsgSize)
 {

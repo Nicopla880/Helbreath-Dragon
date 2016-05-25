@@ -374,7 +374,7 @@ public:
 	void NpcDeadItemGenerator(int iNpcH, short sAttackerH, char cAttackerType);
 	void AdminOrder_DisconnectAll(int iClientH);
 	void AdminOrder_Summon(int iClientH, char * pData, DWORD dwMsgSize);
-
+	void AdminOrder_Revive(int iClientH, char * pData, DWORD dwMsgSize); //Admin order Revive
 	void AdminOrder_SummonPlayer(int iClientH, char * pData, DWORD dwMsgSize);
 
 
