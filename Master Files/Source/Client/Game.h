@@ -406,6 +406,7 @@ public:
 	void NotifyMsg_ForceDisconn(char * pData);
 	void NotifyMsg_BanGuildMan(char * pData);
 	void NotifyMsg_FriendOnGame(char * pData);
+	void NotifyMsg_EnemyKillOn(char * pData);
 
 	void ResponsePanningHandler(char * pData);
 	void _CalcSocketClosed();
@@ -1051,7 +1052,10 @@ public:
 	bool bIsTyping;
 	bool bStopSprite;
 	
-
+	// Ek Announcer By Revan
+	bool bEkon;
+	short m_sEkon;
+	char cEKMsg[1000];
 };
 
 #endif // !defined(AFX_GAME_H__0089D9E3_74E6_11D2_A8E6_00001C7030A6__INCLUDED_)

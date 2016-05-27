@@ -875,7 +875,7 @@ void CClient::KilledHandler(int iAttackerH, char cAttackerType, short sDamage)
 		break;
 	}
 
-	g_game->SendNotifyMsg(NULL, m_handle, NOTIFY_KILLED, NULL, NULL, NULL, cAttackerName);
+	g_game->SendNotifyMsg(NULL, m_handle, NOTIFY_KILLED, NULL, NULL, NULL, cAttackerName); //HH
 	if (cAttackerType == OWNERTYPE_PLAYER) {
 		sAttackerWeapon = ((g_clientList[iAttackerH]->m_sAppr2 & 0x0FF0) >> 4);
 	}

@@ -620,6 +620,8 @@ CGame::CGame()
 	m_sShield = 0;
 	m_sRage = 0;
 
+	bEkon = false;
+	m_sEkon = 0;
 
 }
 // Beholder Fix
@@ -18055,6 +18057,7 @@ void CGame::DrawAstoriaStats()
 void CGame::DrawDialogBox_IconPannel(short msX, short msY)
 {
  short sX, sY;
+ short sStrLen;
  DWORD dwTime = m_dwCurTime;
 
 	sX = m_stDialogBoxInfo[30].sX;
@@ -18179,6 +18182,21 @@ void CGame::DrawDialogBox_IconPannel(short msX, short msY)
 		wsprintf(G_cTxt, "%d", m_sRage);
 		PutString2(625, 12, G_cTxt, 210, 210, 255);
 		m_pSprite[SPRID_INTERFACE_ND_ICONPANNEL]->PutSpriteFast(600, 1, 22, dwTime);
+	}
+	if (bEkon) // Ek Announcer By Revan 
+	{
+		wsprintf(G_cTxt, "%s", cEKMsg);
+		sStrLen = strlen(G_cTxt)*6+510;
+		m_DDraw.DrawShadowBox(517, 47,sStrLen, 62);
+		PutString2(523, 48, G_cTxt, 20, 255, 20);
+/*
+		DrawLine(500, 20, sStrLen, 20, 255, 100, 0);
+		DrawLine(500, 38, sStrLen, 38, 255, 100, 0);
+
+		DrawLine(500, 20, 500, 38, 255, 100, 0);
+		DrawLine(sStrLen, 20, sStrLen, 38, 255, 100, 0);*/
+		
+		m_pSprite[SPRID_INTERFACE_ND_ICONPANNEL]->PutSpriteFast(500, 45, 23, dwTime);
 	}
 	if (m_stMCursor.sCursorFrame == 4) {
 		bInv = false;
@@ -22686,6 +22704,17 @@ void CGame::DlgBoxClick_Help(int msX, int msY)
 		DisableDialogBox(35);
 	}
 }
+// Ek Announcer By Revan
+void CGame::NotifyMsg_EnemyKillOn(char * pData)
+{
+	bEkon = true;
+	char * cp;
+	cp = (char *)(pData + INDEX2_MSGTYPE + 2);
+	ZeroMemory(cEKMsg, sizeof(cEKMsg));
+	strcpy(cEKMsg, cp);
+	m_sEkon = 3;
+	//AddEventList(cMsg, 10);
+}
 
 /*********************************************************************************************************************
 ** void CGame::CreateScreenShot()										(snoopy)									**
@@ -27023,6 +27052,10 @@ void CGame::NotifyMsgHandler(char * pData)
 		NotifyMsg_NoticeMsg(pData);
 		break;
 
+	case NOTIFY_SPRITEEKON: // Ek Announcer By Revan
+		NotifyMsg_EnemyKillOn(pData);
+		break;
+
 	case NOTIFY_RATINGPLAYER:
 		NotifyMsg_RatingPlayer(pData);
 		break;
@@ -30217,8 +30250,8 @@ void CGame::UpdateScreen_OnGame()
 	if (m_cGameModeCount == 0)
 	{
 		m_DDraw.ClearBackB4();
-		//m_dwFPStime = m_dwCheckConnTime = m_dwCheckSprTime = m_dwCheckChatTime = dwTime; //MORLA5.0 AURAS
-		m_dwFPStime = m_dwCheckConnTime = m_dwCheckSprTime = m_dwCheckChatTime = m_dwAuraTime = dwTime;
+		//m_dwFPStime = m_dwCheckConnTime = m_dwCheckSprTime = m_dwCheckChatTime = dwTime; // Auras by Revan 5/19/16
+		m_dwFPStime = m_dwCheckConnTime = m_dwCheckSprTime = m_dwCheckChatTime = m_dwAuraTime = m_sEkon = dwTime;
 		m_iFrameCount = 0;
 		if (m_bMusicStat) StartBGM();
 		//if(m_iLevel < 40) AddEventList(UPDATE_SCREEN_ONGAME12, 10);
@@ -30991,6 +31024,9 @@ void CGame::UpdateScreen_OnGame()
 		m_sShield = 0;
 		m_sRage = 0;
 
+		// Ek Announcer By Revan
+		bEkon = false;
+		m_sEkon = 0;
 		return;
 	}
 
@@ -31053,6 +31089,11 @@ void CGame::UpdateScreen_OnGame()
 		if (m_sRage == 0)
 			m_sRage = false;
 		else m_sRage--;
+
+		// Ek Announcer By Revan 
+		if (m_sEkon == 0)
+			bEkon = false;
+		else m_sEkon--;
 
 		m_dwAuraTime = dwTime;
 	}
@@ -38425,8 +38466,6 @@ void CGame::NotifyMsg_EnemyKillReward(char *pData)
 
 	if (sGuildRank == -1)
 	{	wsprintf(cTxt, NOTIFYMSG_ENEMYKILL_REWARD1, cName);
-		m_pSprite[SPRID_INTERFACE_ND_ICONPANNEL]->PutSpriteFast(600, 1, 17, 3);
-		AddEventList(cTxt, 10);
 	}else
 	{	wsprintf(cTxt, NOTIFYMSG_ENEMYKILL_REWARD2, cName, cGuildName); // Fixed by Snoopy
 		AddEventList(cTxt, 10);

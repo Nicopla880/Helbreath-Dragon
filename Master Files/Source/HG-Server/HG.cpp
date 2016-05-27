@@ -9571,6 +9571,17 @@ void CGame::SendNotifyMsg(int iFromH, int iToH, WORD wMsgType, DWORD sV1, DWORD 
 	case NOTIFY_HELDENIANEND:					
 		iRet = m_pClientList[iToH]->m_pXSock->iSendMsg(cData, 6);
 		break;
+
+	case NOTIFY_SPRITEEKON: // Ek Announcer By Revan
+		memcpy(cp, pString, strlen(pString));
+		cp += strlen(pString);
+
+		*cp = NULL;
+		cp++;
+
+		iRet = m_pClientList[iToH]->m_pXSock->iSendMsg(cData, strlen(pString) + 7);
+		break;
+
 	case NOTIFY_HELDENIANCOUNT:
 		wp  = (WORD *)cp;
 		*wp = (WORD)sV1;
@@ -17635,6 +17646,9 @@ void CGame::PK_KillRewardHandler(short sAttackerH, short sVictimH)
 void CGame::EnemyKillRewardHandler(int iAttackerH, int iClientH)
 {
 	int iRewardExp, iEK_Level;
+	char cEKMsg[1000];
+	char cAttackerName;
+	int i;
 
 	if (m_pClientList[iAttackerH] == NULL) return;
 	if (m_pClientList[iClientH] == NULL)   return;
@@ -17740,6 +17754,22 @@ void CGame::EnemyKillRewardHandler(int iAttackerH, int iClientH)
 
 		SendNotifyMsg(NULL, iAttackerH, NOTIFY_ENEMYKILLREWARD, iClientH, NULL, NULL, NULL);
 
+		// Ek Announcer By Revan
+		ZeroMemory(cEKMsg, sizeof(cEKMsg));
+		wsprintf(cEKMsg, "%s killed %s ", m_pClientList[iAttackerH]->m_cCharName, m_pClientList[iClientH]->m_cCharName);
+		for (i = 1; i < MAXCLIENTS; i++)
+		{
+			if ((m_pClientList[i] != NULL))  // Check if client is avtice
+			{
+				//SendNotifyMsg(NULL, i, NOTIFY_NOTICEMSG, NULL, NULL, NULL, cEKMsg); // Send message to client
+				SendNotifyMsg(NULL, i, NOTIFY_SPRITEEKON, NULL, NULL, NULL, cEKMsg); // Send message to client to enable sprite
+				
+				// Log EK
+				wsprintf(g_cTxt, "%s killed %s", m_pClientList[iAttackerH]->m_cCharName, m_pClientList[iClientH]->m_cCharName); // Log message
+				PutLogList(g_cTxt);
+			}
+
+		}
 		if (bCheckLimitedUser(iAttackerH) == FALSE) {
 
 			SendNotifyMsg(NULL, iAttackerH, NOTIFY_EXP, NULL, NULL, NULL, NULL);
