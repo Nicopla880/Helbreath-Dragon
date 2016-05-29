@@ -19,7 +19,7 @@ namespace AutoUpdater
         List<string> fileHashes = new List<string>();
         float updateCount = 0;
 
-        const string baseUrl = "http://localhost/";
+        const string baseUrl = "http://helbreathint.com/Updater/";
         const string updateFileName = "latest.txt";
         const int normalHeight = 149;
         const int logShownHeight = 360;

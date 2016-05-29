@@ -861,8 +861,8 @@
 #define	GET_ITEM_NAME35	"Gold+%d%%"
 #define	GET_ITEM_NAME36	"Endurance %d/3"
 
-#define	LNG_DAMAGE			"Damage"
-#define	LNG_MAGICDAMAGE	"Magic damage"
+#define	INT_DAMAGE			"Damage"
+#define	INT_MAGICDAMAGE	"Magic damage"
 
 
 #define	CALC_SOCKET_CLOSED1	"Game exits because paying sockect disconnected."
@@ -2031,9 +2031,9 @@
 #define MSG_NOTIFY_SKILLCFG "SKILLCFG.TXT file contains wrong infomation."
 #define MSG_NOTIFY_DIRECTX7 "This program requires DirectX7.0a!"
 
-#define MSG_NOTIFY_LEGIONPT1 "You do not have enough Legion points."
-#define MSG_NOTIFY_LEGIONPT2 " Go to http://www.helbreathdragon.com/donate.php"
-#define MSG_NOTIFY_LEGIONPT3 " for information on how to get points."
+#define MSG_NOTIFY_HBINTPT1 "You do not have enough HBInt points."
+#define MSG_NOTIFY_HBINTPT2 " Go to http://www.helbreathdragon.com/donate.php"
+#define MSG_NOTIFY_HBINTPT3 " for information on how to get points."
 
 #define MSG_NOTIFY_HELP "Press F1 for news and help."
 

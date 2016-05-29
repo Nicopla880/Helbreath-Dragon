@@ -132,7 +132,7 @@ BEGIN
     BEGIN
         BLOCK "000004b0"
         BEGIN
-            VALUE "FileDescription", "Legion's Client"
+            VALUE "FileDescription", "HBInt's Client"
             VALUE "FileVersion", "0, 9, 3, 0"
             VALUE "InternalName", "client"
             VALUE "LegalCopyright", "Copyright (C) 2009"

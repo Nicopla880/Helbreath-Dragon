@@ -150,6 +150,8 @@ class CGame
 {
 public:
 
+	void GetIPByDNS();
+
 	void NotifyMsg_Heldenian(char * pData);
 	void DrawHeldenianStats();
 	void TimeStamp(char * pString);
@@ -423,7 +425,6 @@ public:
 	BOOL _bDecodeBuildItemContents();
 	void GetNpcName(short sType, char * pName);
 
-
 #ifdef MAKE_ACCOUNT
 	int m_iAgreeView;
 	void _LoadAgreementTextContents(char cType);
@@ -439,9 +440,9 @@ public:
 	void UpdateScreen_OnConnecting();
 	void UpdateScreen_OnWaitInitData();
 	void MakeSprite( char* FileName, short sStart, short sCount, bool bAlphaEffect = TRUE);
-	void MakeLegionSprite( char* FileName, short sStart, short sCount, bool bAlphaEffect = TRUE);
+	void MakeHBIntSprite( char* FileName, short sStart, short sCount, bool bAlphaEffect = TRUE);
 	void MakeTileSpr( char* FileName, short sStart, short sCount, bool bAlphaEffect = TRUE);
-	void MakeLegionTileSpr( char* FileName, short sStart, short sCount, bool bAlphaEffect = TRUE);
+	void MakeHBIntTileSpr( char* FileName, short sStart, short sCount, bool bAlphaEffect = TRUE);
 	void MakeEffectSpr( char* FileName, short sStart, short sCount, bool bAlphaEffect = TRUE);
 	void UpdateScreen_OnLoading(bool bActive);
 	void UpdateScreen_OnConnectionLost();

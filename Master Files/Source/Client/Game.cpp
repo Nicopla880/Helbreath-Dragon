@@ -752,8 +752,8 @@ BOOL CGame::bInit(HWND hWnd, HINSTANCE hInst, char * pCmdLine)
 	}
 
 
-	m_hPakFile = CreateFile("sprites\\lgn_dialog.lpk", GENERIC_READ, NULL, NULL, OPEN_EXISTING, NULL, NULL);
-	m_pSprite[SPRID_INTERFACE_ND_LOADING] = new class CSprite(m_hPakFile, &m_DDraw, "lgn_dialog", 0, FALSE);
+	m_hPakFile = CreateFile("sprites\\int_dialog.ipk", GENERIC_READ, NULL, NULL, OPEN_EXISTING, NULL, NULL);
+	m_pSprite[SPRID_INTERFACE_ND_LOADING] = new class CSprite(m_hPakFile, &m_DDraw, "int_dialog", 0, FALSE);
 	CloseHandle(m_hPakFile);
 
 	m_hPakFile = CreateFile("sprites\\interface2.pak", GENERIC_READ, NULL, NULL, OPEN_EXISTING, NULL, NULL);
@@ -2881,14 +2881,14 @@ void CGame::MakeSprite( char* FileName, short sStart, short sCount, bool bAlphaE
 	CloseHandle(m_hPakFile);
 }
 
-void CGame::MakeLegionSprite( char* FileName, short sStart, short sCount, bool bAlphaEffect )
+void CGame::MakeHBIntSprite( char* FileName, short sStart, short sCount, bool bAlphaEffect )
 {
 	int iTotalimage;
 	DWORD nCount;
 	char PathName[50];
 	std::vector<int> framePositions;
 
-	wsprintf( PathName, "sprites\\%s.lpk", FileName );
+	wsprintf( PathName, "sprites\\%s.ipk", FileName );
 	HANDLE m_hPakFile = CreateFile(PathName, GENERIC_READ, NULL, NULL, OPEN_EXISTING, NULL, NULL);
 	if( m_hPakFile == INVALID_HANDLE_VALUE ) return;
 	ReadFramePositions(m_hPakFile, framePositions, sCount);
@@ -2920,14 +2920,14 @@ void CGame::MakeTileSpr( char* FileName, short sStart, short sCount, bool bAlpha
 	CloseHandle(m_hPakFile);
 }
 
-void CGame::MakeLegionTileSpr( char* FileName, short sStart, short sCount, bool bAlphaEffect )
+void CGame::MakeHBIntTileSpr( char* FileName, short sStart, short sCount, bool bAlphaEffect )
 {
 	int iTotalimage;
 	DWORD nCount;
 	char PathName[28];
 	std::vector<int> framePositions;
 
-	wsprintf( PathName, "sprites\\%s.lpk", FileName );
+	wsprintf( PathName, "sprites\\%s.ipk", FileName );
 	HANDLE m_hPakFile = CreateFile(PathName, GENERIC_READ, NULL, NULL, OPEN_EXISTING, NULL, NULL);
 	if( m_hPakFile == INVALID_HANDLE_VALUE ) return;
 	ReadFramePositions(m_hPakFile, framePositions, sCount);
@@ -2996,40 +2996,40 @@ void CGame::UpdateScreen_OnLoading(bool bActive)
 #endif
 				CloseHandle(m_hPakFile);
 			}
-			m_hPakFile = CreateFile("sprites\\lgn_login.lpk", GENERIC_READ, NULL, NULL, OPEN_EXISTING, NULL, NULL);
+			m_hPakFile = CreateFile("sprites\\int_login.ipk", GENERIC_READ, NULL, NULL, OPEN_EXISTING, NULL, NULL);
 			if( m_hPakFile != INVALID_HANDLE_VALUE ) {
 				ReadFramePositions(m_hPakFile, framePositions, 3);
-				m_pSprite[SPRID_INTERFACE_ND_LOGIN] = new class CSprite(m_hPakFile, &m_DDraw, "lgn_login", 0, FALSE, &framePositions);
+				m_pSprite[SPRID_INTERFACE_ND_LOGIN] = new class CSprite(m_hPakFile, &m_DDraw, "int_login", 0, FALSE, &framePositions);
 #ifdef MAKE_ACCOUNT
-				m_pSprite[SPRID_INTERFACE_ND_NEWACCOUNT] = new class CSprite(m_hPakFile, &m_DDraw, "lgn_login", 1, FALSE, &framePositions);
-				m_pSprite[SPRID_INTERFACE_ND_AGREEMENT] = new class CSprite(m_hPakFile, &m_DDraw, "lgn_login", 2, FALSE, &framePositions);
+				m_pSprite[SPRID_INTERFACE_ND_NEWACCOUNT] = new class CSprite(m_hPakFile, &m_DDraw, "int_login", 1, FALSE, &framePositions);
+				m_pSprite[SPRID_INTERFACE_ND_AGREEMENT] = new class CSprite(m_hPakFile, &m_DDraw, "int_login", 2, FALSE, &framePositions);
 #endif
 				CloseHandle(m_hPakFile);
 				framePositions.clear();
 			}
 #ifdef MAKE_ACCOUNT			// CLEROTH - ACC - Snoopy: fixed to use without special pak
-			m_hPakFile = CreateFile("sprites\\lgn_newacc.lpk", GENERIC_READ, NULL, NULL, OPEN_EXISTING, NULL, NULL);
+			m_hPakFile = CreateFile("sprites\\int_newacc.ipk", GENERIC_READ, NULL, NULL, OPEN_EXISTING, NULL, NULL);
 			if( m_hPakFile != INVALID_HANDLE_VALUE ) {
-				m_pSprite[SPRID_INTERFACE_ND_NEWACCOUNT] = new class CSprite(m_hPakFile, &m_DDraw, "lgn_newacc", 0, FALSE);
+				m_pSprite[SPRID_INTERFACE_ND_NEWACCOUNT] = new class CSprite(m_hPakFile, &m_DDraw, "int_newacc", 0, FALSE);
 				CloseHandle(m_hPakFile);
 			}else
-			{	m_hPakFile = CreateFile("sprites\\lgn_dialog.lpk", GENERIC_READ, NULL, NULL, OPEN_EXISTING, NULL, NULL);
-				m_pSprite[SPRID_INTERFACE_ND_NEWACCOUNT] = new class CSprite(m_hPakFile, &m_DDraw, "lgn_dialog", 2, FALSE);
+			{	m_hPakFile = CreateFile("sprites\\int_dialog.ipk", GENERIC_READ, NULL, NULL, OPEN_EXISTING, NULL, NULL);
+				m_pSprite[SPRID_INTERFACE_ND_NEWACCOUNT] = new class CSprite(m_hPakFile, &m_DDraw, "int_dialog", 2, FALSE);
 				CloseHandle(m_hPakFile);
 			}
 #endif
-			m_hPakFile = CreateFile("sprites\\lgn_dialog.lpk", GENERIC_READ, NULL, NULL, OPEN_EXISTING, NULL, NULL);
+			m_hPakFile = CreateFile("sprites\\int_dialog.ipk", GENERIC_READ, NULL, NULL, OPEN_EXISTING, NULL, NULL);
 			if( m_hPakFile != INVALID_HANDLE_VALUE ) {
 				ReadFramePositions(m_hPakFile, framePositions, 3);
-				m_pSprite[SPRID_INTERFACE_ND_MAINMENU] = new class CSprite(m_hPakFile, &m_DDraw, "lgn_dialog", 1, FALSE, &framePositions);
-				m_pSprite[SPRID_INTERFACE_ND_QUIT] = new class CSprite(m_hPakFile, &m_DDraw, "lgn_dialog", 2, FALSE, &framePositions);
+				m_pSprite[SPRID_INTERFACE_ND_MAINMENU] = new class CSprite(m_hPakFile, &m_DDraw, "int_dialog", 1, FALSE, &framePositions);
+				m_pSprite[SPRID_INTERFACE_ND_QUIT] = new class CSprite(m_hPakFile, &m_DDraw, "int_dialog", 2, FALSE, &framePositions);
 				CloseHandle(m_hPakFile);
 				framePositions.clear();
 			}
 
 
 
-			//m_hPakFile = CreateFile("sprites\\lgn_gamedialog.lpk", GENERIC_READ, NULL, NULL, OPEN_EXISTING, NULL, NULL);
+			//m_hPakFile = CreateFile("sprites\\int_gamedialog.ipk", GENERIC_READ, NULL, NULL, OPEN_EXISTING, NULL, NULL);
 			m_hPakFile = CreateFile("sprites\\gamedialog.pak", GENERIC_READ, NULL, NULL, OPEN_EXISTING, NULL, NULL);
 			if( m_hPakFile != INVALID_HANDLE_VALUE ) {
 				ReadFramePositions(m_hPakFile, framePositions, 11);
@@ -3056,8 +3056,8 @@ void CGame::UpdateScreen_OnLoading(bool bActive)
 				CloseHandle(m_hPakFile);
 				framePositions.clear();
 			}
-			MakeLegionSprite( "lgn_minimap", SPRID_INTERFACE_GUIDEMAP, 32 , FALSE);
-			MakeLegionSprite( "lgn_minimap2", SPRID_INTERFACE_GUIDEMAP+35, 11 , FALSE);
+			MakeHBIntSprite( "int_minimap", SPRID_INTERFACE_GUIDEMAP, 32 , FALSE);
+			MakeHBIntSprite( "int_minimap2", SPRID_INTERFACE_GUIDEMAP+35, 11 , FALSE);
 			MakeSprite( "monster", SPRID_INTERFACE_MONSTER, 1, FALSE);
 			m_cLoading = 4;
 		}
@@ -3078,14 +3078,14 @@ void CGame::UpdateScreen_OnLoading(bool bActive)
 		break;
 	case 8:
 		{	
-			MakeLegionTileSpr( "lgn_T223-225", 223, 3, TRUE);
+			MakeHBIntTileSpr( "int_T223-225", 223, 3, TRUE);
 			MakeTileSpr( "Tile226-229", 226, 4, TRUE);
 			MakeTileSpr( "objects5", 230, 9, TRUE);	// Snoopy
 			MakeTileSpr( "objects6", 238, 4, TRUE);	// Snoopy
 			MakeTileSpr( "objects7", 242, 7, TRUE);	// Snoopy
-			MakeLegionTileSpr( "lgn_objects", 249, 1, TRUE);
+			MakeHBIntTileSpr( "int_objects", 249, 1, TRUE);
 			MakeTileSpr( "maptiles2", 300, 15, TRUE);
-			MakeLegionTileSpr( "lgn_maptiles", 315, 5, TRUE);
+			MakeHBIntTileSpr( "int_maptiles", 315, 5, TRUE);
 			MakeTileSpr( "maptiles4", 320, 10, TRUE);
 			MakeTileSpr( "maptiles5", 330, 19, TRUE);
 			MakeTileSpr( "maptiles6", 349, 4, TRUE);
@@ -3115,25 +3115,25 @@ void CGame::UpdateScreen_OnLoading(bool bActive)
 			MakeTileSpr( "Tile541-545",	541, 5, TRUE);	// Diuuude GodH
 
 			// SPRID_ITEMPACK_PIVOTPOINT+0
-			MakeLegionSprite( "lgn_itempack", SPRID_ITEMPACK_PIVOTPOINT+1, 27, FALSE);
-			m_hPakFile = CreateFile("sprites\\lgn_itempack.lpk", GENERIC_READ, NULL, NULL, OPEN_EXISTING, NULL, NULL);
+			MakeHBIntSprite( "int_itempack", SPRID_ITEMPACK_PIVOTPOINT+1, 27, FALSE);
+			m_hPakFile = CreateFile("sprites\\int_itempack.ipk", GENERIC_READ, NULL, NULL, OPEN_EXISTING, NULL, NULL);
 			if( m_hPakFile != INVALID_HANDLE_VALUE ) {
 				ReadFramePositions(m_hPakFile, framePositions, 20);
-				m_pSprite[SPRID_ITEMPACK_PIVOTPOINT+20] = new class CSprite(m_hPakFile, &m_DDraw, "lgn_itempack", 17, FALSE); //
-				m_pSprite[SPRID_ITEMPACK_PIVOTPOINT+21] = new class CSprite(m_hPakFile, &m_DDraw, "lgn_itempack", 18, FALSE); //
-				m_pSprite[SPRID_ITEMPACK_PIVOTPOINT+22] = new class CSprite(m_hPakFile, &m_DDraw, "lgn_itempack", 19, FALSE); // Angels
+				m_pSprite[SPRID_ITEMPACK_PIVOTPOINT+20] = new class CSprite(m_hPakFile, &m_DDraw, "int_itempack", 17, FALSE); //
+				m_pSprite[SPRID_ITEMPACK_PIVOTPOINT+21] = new class CSprite(m_hPakFile, &m_DDraw, "int_itempack", 18, FALSE); //
+				m_pSprite[SPRID_ITEMPACK_PIVOTPOINT+22] = new class CSprite(m_hPakFile, &m_DDraw, "int_itempack", 19, FALSE); // Angels
 				CloseHandle(m_hPakFile);
 				framePositions.clear();
 			}
 
 			// SPRID_ITEMGROUND_PIVOTPOINT+1
-			MakeLegionSprite( "lgn_itemground", SPRID_ITEMGROUND_PIVOTPOINT+1, 19, FALSE);
-			m_hPakFile = CreateFile("sprites\\lgn_itemground.lpk", GENERIC_READ, NULL, NULL, OPEN_EXISTING, NULL, NULL);
+			MakeHBIntSprite( "int_itemground", SPRID_ITEMGROUND_PIVOTPOINT+1, 19, FALSE);
+			m_hPakFile = CreateFile("sprites\\int_itemground.ipk", GENERIC_READ, NULL, NULL, OPEN_EXISTING, NULL, NULL);
 			if( m_hPakFile != INVALID_HANDLE_VALUE ) {
 				ReadFramePositions(m_hPakFile, framePositions, 20);
-				m_pSprite[SPRID_ITEMGROUND_PIVOTPOINT+20] = new class CSprite(m_hPakFile, &m_DDraw, "lgn_itemground", 17, FALSE, &framePositions);
-				m_pSprite[SPRID_ITEMGROUND_PIVOTPOINT+21] = new class CSprite(m_hPakFile, &m_DDraw, "lgn_itemground", 18, FALSE, &framePositions);
-				m_pSprite[SPRID_ITEMGROUND_PIVOTPOINT+22] = new class CSprite(m_hPakFile, &m_DDraw, "lgn_itemground", 19, FALSE, &framePositions);//Angels
+				m_pSprite[SPRID_ITEMGROUND_PIVOTPOINT+20] = new class CSprite(m_hPakFile, &m_DDraw, "int_itemground", 17, FALSE, &framePositions);
+				m_pSprite[SPRID_ITEMGROUND_PIVOTPOINT+21] = new class CSprite(m_hPakFile, &m_DDraw, "int_itemground", 18, FALSE, &framePositions);
+				m_pSprite[SPRID_ITEMGROUND_PIVOTPOINT+22] = new class CSprite(m_hPakFile, &m_DDraw, "int_itemground", 19, FALSE, &framePositions);//Angels
 				CloseHandle(m_hPakFile);
 				framePositions.clear();
 			}
@@ -3143,63 +3143,63 @@ void CGame::UpdateScreen_OnLoading(bool bActive)
 		break;
 	case 16:
 		{
-			m_hPakFile = CreateFile("sprites\\lgn_itemequipM.lpk", GENERIC_READ, NULL, NULL, OPEN_EXISTING, NULL, NULL);
+			m_hPakFile = CreateFile("sprites\\int_itemequipM.ipk", GENERIC_READ, NULL, NULL, OPEN_EXISTING, NULL, NULL);
 			if( m_hPakFile != INVALID_HANDLE_VALUE ) {
 				ReadFramePositions(m_hPakFile, framePositions, 15);
-				m_pSprite[SPRID_ITEMEQUIP_PIVOTPOINT + 0] = new class CSprite(m_hPakFile, &m_DDraw, "lgn_itemequipM", 0, FALSE, &framePositions);	// body
-				m_pSprite[SPRID_ITEMEQUIP_PIVOTPOINT + 1] = new class CSprite(m_hPakFile, &m_DDraw, "lgn_itemequipM", 1, FALSE, &framePositions);	// 1-swords
-				m_pSprite[SPRID_ITEMEQUIP_PIVOTPOINT + 2] = new class CSprite(m_hPakFile, &m_DDraw, "lgn_itemequipM", 2, FALSE, &framePositions);	// 2-bows
-				m_pSprite[SPRID_ITEMEQUIP_PIVOTPOINT + 3] = new class CSprite(m_hPakFile, &m_DDraw, "lgn_itemequipM", 3, FALSE, &framePositions);	// 3-shields
-				m_pSprite[SPRID_ITEMEQUIP_PIVOTPOINT + 4] = new class CSprite(m_hPakFile, &m_DDraw, "lgn_itemequipM", 4, FALSE, &framePositions);	// 4-tunics
-				m_pSprite[SPRID_ITEMEQUIP_PIVOTPOINT + 5] = new class CSprite(m_hPakFile, &m_DDraw, "lgn_itemequipM", 5, FALSE, &framePositions);	// 5-shoes
-				m_pSprite[SPRID_ITEMEQUIP_PIVOTPOINT + 7] = new class CSprite(m_hPakFile, &m_DDraw, "lgn_itemequipM", 6, FALSE, &framePositions);	// 6-berk
-				m_pSprite[SPRID_ITEMEQUIP_PIVOTPOINT + 8] = new class CSprite(m_hPakFile, &m_DDraw, "lgn_itemequipM", 7, FALSE, &framePositions);	// 7-hoses
-				m_pSprite[SPRID_ITEMEQUIP_PIVOTPOINT + 9] = new class CSprite(m_hPakFile, &m_DDraw, "lgn_itemequipM", 8, FALSE, &framePositions);	// 8-bodyarmor
-				m_pSprite[SPRID_ITEMEQUIP_PIVOTPOINT + 15] = new class CSprite(m_hPakFile, &m_DDraw, "lgn_itemequipM", 11, FALSE, &framePositions); // Axe hammer
-				m_pSprite[SPRID_ITEMEQUIP_PIVOTPOINT + 17] = new class CSprite(m_hPakFile, &m_DDraw, "lgn_itemequipM", 12, FALSE, &framePositions); // Wands
-				m_pSprite[SPRID_ITEMEQUIP_PIVOTPOINT + 18] = new class CSprite(m_hPakFile, &m_DDraw, "lgn_itemequipM", 9, FALSE, &framePositions);  // hair
-				m_pSprite[SPRID_ITEMEQUIP_PIVOTPOINT + 19] = new class CSprite(m_hPakFile, &m_DDraw, "lgn_itemequipM", 10, FALSE, &framePositions); // undies
-				m_pSprite[SPRID_ITEMEQUIP_PIVOTPOINT + 20] = new class CSprite(m_hPakFile, &m_DDraw, "lgn_itemequipM", 13, FALSE, &framePositions); // capes
-				m_pSprite[SPRID_ITEMEQUIP_PIVOTPOINT + 21] = new class CSprite(m_hPakFile, &m_DDraw, "lgn_itemequipM", 14, FALSE, &framePositions); // helm
+				m_pSprite[SPRID_ITEMEQUIP_PIVOTPOINT + 0] = new class CSprite(m_hPakFile, &m_DDraw, "int_itemequipM", 0, FALSE, &framePositions);	// body
+				m_pSprite[SPRID_ITEMEQUIP_PIVOTPOINT + 1] = new class CSprite(m_hPakFile, &m_DDraw, "int_itemequipM", 1, FALSE, &framePositions);	// 1-swords
+				m_pSprite[SPRID_ITEMEQUIP_PIVOTPOINT + 2] = new class CSprite(m_hPakFile, &m_DDraw, "int_itemequipM", 2, FALSE, &framePositions);	// 2-bows
+				m_pSprite[SPRID_ITEMEQUIP_PIVOTPOINT + 3] = new class CSprite(m_hPakFile, &m_DDraw, "int_itemequipM", 3, FALSE, &framePositions);	// 3-shields
+				m_pSprite[SPRID_ITEMEQUIP_PIVOTPOINT + 4] = new class CSprite(m_hPakFile, &m_DDraw, "int_itemequipM", 4, FALSE, &framePositions);	// 4-tunics
+				m_pSprite[SPRID_ITEMEQUIP_PIVOTPOINT + 5] = new class CSprite(m_hPakFile, &m_DDraw, "int_itemequipM", 5, FALSE, &framePositions);	// 5-shoes
+				m_pSprite[SPRID_ITEMEQUIP_PIVOTPOINT + 7] = new class CSprite(m_hPakFile, &m_DDraw, "int_itemequipM", 6, FALSE, &framePositions);	// 6-berk
+				m_pSprite[SPRID_ITEMEQUIP_PIVOTPOINT + 8] = new class CSprite(m_hPakFile, &m_DDraw, "int_itemequipM", 7, FALSE, &framePositions);	// 7-hoses
+				m_pSprite[SPRID_ITEMEQUIP_PIVOTPOINT + 9] = new class CSprite(m_hPakFile, &m_DDraw, "int_itemequipM", 8, FALSE, &framePositions);	// 8-bodyarmor
+				m_pSprite[SPRID_ITEMEQUIP_PIVOTPOINT + 15] = new class CSprite(m_hPakFile, &m_DDraw, "int_itemequipM", 11, FALSE, &framePositions); // Axe hammer
+				m_pSprite[SPRID_ITEMEQUIP_PIVOTPOINT + 17] = new class CSprite(m_hPakFile, &m_DDraw, "int_itemequipM", 12, FALSE, &framePositions); // Wands
+				m_pSprite[SPRID_ITEMEQUIP_PIVOTPOINT + 18] = new class CSprite(m_hPakFile, &m_DDraw, "int_itemequipM", 9, FALSE, &framePositions);  // hair
+				m_pSprite[SPRID_ITEMEQUIP_PIVOTPOINT + 19] = new class CSprite(m_hPakFile, &m_DDraw, "int_itemequipM", 10, FALSE, &framePositions); // undies
+				m_pSprite[SPRID_ITEMEQUIP_PIVOTPOINT + 20] = new class CSprite(m_hPakFile, &m_DDraw, "int_itemequipM", 13, FALSE, &framePositions); // capes
+				m_pSprite[SPRID_ITEMEQUIP_PIVOTPOINT + 21] = new class CSprite(m_hPakFile, &m_DDraw, "int_itemequipM", 14, FALSE, &framePositions); // helm
 				CloseHandle(m_hPakFile);
 				framePositions.clear();
 			}
 
-			m_hPakFile = CreateFile("sprites\\lgn_itempack.lpk", GENERIC_READ, NULL, NULL, OPEN_EXISTING, NULL, NULL);
+			m_hPakFile = CreateFile("sprites\\int_itempack.ipk", GENERIC_READ, NULL, NULL, OPEN_EXISTING, NULL, NULL);
 			if( m_hPakFile != INVALID_HANDLE_VALUE ) {
-				m_pSprite[SPRID_ITEMEQUIP_PIVOTPOINT + 16] = new class CSprite(m_hPakFile, &m_DDraw, "lgn_itempack", 15); // Necks
+				m_pSprite[SPRID_ITEMEQUIP_PIVOTPOINT + 16] = new class CSprite(m_hPakFile, &m_DDraw, "int_itempack", 15); // Necks
 				//Snoopy: Angels pandents
-				m_pSprite[SPRID_ITEMEQUIP_PIVOTPOINT + 22] = new class CSprite(m_hPakFile, &m_DDraw, "lgn_itempack", 19); // Angels
+				m_pSprite[SPRID_ITEMEQUIP_PIVOTPOINT + 22] = new class CSprite(m_hPakFile, &m_DDraw, "int_itempack", 19); // Angels
 				CloseHandle(m_hPakFile);
 			}
 
-			m_hPakFile = CreateFile("sprites\\lgn_itemequipW.lpk", GENERIC_READ, NULL, NULL, OPEN_EXISTING, NULL, NULL);
+			m_hPakFile = CreateFile("sprites\\int_itemequipW.ipk", GENERIC_READ, NULL, NULL, OPEN_EXISTING, NULL, NULL);
 			if( m_hPakFile != INVALID_HANDLE_VALUE ) {
 				ReadFramePositions(m_hPakFile, framePositions, 15);
-				m_pSprite[SPRID_ITEMEQUIP_PIVOTPOINT + 40] = new class CSprite(m_hPakFile, &m_DDraw, "lgn_itemequipW", 0, FALSE, &framePositions); // body
-				m_pSprite[SPRID_ITEMEQUIP_PIVOTPOINT + 41] = new class CSprite(m_hPakFile, &m_DDraw, "lgn_itemequipW", 1, FALSE, &framePositions); // 1-swords
-				m_pSprite[SPRID_ITEMEQUIP_PIVOTPOINT + 42] = new class CSprite(m_hPakFile, &m_DDraw, "lgn_itemequipW", 2, FALSE, &framePositions); // 2-bows
-				m_pSprite[SPRID_ITEMEQUIP_PIVOTPOINT + 43] = new class CSprite(m_hPakFile, &m_DDraw, "lgn_itemequipW", 3, FALSE, &framePositions); // 3-shields
-				m_pSprite[SPRID_ITEMEQUIP_PIVOTPOINT + 45] = new class CSprite(m_hPakFile, &m_DDraw, "lgn_itemequipW", 4, FALSE, &framePositions); // 4-shoes
-				m_pSprite[SPRID_ITEMEQUIP_PIVOTPOINT + 50] = new class CSprite(m_hPakFile, &m_DDraw, "lgn_itemequipW", 5, FALSE, &framePositions); // 5-Soustif
-				m_pSprite[SPRID_ITEMEQUIP_PIVOTPOINT + 51] = new class CSprite(m_hPakFile, &m_DDraw, "lgn_itemequipW", 6, FALSE, &framePositions); // 6 berk
-				m_pSprite[SPRID_ITEMEQUIP_PIVOTPOINT + 52] = new class CSprite(m_hPakFile, &m_DDraw, "lgn_itemequipW", 7, FALSE, &framePositions); // 7 hose
-				m_pSprite[SPRID_ITEMEQUIP_PIVOTPOINT + 53] = new class CSprite(m_hPakFile, &m_DDraw, "lgn_itemequipW", 8, FALSE, &framePositions); // 8-hoses
-				m_pSprite[SPRID_ITEMEQUIP_PIVOTPOINT + 55] = new class CSprite(m_hPakFile, &m_DDraw, "lgn_itemequipW", 11, FALSE, &framePositions); // Axe hammer
-				m_pSprite[SPRID_ITEMEQUIP_PIVOTPOINT + 57] = new class CSprite(m_hPakFile, &m_DDraw, "lgn_itemequipW", 12, FALSE, &framePositions); // Wands
-				m_pSprite[SPRID_ITEMEQUIP_PIVOTPOINT + 58] = new class CSprite(m_hPakFile, &m_DDraw, "lgn_itemequipW", 9, FALSE, &framePositions); // hair
-				m_pSprite[SPRID_ITEMEQUIP_PIVOTPOINT + 59] = new class CSprite(m_hPakFile, &m_DDraw, "lgn_itemequipW", 10, FALSE, &framePositions);// undies
-				m_pSprite[SPRID_ITEMEQUIP_PIVOTPOINT + 60] = new class CSprite(m_hPakFile, &m_DDraw, "lgn_itemequipW", 13, FALSE, &framePositions);// capes
-				m_pSprite[SPRID_ITEMEQUIP_PIVOTPOINT + 61] = new class CSprite(m_hPakFile, &m_DDraw, "lgn_itemequipW", 14, FALSE, &framePositions);// helm
+				m_pSprite[SPRID_ITEMEQUIP_PIVOTPOINT + 40] = new class CSprite(m_hPakFile, &m_DDraw, "int_itemequipW", 0, FALSE, &framePositions); // body
+				m_pSprite[SPRID_ITEMEQUIP_PIVOTPOINT + 41] = new class CSprite(m_hPakFile, &m_DDraw, "int_itemequipW", 1, FALSE, &framePositions); // 1-swords
+				m_pSprite[SPRID_ITEMEQUIP_PIVOTPOINT + 42] = new class CSprite(m_hPakFile, &m_DDraw, "int_itemequipW", 2, FALSE, &framePositions); // 2-bows
+				m_pSprite[SPRID_ITEMEQUIP_PIVOTPOINT + 43] = new class CSprite(m_hPakFile, &m_DDraw, "int_itemequipW", 3, FALSE, &framePositions); // 3-shields
+				m_pSprite[SPRID_ITEMEQUIP_PIVOTPOINT + 45] = new class CSprite(m_hPakFile, &m_DDraw, "int_itemequipW", 4, FALSE, &framePositions); // 4-shoes
+				m_pSprite[SPRID_ITEMEQUIP_PIVOTPOINT + 50] = new class CSprite(m_hPakFile, &m_DDraw, "int_itemequipW", 5, FALSE, &framePositions); // 5-Soustif
+				m_pSprite[SPRID_ITEMEQUIP_PIVOTPOINT + 51] = new class CSprite(m_hPakFile, &m_DDraw, "int_itemequipW", 6, FALSE, &framePositions); // 6 berk
+				m_pSprite[SPRID_ITEMEQUIP_PIVOTPOINT + 52] = new class CSprite(m_hPakFile, &m_DDraw, "int_itemequipW", 7, FALSE, &framePositions); // 7 hose
+				m_pSprite[SPRID_ITEMEQUIP_PIVOTPOINT + 53] = new class CSprite(m_hPakFile, &m_DDraw, "int_itemequipW", 8, FALSE, &framePositions); // 8-hoses
+				m_pSprite[SPRID_ITEMEQUIP_PIVOTPOINT + 55] = new class CSprite(m_hPakFile, &m_DDraw, "int_itemequipW", 11, FALSE, &framePositions); // Axe hammer
+				m_pSprite[SPRID_ITEMEQUIP_PIVOTPOINT + 57] = new class CSprite(m_hPakFile, &m_DDraw, "int_itemequipW", 12, FALSE, &framePositions); // Wands
+				m_pSprite[SPRID_ITEMEQUIP_PIVOTPOINT + 58] = new class CSprite(m_hPakFile, &m_DDraw, "int_itemequipW", 9, FALSE, &framePositions); // hair
+				m_pSprite[SPRID_ITEMEQUIP_PIVOTPOINT + 59] = new class CSprite(m_hPakFile, &m_DDraw, "int_itemequipW", 10, FALSE, &framePositions);// undies
+				m_pSprite[SPRID_ITEMEQUIP_PIVOTPOINT + 60] = new class CSprite(m_hPakFile, &m_DDraw, "int_itemequipW", 13, FALSE, &framePositions);// capes
+				m_pSprite[SPRID_ITEMEQUIP_PIVOTPOINT + 61] = new class CSprite(m_hPakFile, &m_DDraw, "int_itemequipW", 14, FALSE, &framePositions);// helm
 				CloseHandle(m_hPakFile);
 				framePositions.clear();
 			}
 
-			m_hPakFile = CreateFile("sprites\\lgn_itempack.lpk", GENERIC_READ, NULL, NULL, OPEN_EXISTING, NULL, NULL);
+			m_hPakFile = CreateFile("sprites\\int_itempack.ipk", GENERIC_READ, NULL, NULL, OPEN_EXISTING, NULL, NULL);
 			if( m_hPakFile != INVALID_HANDLE_VALUE ) {
-				m_pSprite[SPRID_ITEMEQUIP_PIVOTPOINT + 56] = new class CSprite(m_hPakFile, &m_DDraw, "lgn_itempack", 15);// necks
+				m_pSprite[SPRID_ITEMEQUIP_PIVOTPOINT + 56] = new class CSprite(m_hPakFile, &m_DDraw, "int_itempack", 15);// necks
 				//Snoopy: Angels pandents
-				m_pSprite[SPRID_ITEMEQUIP_PIVOTPOINT + 62] = new class CSprite(m_hPakFile, &m_DDraw, "lgn_itempack", 19); // Angels
+				m_pSprite[SPRID_ITEMEQUIP_PIVOTPOINT + 62] = new class CSprite(m_hPakFile, &m_DDraw, "int_itempack", 19); // Angels
 				CloseHandle(m_hPakFile);
 			}
 			MakeSprite( "Bm", 500 + 15*8*0, 96, TRUE);// Black Man (Type: 1)
@@ -3337,7 +3337,7 @@ void CGame::UpdateScreen_OnLoading(bool bActive)
 		{	MakeSprite( "Gail",			  SPRID_MOB   + 7*8*80, 8, TRUE); // Gail (Type: 90)
 			MakeSprite( "Gate",			  SPRID_MOB   + 7*8*81, 24, TRUE);// Heldenian Gate (Type: 91)/**/
 			MakeSprite( "Scarecrow",	  SPRID_MOB   + 7*8*82, 40, TRUE);
-			MakeLegionSprite( "lgn_Princess",	  SPRID_MOB   + 7*8*92,  8, TRUE);// Princess 102
+			MakeHBIntSprite( "int_Princess",	  SPRID_MOB   + 7*8*92,  8, TRUE);// Princess 102
 			m_hPakFile = CreateFile("sprites\\Mpt.pak", GENERIC_READ, NULL, NULL, OPEN_EXISTING, NULL, NULL);
 			if( m_hPakFile != INVALID_HANDLE_VALUE ) {
 				ReadFramePositions(m_hPakFile, framePositions, 96);
@@ -3456,7 +3456,7 @@ void CGame::UpdateScreen_OnLoading(bool bActive)
 			MakeSprite( "MStaff3",		SPRID_WEAPON_M + 64*37, 56, TRUE);
 			MakeSprite( "MReMagicWand", SPRID_WEAPON_M + 64*38, 56, TRUE);
 			MakeSprite( "MKlonessWand", SPRID_WEAPON_M + 64*39, 56, TRUE);
-			MakeLegionSprite( "lgn_Staff4M",	    SPRID_WEAPON_M + 64*40, 56, TRUE);
+			MakeHBIntSprite( "int_Staff4M",	    SPRID_WEAPON_M + 64*40, 56, TRUE);
 			// Bows 40 41 below
 			MakeSprite( "MDirectBow",	SPRID_WEAPON_M + 64*43, 56, TRUE);
 			MakeSprite( "MFireBow",		SPRID_WEAPON_M + 64*44, 56, TRUE);
@@ -3635,7 +3635,7 @@ void CGame::UpdateScreen_OnLoading(bool bActive)
 			MakeSprite( "WStaff3",		SPRID_WEAPON_W + 64*37, 56, TRUE);
 			MakeSprite( "WKlonessWand", SPRID_WEAPON_W + 64*39, 56, TRUE);
 			MakeSprite( "WReMagicWand", SPRID_WEAPON_W + 64*38, 56, TRUE);
-			MakeLegionSprite( "lgn_Staff4W", SPRID_WEAPON_W + 64*40, 56, TRUE);
+			MakeHBIntSprite( "int_Staff4W", SPRID_WEAPON_W + 64*40, 56, TRUE);
 			// bows 40 41 below
 			MakeSprite( "WDirectBow",	SPRID_WEAPON_W + 64*43, 56, TRUE);
 			MakeSprite( "WFireBow",		SPRID_WEAPON_W + 64*44, 56, TRUE);
@@ -13746,6 +13746,10 @@ void CGame::LogResponseHandler(char * pData)
 			ZeroMemory(m_cGameServerName, sizeof(m_cGameServerName));
 			memcpy(m_cGameServerName, cp, 20);
 			cp += 20;
+			
+#ifdef DNSSERVER
+			GetIPByDNS();
+#endif
 			m_pGSock = new class XSocket(m_hWnd, SOCKETBLOCKLIMIT);
 			if (m_iGameServerMode == 1)
 			{	m_pGSock->bConnect(m_cLogServerAddr, iGameServerPort, WM_USER_GAMESOCKETEVENT);
@@ -19515,6 +19519,9 @@ void CGame::UpdateScreen_OnSelectCharacter()
 						if (m_Misc.bCheckValidString(m_cPlayerName) == TRUE)
 						{	m_pSprite[SPRID_INTERFACE_ND_LOGIN]->_iCloseSprite();
 							m_pSprite[SPRID_INTERFACE_ND_MAINMENU]->_iCloseSprite();
+#ifdef DNSSERVER
+							GetIPByDNS();
+#endif
 							m_pLSock = new class XSocket(m_hWnd, SOCKETBLOCKLIMIT);
 							if (m_iServerSelected == 1){
 								m_pLSock->bConnect(m_cLogServerAddr, m_iLogServerPort + (rand() % 1), WM_USER_LOGSOCKETEVENT);
@@ -19552,6 +19559,9 @@ void CGame::UpdateScreen_OnSelectCharacter()
 					if (m_Misc.bCheckValidString(m_cPlayerName) == TRUE) {
 						m_pSprite[SPRID_INTERFACE_ND_LOGIN]->_iCloseSprite();
 						m_pSprite[SPRID_INTERFACE_ND_MAINMENU]->_iCloseSprite();
+#ifdef DNSSERVER
+						GetIPByDNS();
+#endif
 						m_pLSock = new class XSocket(m_hWnd, SOCKETBLOCKLIMIT);
 						if (m_iServerSelected == 1){
 							m_pLSock->bConnect(m_cLogServerAddr, m_iLogServerPort + (rand() % 1), WM_USER_LOGSOCKETEVENT);
@@ -19897,7 +19907,7 @@ BOOL CGame::bDlgBoxPress_Character(short msX, short msY)
 void CGame::DlgBoxClick_CityhallMenu(short msX, short msY)
 {
 	static const enum modes{
-		LEGIONPTSSERVICES =		9,
+		HBINTPTSSERVICES =		9,
 		TELEPORTLIST =		10
 	};
 	short sX, sY;
@@ -19930,10 +19940,10 @@ void CGame::DlgBoxClick_CityhallMenu(short msX, short msY)
 			PlaySound('E', 14, 5);
 		}
 
-		// Legion point services
+		// HBInt point services
 		if ((msX > sX + 35) && (msX < sX + 220) && (msY > sY + 170) && (msY < sY + 195))
 		{
-			m_stDialogBoxInfo[13].cMode = LEGIONPTSSERVICES;
+			m_stDialogBoxInfo[13].cMode = HBINTPTSSERVICES;
 			PlaySound('E', 14, 5);
 			bSendCommand(MSGID_REQUEST_LGNPTS, NULL,NULL,0,0,0,NULL);			
 		}
@@ -20074,7 +20084,7 @@ void CGame::DlgBoxClick_CityhallMenu(short msX, short msY)
 		}
 		break;
 
-	case LEGIONPTSSERVICES:
+	case HBINTPTSSERVICES:
 		if ((msX > sX + 160) && (msX < sX + 230) && (msY > sY + 35) && (msY < sY + 50))
 		{
 			PlaySound('E', 14, 5);
@@ -20091,9 +20101,9 @@ void CGame::DlgBoxClick_CityhallMenu(short msX, short msY)
 					bSendCommand(MSGID_REQUEST_LGNSVC, lgnPtsSvcs[i + m_stDialogBoxInfo[13].sView].cmd, NULL, NULL, NULL, NULL, NULL);
 					m_cash -= lgnPtsSvcs[i + m_stDialogBoxInfo[13].sView].price;
 				}else{
-					AddEventList(MSG_NOTIFY_LEGIONPT1, CHAT_GM, TRUE);
-					AddEventList(MSG_NOTIFY_LEGIONPT2, CHAT_GM, TRUE);
-					AddEventList(MSG_NOTIFY_LEGIONPT3, CHAT_GM, TRUE);
+					AddEventList(MSG_NOTIFY_HBINTPT1, CHAT_GM, TRUE);
+					AddEventList(MSG_NOTIFY_HBINTPT2, CHAT_GM, TRUE);
+					AddEventList(MSG_NOTIFY_HBINTPT3, CHAT_GM, TRUE);
 				}
 				break;
 			}
@@ -23310,6 +23320,9 @@ void CGame::UpdateScreen_OnCreateNewCharacter()
 			if (m_Misc.bCheckValidName(cName) == FALSE) break;
 			ZeroMemory(m_cPlayerName, sizeof(m_cPlayerName));
 			strcpy(m_cPlayerName, cName);
+#ifdef DNSSERVER
+			GetIPByDNS();
+#endif
 			m_pLSock = new class XSocket(m_hWnd, SOCKETBLOCKLIMIT);
 			if (m_iServerSelected == 1){
 				m_pLSock->bConnect(m_cLogServerAddr, m_iLogServerPort, WM_USER_LOGSOCKETEVENT);
@@ -23978,6 +23991,9 @@ void CGame::UpdateScreen_OnCreateNewAccount()
 				delete pMI;
 				return;
 			}
+#ifdef DNSSERVER
+			GetIPByDNS();
+#endif
 			m_pLSock = new class XSocket(m_hWnd, SOCKETBLOCKLIMIT);
 			if (m_iServerSelected == 1){
 				m_pLSock->bConnect(m_cLogServerAddr, m_iLogServerPort, WM_USER_LOGSOCKETEVENT);
@@ -24044,7 +24060,9 @@ void CGame::UpdateScreen_OnCreateNewAccount()
 				delete pMI;
 				return;
 			}
-
+#ifdef DNSSERVER
+			GetIPByDNS();
+#endif
 			m_pLSock = new class XSocket(m_hWnd, SOCKETBLOCKLIMIT);
 			if (m_iServerSelected == 1){
 				m_pLSock->bConnect(m_cLogServerAddr, m_iLogServerPort, WM_USER_LOGSOCKETEVENT);
@@ -24163,6 +24181,9 @@ void CGame::UpdateScreen_OnLogin() // here
 			ZeroMemory(m_cAccountPassword, sizeof(m_cAccountPassword));
 			strcpy(m_cAccountName, cName);
 			strcpy(m_cAccountPassword, cPassword);
+#ifdef DNSSERVER
+			GetIPByDNS();
+#endif
 			m_pLSock = new class XSocket(m_hWnd, SOCKETBLOCKLIMIT);
 			if (m_iServerSelected == 1){
 				m_pLSock->bConnect(m_cLogServerAddr, m_iLogServerPort + (rand() % 1), WM_USER_LOGSOCKETEVENT);
@@ -24232,6 +24253,9 @@ void CGame::UpdateScreen_OnLogin() // here
 			ZeroMemory(m_cAccountPassword, sizeof(m_cAccountPassword));
 			strcpy(m_cAccountName, cName);
 			strcpy(m_cAccountPassword, cPassword);
+#ifdef DNSSERVER
+			GetIPByDNS();
+#endif
 			m_pLSock = new class XSocket(m_hWnd, SOCKETBLOCKLIMIT);
 			if (m_iServerSelected == 1){
 				m_pLSock->bConnect(m_cLogServerAddr, m_iLogServerPort + (rand() % 1), WM_USER_LOGSOCKETEVENT);
@@ -25153,6 +25177,9 @@ void CGame::UpdateScreen_OnQueryForceLogin()
 	{	PlaySound('E', 14, 5);
 		switch (iMIbuttonNum) {
 		case 1:
+#ifdef DNSSERVER
+			GetIPByDNS();
+#endif
 			m_pLSock = new class XSocket(m_hWnd, SOCKETBLOCKLIMIT);
 			if (m_iServerSelected == 1){
 				m_pLSock->bConnect(m_cLogServerAddr, m_iLogServerPort, WM_USER_LOGSOCKETEVENT);
@@ -25539,6 +25566,9 @@ void CGame::UpdateScreen_OnQueryDeleteCharacter()
 	{	PlaySound('E', 14, 5);
 		switch (iMIbuttonNum) {
 		case 1:
+#ifdef DNSSERVER
+			GetIPByDNS();
+#endif
 			m_pLSock = new class XSocket(m_hWnd, SOCKETBLOCKLIMIT);
 				if (m_iServerSelected == 1){
 				m_pLSock->bConnect(m_cLogServerAddr, m_iLogServerPort, WM_USER_LOGSOCKETEVENT);
@@ -28387,6 +28417,9 @@ void CGame::UpdateScreen_OnChangePassword()
 			strcpy(m_cAccountPassword, cPassword);
 			strcpy(m_cNewPassword, cNewPassword);
 			strcpy(m_cNewPassConfirm, cNewPassConfirm);
+#ifdef DNSSERVER
+			GetIPByDNS();
+#endif
 			m_pLSock = new class XSocket(m_hWnd, SOCKETBLOCKLIMIT);
 			if (m_iServerSelected == 1){
 				m_pLSock->bConnect(m_cLogServerAddr, m_iLogServerPort, WM_USER_LOGSOCKETEVENT);
@@ -28525,6 +28558,9 @@ void CGame::UpdateScreen_OnChangePassword()
 			strcpy(m_cAccountPassword, cPassword);
 			strcpy(m_cNewPassword, cNewPassword);
 			strcpy(m_cNewPassConfirm, cNewPassConfirm);
+#ifdef DNSSERVER
+			GetIPByDNS();
+#endif
 						m_pLSock = new class XSocket(m_hWnd, SOCKETBLOCKLIMIT);
 						if (m_iServerSelected == 1){
 							m_pLSock->bConnect(m_cLogServerAddr, m_iLogServerPort, WM_USER_LOGSOCKETEVENT);
@@ -29919,31 +29955,31 @@ void CGame::GetItemName(CItem *pItem, char *pStr1, char *pStr2, char *pStr3)
 
 	if (strcmp(pItem->m_cName,"RingofOgrepower") == 0){
 		wsprintf(pStr2, "+%i ", 2);
-		strcat(pStr2, LNG_DAMAGE);
+		strcat(pStr2, INT_DAMAGE);
 	}else if (strcmp(pItem->m_cName,"RingofDemonpower") == 0){
 		wsprintf(pStr2, "+%i ", 4);
-		strcat(pStr2, LNG_DAMAGE);
+		strcat(pStr2, INT_DAMAGE);
 	}else if (strcmp(pItem->m_cName,"RingofDragonpower") == 0){
 		wsprintf(pStr2, "+%i ", 5);
-		strcat(pStr2, LNG_DAMAGE);
+		strcat(pStr2, INT_DAMAGE);
 	}else if (strcmp(pItem->m_cName,"RingoftheXelima") == 0){
 		wsprintf(pStr2, "+%i ", 7);
-		strcat(pStr2, LNG_DAMAGE);
+		strcat(pStr2, INT_DAMAGE);
 	}else if (strcmp(pItem->m_cName,"RingoftheAbaddon") == 0){
 		wsprintf(pStr2, "+%i ", 10);
-		strcat(pStr2, LNG_DAMAGE);
+		strcat(pStr2, INT_DAMAGE);
 	}else if (strcmp(pItem->m_cName,"RingofWizard") == 0){
 		wsprintf(pStr2, "+%i ", 2);
-		strcat(pStr2, LNG_MAGICDAMAGE);
+		strcat(pStr2, INT_MAGICDAMAGE);
 	}else if (strcmp(pItem->m_cName,"RingofMage") == 0){
 		wsprintf(pStr2, "+%i ", 4);
-		strcat(pStr2, LNG_MAGICDAMAGE);
+		strcat(pStr2, INT_MAGICDAMAGE);
 	}else if (strcmp(pItem->m_cName,"RingofGrandMage") == 0){
 		wsprintf(pStr2, "+%i ", 5);
-		strcat(pStr2, LNG_MAGICDAMAGE);
+		strcat(pStr2, INT_MAGICDAMAGE);
 	}else if (strcmp(pItem->m_cName,"RingofArchmage") == 0){
 		wsprintf(pStr2, "+%i ", 7);
-		strcat(pStr2, LNG_MAGICDAMAGE);
+		strcat(pStr2, INT_MAGICDAMAGE);
 	}else if (strcmp(pItem->m_cName,"ZemstoneofSacrifice") == 0) {
 		wsprintf(pStr2, GET_ITEM_NAME36, pItem->m_wCurLifeSpan);
 	}
@@ -33712,7 +33748,7 @@ void CGame::DrawDialogBox_LevelUpSetting(short msX, short msY)
 void CGame::DrawDialogBox_CityHallMenu(short msX, short msY, short msZ, char cLB)
 {
 	static const enum modes{
-		LEGIONPTSSERVICES =		9,
+		HBINTPTSSERVICES =		9,
 		TELEPORTLIST =		10
 	};
 	short sX, sY, szX;
@@ -33757,11 +33793,11 @@ void CGame::DrawDialogBox_CityHallMenu(short msX, short msY, short msZ, char cLB
 			else PutAlignedString(sX, sX + szX, sY + 145, DRAW_DIALOGBOX_CITYHALL_MENU11, 4,0,50);//"
 		}else    PutAlignedString(sX, sX + szX, sY + 145, DRAW_DIALOGBOX_CITYHALL_MENU11, 65,65,65);//"
 
-		// Legion point services
+		// HBInt point services
 		if ((msX > sX + 35) && (msX < sX + 220) && (msY > sY + 170) && (msY < sY + 195))
-			PutAlignedString(sX, sX + szX, sY + 170, "Legion points' services", 255,255,255);
+			PutAlignedString(sX, sX + szX, sY + 170, "HBInt points' services", 255,255,255);
 		else
-			PutAlignedString(sX, sX + szX, sY + 170, "Legion points' services", 4,0,50);
+			PutAlignedString(sX, sX + szX, sY + 170, "HBInt points' services", 4,0,50);
 
 		// Teleport list
 		if ( (m_bIsCrusadeMode==FALSE))
@@ -33905,8 +33941,8 @@ void CGame::DrawDialogBox_CityHallMenu(short msX, short msY, short msZ, char cLB
 		else DrawNewDialogBox(SPRID_INTERFACE_ND_BUTTON, sX + RBTNPOSX, sY + BTNPOSY, 2);
 		break;
 
-	case LEGIONPTSSERVICES:
-		wsprintf(cTxt, "Legion points: %u", m_cash);
+	case HBINTPTSSERVICES:
+		wsprintf(cTxt, "HBInt points: %u", m_cash);
 		PutAlignedString(sX, sX + szX, sY + 35,  cTxt, 55,25,25);
 		if ((msX > sX + 160) && (msX < sX + szX) && (msY > sY + 35) && (msY < sY + 50))
 			PutAlignedString(sX + 160, sX + szX, sY + 35, "Update" , 255,255,255);
@@ -39983,6 +40019,9 @@ void CGame::NotifyMsg_ServerChange(char * pData)
 	{	delete m_pLSock;
 		m_pLSock = NULL;
 	}
+#ifdef DNSSERVER
+	GetIPByDNS();
+#endif
 	m_pLSock = new class XSocket(m_hWnd, SOCKETBLOCKLIMIT);
 	if (m_iGameServerMode == 1) // LAN
 	{	m_pLSock->bConnect(m_cLogServerAddr, iWorldServerPort, WM_USER_LOGSOCKETEVENT);
@@ -44575,4 +44614,25 @@ void CGame::DlgBoxClick_GuideMap(short msX, short msY)
 		bSendCommand(MSGID_REQUEST_SETRECALLPNT, NULL, NULL, recallPoint, NULL, NULL, NULL, NULL);
 		PlaySound('E', 14, 5);
 	}
+}
+void CGame::GetIPByDNS()
+{
+	ZeroMemory(m_cLogServerAddr, sizeof(m_cLogServerAddr));
+
+		char cDnsResult[40];
+		struct hostent *host_entry;
+
+		host_entry = gethostbyname(SERVER_DNS);
+		if (host_entry == NULL){
+			MessageBox(m_hWnd, "Failed to get DNS entry for the logserver!", "ERROR1", MB_ICONEXCLAMATION | MB_OK);
+			_exit(0);
+		}
+		ZeroMemory(cDnsResult, sizeof(cDnsResult));
+		wsprintf(cDnsResult, "%d.%d.%d.%d",
+			(host_entry->h_addr_list[0][0] & 0x00ff),
+			(host_entry->h_addr_list[0][1] & 0x00ff),
+			(host_entry->h_addr_list[0][2] & 0x00ff),
+			(host_entry->h_addr_list[0][3] & 0x00ff));
+
+		strcpy(m_cLogServerAddr, cDnsResult);
 }

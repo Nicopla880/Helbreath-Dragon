@@ -13,8 +13,8 @@ CMyDib::CMyDib(char *szFilename, unsigned long dwFilePointer)
 	DWORD nCount;
 	char PathName[28];
 
-	if(memcmp(szFilename, "lgn_", 4) == 0)
-		wsprintf( PathName, "sprites\\%s.lpk", szFilename );
+	if(memcmp(szFilename, "int_", 4) == 0)
+		wsprintf( PathName, "sprites\\%s.ipk", szFilename );
 	else
 		wsprintf( PathName, "sprites\\%s.pak", szFilename );
 
