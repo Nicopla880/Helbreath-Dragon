@@ -2762,7 +2762,7 @@ bool CGame::bSendMsgToLS(DWORD dwMsg, int iClientH, bool bFlag,char * pData)
 	WORD  * wp;
 	BYTE  * bp;
 	int     iRet, i, iSize;
-	char    cCharName[11], cAccountName[11], cAccountPassword[11], cAddress[16], cGuildName[21], cTxt[120], * cp;
+	char    cCharName[11], cAccountName[11], cAccountPassword[11], cAddress[16], cExtAddress[16], cGuildName[21], cTxt[120], *cp;
 	char    cGuildLoc[11], cTemp[120];
 	int   * ip, iSendSize;
 
@@ -2947,15 +2947,19 @@ bool CGame::bSendMsgToLS(DWORD dwMsg, int iClientH, bool bFlag,char * pData)
 
 		cp = (char *)(G_cData50000 + INDEX2_MSGTYPE + 2);
 
-		if (m_iGameServerMode == 1) // LAN
-			SafeCopy(cAddress, m_cGameServerAddrExternal, strlen(m_cGameServerAddrExternal));
-		else // INTERNET
+		//if (m_iGameServerMode == 1) // LAN
+			//SafeCopy(cAddress, m_cGameServerAddrExternal, strlen(m_cGameServerAddrExternal));
+		//else // INTERNET
 			SafeCopy(cAddress, m_cGameServerAddr, strlen(m_cGameServerAddr));
-		
+			SafeCopy(cExtAddress, m_cGameServerAddrExternal, strlen(m_cGameServerAddrExternal));
+
 		SafeCopy(cp, m_cServerName, 10);
 		cp += 10;
 
 		SafeCopy(cp, cAddress, 16);
+		cp += 16;
+
+		SafeCopy(cp, cExtAddress, 16);
 		cp += 16;
 
 		wp  = (WORD *)cp;
@@ -2978,7 +2982,7 @@ bool CGame::bSendMsgToLS(DWORD dwMsg, int iClientH, bool bFlag,char * pData)
 			cp += 11;
 		}
 
-		m_pSubLogSock[m_iCurSubLogSockIndex]->iSendMsg(G_cData50000, 37 + m_iTotalMaps*11);
+		m_pSubLogSock[m_iCurSubLogSockIndex]->iSendMsg(G_cData50000, 53 + m_iTotalMaps*11);
 		return TRUE;
 
 	case MSGID_REQUEST_REGISTERGAMESERVERSOCKET:

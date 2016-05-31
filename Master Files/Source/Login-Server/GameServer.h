@@ -17,7 +17,7 @@ public:
 		void SendStockMsgToGameServer();
 
         char ServerName[15], MapName[MAXGAMESERVERMAPS][15];
-        _ADDRESS ServerIP;
+		_ADDRESS ServerIP, ServerExtIP;
         WORD ServerPort, InternalID;
         BYTE NumberOfMaps, ConnectedSockets;
         sWORD SocketIndex[MAXSOCKETSPERSERVER];

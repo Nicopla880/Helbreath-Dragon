@@ -65,7 +65,7 @@ public:
         void RepairDatabase(DWORD time);
         void OnTimer();
         void ProcessClientRequestEnterGame(char *Data, DWORD ClientID, MYSQL myConn);
-        BOOL IsMapAvailable(char *MapName, char *GameServerIP, WORD *GameServerPort, BYTE *GSID);
+		BOOL IsMapAvailable(char *MapName, char *GameServerIP, char *GameServerExtIP, WORD *GameServerPort, BYTE *GSID);
         void ProcessRequestPlayerData(char *Data, BYTE GSID, MYSQL myConn);
         BOOL IsAccountInUse(char *AccountName, WORD *AccountID = NULL);
         WORD GetCharacterInfo(char *CharName, char *Data, MYSQL myConn);

@@ -1434,10 +1434,7 @@ BOOL CGame::bSendCommand(DWORD dwMsgID, WORD wCommand, char cDir, int iV1, int i
 		memcpy(cp, m_cWorldServerName, 30);
 		cp += 30;
 
-		memcpy(cp, G_cCmdLineTokenA, 120);
-		cp += 120;
-
-		iRet = m_pLSock->iSendMsg(cMsg, 200, cKey);
+		iRet = m_pLSock->iSendMsg(cMsg, 80, cKey);
 		break;
 
 	case MSGID_REQUEST_DELETECHARACTER:

@@ -569,6 +569,7 @@ void CLoginServer::OnClientRead(WORD ClientID)
 				SafeCopy(AccountName, (dataBuff+6), 10);
 				SendCharList(AccountName, ClientID, myConn);
 			}
+			PutLogList("MSGID_REQUEST_LOGIN");
 		break;
 
 		case MSGID_REQUEST_CREATENEWCHARACTER:
@@ -616,6 +617,7 @@ void CLoginServer::OnClientRead(WORD ClientID)
 				mysql_close(&myConn);
 				return;
 			}
+			PutLogList("MSGID_REQUEST_ENTERGAME");
 			ProcessClientRequestEnterGame((dataBuff+4), ClientID, myConn);
 		break;
 
@@ -802,19 +804,23 @@ void CLoginServer::ProcessGSMsgWithDBAccess(char *pData, BYTE GSID, MYSQL myConn
 	switch(*dwpMsgID)
 	{
 	case MSGID_REQUEST_PLAYERDATA:
+		PutLogList("MSGID_REQUEST_PLAYERDATA");
 		ProcessRequestPlayerData(pData+6, (BYTE)GSID, myConn);
 		break;
 
 	case MSGID_REQUEST_NOSAVELOGOUT:
+		PutLogList("MSGID_REQUEST_NOSAVELOGOUT");
 		ProcessClientLogout(pData+6, FALSE, (BYTE)GSID, myConn);
 		break;
 
 	case MSGID_REQUEST_SAVEPLAYERDATALOGOUT:
 	case MSGID_REQUEST_SAVEPLAYERDATA_REPLY:
+		PutLogList("MSGID_REQUEST_SAVEPLAYERDATALOGOUT");
 		ProcessClientLogout(pData+6, TRUE, (BYTE)GSID, myConn);
 		break;
 
 	case MSGID_REQUEST_SAVEPLAYERDATA:
+		PutLogList("MSGID_REQUEST_SAVEPLAYERDATA");
 		SaveCharacter(pData+6, myConn);
 		break;
 
@@ -1065,7 +1071,7 @@ BOOL CLoginServer::IsAddrPermitted(char *addr)
 void CLoginServer::RegisterGameServer(char *Data, BYTE ID)
 {
  char ServerName[15], SendData[15], Txt100[100];
- _ADDRESS ServerIP;
+ _ADDRESS ServerIP, ServerExtIP;
  WORD ServerPort, *wp, InternalID;
  BYTE NumberOfMaps;
  DWORD *dwp;
@@ -1075,10 +1081,11 @@ void CLoginServer::RegisterGameServer(char *Data, BYTE ID)
         SafeCopy(ServerName, Data, 10);
 		ZeroMemory(ServerIP, sizeof(ServerIP));
         SafeCopy(ServerIP, Data+10, 16);
-        ServerPort = wGetOffsetValue(Data, 26);
-		ReceivedConfig = bGetOffsetValue(Data, 28);
-        NumberOfMaps = bGetOffsetValue(Data, 29);
-		InternalID = wGetOffsetValue(Data, 30);
+		SafeCopy(ServerExtIP, Data + 26, 16);
+        ServerPort = wGetOffsetValue(Data, 42);
+		ReceivedConfig = bGetOffsetValue(Data, 44);
+        NumberOfMaps = bGetOffsetValue(Data, 45);
+		InternalID = wGetOffsetValue(Data, 46);
         for(WORD w=0; w<MAXGAMESERVERS; w++)
            {
             if(GameServer[w] == NULL)
@@ -1087,13 +1094,14 @@ void CLoginServer::RegisterGameServer(char *Data, BYTE ID)
 			   GameServer[w] = new CGameServer(ID);
                SafeCopy(GameServer[w]->ServerName, ServerName);
                SafeCopy(GameServer[w]->ServerIP, ServerIP);
+			   SafeCopy(GameServer[w]->ServerExtIP, ServerExtIP);
                GameServer[w]->ServerPort = ServerPort;
                GameServer[w]->NumberOfMaps = NumberOfMaps;
 			   GameServer[w]->InternalID = w;
 			   PutLogList("(!) Maps registered:");
                for(BYTE b = 0; b < NumberOfMaps; b++){
 				   ZeroMemory(GameServer[w]->MapName[b], sizeof(GameServer[w]->MapName[b]));
-				   SafeCopy(GameServer[w]->MapName[b], (Data+32+(11*b)), 10);
+				   SafeCopy(GameServer[w]->MapName[b], (Data+48+(11*b)), 10);
 				   ZeroMemory(Txt100, sizeof(Txt100));
 				   sprintf(Txt100, "- %s", GameServer[w]->MapName[b]);
                    PutLogList(Txt100);
@@ -1863,14 +1871,15 @@ void CLoginServer::OnTimer()
 void CLoginServer::ProcessClientRequestEnterGame(char *Data, DWORD ClientID, MYSQL myConn)
 {
  char MapName[15], SendBuff[100], AccName[15], GoodAccName[25], AccPwd[15], GoodCharName[25], CharName[15], QueryConsult[300];
- _ADDRESS GameServerIP, ClientIP;
+ _ADDRESS GameServerIP, GameServerExtIP, ClientIP;
  WORD *wp, CharLevel;
  DWORD *dwp, dwGetResponseTime;
  WORD GameServerPort, *wp2, AccountID;
  BYTE *bp, GameServerID;
  st_mysql_res    *QueryResult = NULL;
  MYSQL_ROW       myRow;
- 		
+ char log[120];
+
 		if(ProcessClientLogin(Data+22, (WORD)ClientID, myConn) == FALSE) return;
 		
 		ZeroMemory(SendBuff, sizeof(SendBuff));
@@ -1882,15 +1891,15 @@ void CLoginServer::ProcessClientRequestEnterGame(char *Data, DWORD ClientID, MYS
 		ZeroMemory(CharName, sizeof(CharName));
         SafeCopy(CharName, Data+2, 10);
         ZeroMemory(MapName, sizeof(MapName));
-		//SafeCopy(MapName, Data+12, 10);
-		ZeroMemory(GameServerIP, sizeof(GameServerIP));
+		SafeCopy(MapName, Data+12, 10);
 		ZeroMemory(AccName, sizeof(AccName));
         SafeCopy(AccName, Data+22, 10);
         ZeroMemory(AccPwd, sizeof(AccPwd));
         SafeCopy(AccPwd, Data+32, 10);
-        ZeroMemory(ClientIP, sizeof(ClientIP));
-        ClientSocket[ClientID]->iGetPeerAddress(ClientIP);
         CharLevel = wGetOffsetValue(Data, 42);
+
+		ZeroMemory(ClientIP, sizeof(ClientIP));
+		 ClientSocket[ClientID]->iGetPeerAddress(ClientIP);
 
 		ZeroMemory(QueryConsult, sizeof(QueryConsult));
 		ZeroMemory(GoodAccName, sizeof(GoodAccName));
@@ -1914,15 +1923,22 @@ void CLoginServer::ProcessClientRequestEnterGame(char *Data, DWORD ClientID, MYS
 		switch(*wp){
 
          case ENTERGAMEMSGTYPE_NEW:
-		 if(IsMapAvailable(MapName, GameServerIP, &GameServerPort, &GameServerID)){
+			 PutLogList("ENTERGAMEMSGTYPE_NEW");
+			 if (IsMapAvailable(MapName, GameServerIP, GameServerExtIP, &GameServerPort, &GameServerID)){
             if(IsAccountInUse(AccName, &AccountID)) *wp2 = ENTERGAMERESTYPE_PLAYING;
             else{
                for(WORD w = 0; w < MAXCLIENTS; w++) if(Client[w] == NULL) {Client[w] = new CClient(AccName, AccPwd, CharName, CharLevel, ClientIP, GameServerID);break;}
 			   SendGameServerIP(ClientIP, GameServerID);
                *wp2 = ENTERGAMERESTYPE_CONFIRM;
+			   if (ClientIP != GameServerExtIP)
                SafeCopy(SendBuff+6, GameServerIP);
+			   else if (ClientIP == GameServerExtIP)
+			   SafeCopy(SendBuff + 6, GameServerExtIP);
                wp2 = (WORD*)(SendBuff+22);
                *wp2 = GameServerPort;
+
+			   sprintf(log, "(!!!) GameServerIP(%s) GameServerExtIP[%s]", GameServerIP, GameServerExtIP);
+			   PutLogList(log);
             }
 		 }
          else{
@@ -1930,14 +1946,14 @@ void CLoginServer::ProcessClientRequestEnterGame(char *Data, DWORD ClientID, MYS
             bp = (BYTE*)(SendBuff+6);
             *bp = REJECTTYPE_GAMESERVEROFFLINE;
 		 }
-         SendMsgToClient((WORD)ClientID, SendBuff, 24);
+         SendMsgToClient((WORD)ClientID, SendBuff, 40);
          break;
 
          case ENTERGAMEMSGTYPE_NOENTER_FORCEDISCONN:
 		 if(IsAccountInUse(AccName, &AccountID) && IsSame(AccName, Client[AccountID]->AccountName)
 			 && IsSame(AccPwd, Client[AccountID]->AccountPassword) && Client[AccountID]->IsPlaying == TRUE){
 
-			if(IsMapAvailable(MapName, GameServerIP, &GameServerPort, &GameServerID)) RequestForceDisconnect(Client[AccountID], 10);
+			 if (IsMapAvailable(MapName, GameServerIP, GameServerExtIP, &GameServerPort, &GameServerID)) RequestForceDisconnect(Client[AccountID], 10);
 			else SAFEDELETE(Client[AccountID]);
 			
 			ZeroMemory(SendBuff, sizeof(SendBuff));
@@ -1951,6 +1967,7 @@ void CLoginServer::ProcessClientRequestEnterGame(char *Data, DWORD ClientID, MYS
          break;
 
          case ENTERGAMEMSGTYPE_CHANGINGSERVER:
+			 PutLogList("ENTERGAMEMSGTYPE_CHANGINGSERVER");
 		 if(IsAccountInUse(AccName, &AccountID)){
 			dwGetResponseTime = timeGetTime();
 			while(Client[AccountID] && Client[AccountID]->IsPlaying && ((timeGetTime() - dwGetResponseTime) < MAX_SERVERCHANGERESPONSE)) Delay(500);
@@ -1964,7 +1981,7 @@ void CLoginServer::ProcessClientRequestEnterGame(char *Data, DWORD ClientID, MYS
 			 && IsSame(CharName, Client[AccountID]->CharName) && Client[AccountID]->IsOnServerChange == TRUE){
 
 			
-			if(IsMapAvailable(MapName, GameServerIP, &GameServerPort, &GameServerID)){
+			 if (IsMapAvailable(MapName, GameServerIP, GameServerExtIP, &GameServerPort, &GameServerID)){
 				Client[AccountID]->ConnectedServerID = GameServerID;
 				Client[AccountID]->Time = timeGetTime();
 				Client[AccountID]->IsOnServerChange = FALSE;
@@ -1992,7 +2009,7 @@ void CLoginServer::ProcessClientRequestEnterGame(char *Data, DWORD ClientID, MYS
 		SAFEFREERESULT(QueryResult);
 }
 //=============================================================================
-BOOL CLoginServer::IsMapAvailable(char *MapName, char *GameServerIP, WORD *GameServerPort, BYTE *GSID)
+BOOL CLoginServer::IsMapAvailable(char *MapName, char *GameServerIP, char *GameServerExtIP, WORD *GameServerPort, BYTE *GSID)
 {
         for(BYTE w=0; w<MAXGAMESERVERS; w++)
          if(GameServer[w] != NULL)
@@ -2001,6 +2018,7 @@ BOOL CLoginServer::IsMapAvailable(char *MapName, char *GameServerIP, WORD *GameS
              {
               if(!GameServer[w]->IsInitialized || GameServer[w]->IsBeingClosed) return FALSE;
 			  SafeCopy(GameServerIP, GameServer[w]->ServerIP);
+			  SafeCopy(GameServerExtIP, GameServer[w]->ServerExtIP);
               *GameServerPort = GameServer[w]->ServerPort;
               *GSID = w;
               return TRUE;
@@ -3859,7 +3877,7 @@ void CLoginServer::CreateNewAccount(char *Data, WORD ClientID, MYSQL myConn)
 		ZeroMemory(safeAnswer, sizeof(safeAnswer));
 		MakeGoodName(safeAnswer, NewAccountAnswer);
 	    
-		sprintf(QueryConsult, "INSERT INTO `account_database` SET `name` = '%s' , `password` = '%s', `LoginIpAddress` = '%s', `CreateDate` = '%s', `Email` = '%s', `Quiz` = '%s', `Answer` = '%s';", NewAccName,  GoodPass, ClientIP, CreateDate, safeEmailAddr, safeAccQuiz, safeAnswer);
+		sprintf(QueryConsult, "INSERT INTO `account_database` SET `name` = '%s' , `password` = '%s', `AccountAddress` = '%s', `CreateDate` = '%s', `Email` = '%s', `Quiz` = '%s', `Answer` = '%s';", NewAccName,  GoodPass, ClientIP, CreateDate, safeEmailAddr, safeAccQuiz, safeAnswer);
 
 		if(ProcessQuery(&myConn, QueryConsult) == -1) return;
 		QueryResult = mysql_store_result(&myConn);
