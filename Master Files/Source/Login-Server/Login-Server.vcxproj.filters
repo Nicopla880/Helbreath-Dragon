@@ -140,5 +140,8 @@
     <Library Include="libs\WSOCK32.LIB">
       <Filter>libs</Filter>
     </Library>
+    <Library Include="libs\see32.lib">
+      <Filter>libs</Filter>
+    </Library>
   </ItemGroup>
 </Project>

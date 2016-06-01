@@ -1930,10 +1930,17 @@ void CLoginServer::ProcessClientRequestEnterGame(char *Data, DWORD ClientID, MYS
                for(WORD w = 0; w < MAXCLIENTS; w++) if(Client[w] == NULL) {Client[w] = new CClient(AccName, AccPwd, CharName, CharLevel, ClientIP, GameServerID);break;}
 			   SendGameServerIP(ClientIP, GameServerID);
                *wp2 = ENTERGAMERESTYPE_CONFIRM;
-			   if (ClientIP != GameServerExtIP)
-               SafeCopy(SendBuff+6, GameServerIP);
-			   else if (ClientIP == GameServerExtIP)
-			   SafeCopy(SendBuff + 6, GameServerExtIP);
+			   if (IsSame(ClientIP, GameServerIP))
+			   {
+				   SafeCopy(SendBuff + 6, GameServerIP);
+			   }
+			   else if (IsSame(ClientIP, GameServerExtIP))
+			   {
+				   SafeCopy(SendBuff + 6, GameServerExtIP);
+			   } else if ((ClientIP != GameServerExtIP) && (ClientIP != GameServerIP))
+			   {
+				   SafeCopy(SendBuff + 6, GameServerExtIP);
+			   }
                wp2 = (WORD*)(SendBuff+22);
                *wp2 = GameServerPort;
 
@@ -3887,8 +3894,36 @@ void CLoginServer::CreateNewAccount(char *Data, WORD ClientID, MYSQL myConn)
 		wp = (WORD*)(Txt500+4);
 		*wp = LOGRESMSGTYPE_NEWACCOUNTCREATED;
 		SendMsgToClient(ClientID, Txt500, 6);
+		//
+
+
 	}
 	SAFEFREERESULT(QueryResult);
+}
+int CLoginServer::SendMail(char *ToList, char *Subject, char *Message)
+{
+	int Code;
+	char *SmtpHost = "smtp.my-isp.com";
+	char *SmtpUser = "my-user-name";
+	char *SmtpPass = "my-password";
+	char *SmtpFrom = "<mike@my-isp.com>";
+	char *SmtpReply = "<mike@my-isp.com>";
+		char *ccList = NULL;
+	char *bccList = NULL;
+	char *Attachments = NULL;
+	// specify the port to connect on (default port is 25)
+	seeIntegerParam(0, SEE_SMTP_PORT, 587);
+	// enable "SMTP Authentication"
+	seeIntegerParam(0, SEE_ENABLE_ESMTP, 1);
+	// specify the user name and password for SMTP authentication
+	seeStringParam(0, SEE_SET_USER, SmtpUser);
+	seeStringParam(0, SEE_SET_SECRET, SmtpPass);
+	// connect to SMTP server
+	Code = seeSmtpConnect(0, SmtpHost, SmtpFrom, SmtpReply);
+	// error ? (negative return codes are errors)
+	if (Code<0) return Code;
+	// send email to list of recipients (ToList)
+	Code = seeSendEmail(0, ToList, ccList, bccList, Subject, Message, Attachments);
 }
 BOOL CLoginServer::AccountExists(char *AccountName, MYSQL myConn)
 {

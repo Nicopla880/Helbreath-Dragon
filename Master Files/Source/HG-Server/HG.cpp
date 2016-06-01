@@ -581,8 +581,6 @@ bool CGame::bInit()
 	m_iLimitedUserExp = m_iLevelExpTable[LEVELLIMIT+1]; 
 	m_iLevelExp51     = m_iLevelExpTable[51]; 
 
-	m_iGameServerMode = 0;
-
 	if (bReadProgramConfigFile("GServer.cfg") == FALSE) {
 		PutLogList(" ");
 		PutLogList("(!!!) CRITICAL ERROR! Cannot execute server! config file contents error!");
@@ -2947,9 +2945,6 @@ bool CGame::bSendMsgToLS(DWORD dwMsg, int iClientH, bool bFlag,char * pData)
 
 		cp = (char *)(G_cData50000 + INDEX2_MSGTYPE + 2);
 
-		//if (m_iGameServerMode == 1) // LAN
-			//SafeCopy(cAddress, m_cGameServerAddrExternal, strlen(m_cGameServerAddrExternal));
-		//else // INTERNET
 			SafeCopy(cAddress, m_cGameServerAddr, strlen(m_cGameServerAddr));
 			SafeCopy(cExtAddress, m_cGameServerAddrExternal, strlen(m_cGameServerAddrExternal));
 
@@ -4016,25 +4011,8 @@ bool CGame::bReadProgramConfigFile(char * cFn)
 					PutLogList(cTxt);
 					cReadMode = 0;
 					break;
+				
 				case 10:
-					if ((memcmp(token, "lan", 3) == 0) || (memcmp(token, "LAN", 3) == 0))
-					{	m_iGameServerMode = 1;
-					memcpy(cGSMode, "LAN", 3);
-					}
-					if ((memcmp(token, "internet", 8) == 0) || (memcmp(token, "INTERNET", 8) == 0))
-					{	m_iGameServerMode = 2;
-					memcpy(cGSMode, "INTERNET", 8);
-					}
-					if (m_iGameServerMode == 0)
-					{	wsprintf(cTxt, "(!!!) Game server mode(%s) must be either ROUTER/router/LAN/lan or INTERNET/internet", token);
-					PutLogList(cTxt);
-					return FALSE;
-					}
-					wsprintf(cTxt, "(*) Game server mode : %s", cGSMode);
-					PutLogList(cTxt);
-					cReadMode = 0;
-					break;
-				case 11:
 					ZeroMemory(m_cGameServerAddrExternal, sizeof(m_cGameServerAddrExternal));
 					if (strlen(token) > 15) 
 					{	wsprintf(cTxt, "(!!!) External (Internet) Game server IP(%s) must within 15 chars!", token);
@@ -4058,8 +4036,7 @@ bool CGame::bReadProgramConfigFile(char * cFn)
 				if (memcmp(token, "gate-server-port", 16) == 0)			cReadMode = 7;
 				if (memcmp(token, "website-script-address", 22) == 0)	cReadMode = 8;
 				if (memcmp(token, "website-port", 12) == 0)				cReadMode = 9;
-				if (memcmp(token, "server-mode", 11) == 0)				cReadMode = 10;
-				if (memcmp(token, "game-server-address-ext", 23) == 0)	cReadMode = 11;
+				if (memcmp(token, "game-server-address-ext", 23) == 0)	cReadMode = 10;
 			}
 
 			token = pStrTok->pGet();
@@ -10713,10 +10690,7 @@ void CGame::SendNotifyMsg(int iFromH, int iToH, WORD wMsgType, DWORD sV1, DWORD 
 		memcpy(cp, m_pClientList[iToH]->m_cMapName, 10);
 		cp += 10;
 
-		if (m_iGameServerMode == 1) // LAN
-			memcpy(cp, m_cGameServerAddrExternal, 15);
-		else // INTERNET
-			memcpy(cp, m_cLogServerAddr, 15);
+		memcpy(cp, m_cLogServerAddr, 15);
 		cp += 15;
 
 		ip = (int *)cp;

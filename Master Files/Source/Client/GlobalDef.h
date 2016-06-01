@@ -10,8 +10,8 @@
 #define MSG_WORLDNAME1		"180/200 Low-Rate Server" // Long name for 1st server...
 #define SERVER_DNS			"HBInternational.ddns.net"
 #define SERVER_PORT			7070
-//#define SERVER_IP			"192.168.1.151"
-#define SERVER_IP			"72.74.19.224"
+#define SERVER_IP			"192.168.1.151"
+//#define SERVER_IP			"72.74.19.224"
 
 #define NAME_WORLDNAME2		"WS2"
 #define MSG_WORLDNAME2		"High-Rate Server"

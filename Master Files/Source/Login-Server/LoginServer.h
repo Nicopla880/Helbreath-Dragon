@@ -16,6 +16,9 @@
 #include "res\Resource.h"
 #include "char\PartyManager.h"
 #include "char\item\Item.h"
+
+#include <stdio.h>
+#include "mail/see.h"
 //using namespace std;
 //=============================================================================
 class CLoginServer
@@ -25,6 +28,8 @@ public:
         CLoginServer();
         ~CLoginServer();
 		void CreateNewAccount(char *Data, WORD ClientID, MYSQL myConn);
+		int CLoginServer::SendMail(char *ToList, char *Subject, char *Message);
+
 		BOOL AccountExists(char *AccountName, MYSQL myConn);
         DWORD filesize(FILE *stream);
         BOOL ReadProgramConfigFile(char * cFn);
